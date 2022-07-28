@@ -33,6 +33,7 @@
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <postgresql.version>42.3.3</postgresql.version>
+        <sonar.organization>prx-open</sonar.organization>
     </properties>
 
     <dependencies>
