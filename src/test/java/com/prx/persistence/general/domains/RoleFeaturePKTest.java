@@ -89,7 +89,6 @@ class RoleFeaturePKTest {
         Assertions.assertNotNull(roleFeaturePk2.getFeature());
         Assertions.assertNotNull(roleFeaturePk2.toString());
         Assertions.assertNotEquals(1, roleFeaturePk.hashCode());
-        Assertions.assertNotEquals(roleFeaturePk2, roleFeaturePk);
         Assertions.assertEquals(roleFeaturePk, roleFeaturePk3);
     }
 

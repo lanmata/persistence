@@ -76,6 +76,7 @@
         <dependency>
             <groupId>com.prx.commons</groupId>
             <artifactId>prx-commons</artifactId>
+            <version>${com.prx.commons.version}</version>
             <type>jar</type>
         </dependency>
         <dependency>
