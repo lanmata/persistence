@@ -67,6 +67,13 @@
             <type>jar</type>
         </dependency>
         <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>${com.google.gson.version}</version>
+            <scope>compile</scope>
+            <type>jar</type>
+        </dependency>
+        <dependency>
             <groupId>com.prx.commons</groupId>
             <artifactId>prx-commons</artifactId>
             <type>jar</type>
