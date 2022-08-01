@@ -31,12 +31,14 @@ class RoleFeaturePKTest {
         final var roleFeaturePk = new RoleFeaturePK();
         final var roleEntity = new RoleEntity();
         final var features = new HashSet<RoleFeatureEntity>();
+        final var roleFeature = new RoleFeatureEntity();
         final var users = new HashSet<UserRoleEntity>();
         final var featureEntity = new FeatureEntity();
 
         final var roleFeaturePk2 = new RoleFeaturePK();
         final var roleEntity2 = new RoleEntity();
         final var features2 = new HashSet<RoleFeatureEntity>();
+        final var roleFeature2 = new RoleFeatureEntity();
         final var users2 = new HashSet<UserRoleEntity>();
         final var featureEntity2 = new FeatureEntity();
 
@@ -45,6 +47,9 @@ class RoleFeaturePKTest {
         featureEntity.setName("Feature name");
         featureEntity.setDescription("Feature description");
         featureEntity.setRolFeatures(features);
+        roleFeature.setRole(1L);
+        roleFeature.setFeature(1L);
+        features.add(roleFeature);
 
         roleEntity.setId(3L);
         roleEntity.setName("Rol 0001");
@@ -55,13 +60,17 @@ class RoleFeaturePKTest {
 
         roleFeaturePk.setFeature(featureEntity.getId());
         roleFeaturePk.setRole(roleEntity.getId());
-        final var roleFeaturePk3 = roleFeaturePk;
+        final var roleFeaturePk3 = new RoleFeaturePK();
+        final var roleFeaturePk4 = roleFeaturePk;
 
         featureEntity2.setId(1L);
         featureEntity2.setActive(true);
         featureEntity2.setName("Feature name 2");
         featureEntity2.setDescription("Feature description 2");
         featureEntity2.setRolFeatures(features);
+        roleFeature2.setRole(2L);
+        roleFeature2.setFeature(2L);
+        features.add(roleFeature2);
 
         roleEntity2.setId(3L);
         roleEntity2.setName("Rol 0002");
@@ -79,17 +88,24 @@ class RoleFeaturePKTest {
         featureEntity2.setDescription("Feature description 2");
         featureEntity2.setRolFeatures(features2);
 
-        Assertions.assertNotNull(roleFeaturePk);
-        Assertions.assertNotNull(roleFeaturePk.getRole());
-        Assertions.assertNotNull(roleFeaturePk.getFeature());
-        Assertions.assertNotNull(roleFeaturePk.toString());
-        Assertions.assertNotEquals(1, roleFeaturePk.hashCode());
-        Assertions.assertNotNull(roleFeaturePk2);
-        Assertions.assertNotNull(roleFeaturePk2.getRole());
-        Assertions.assertNotNull(roleFeaturePk2.getFeature());
-        Assertions.assertNotNull(roleFeaturePk2.toString());
-        Assertions.assertNotEquals(1, roleFeaturePk.hashCode());
-        Assertions.assertEquals(roleFeaturePk, roleFeaturePk3);
+        Assertions.assertAll("Test Getters and Setters",
+                () -> Assertions.assertNotNull(roleFeaturePk.getRole()),
+                () -> Assertions.assertNotNull(roleFeaturePk.getFeature()),
+                () -> Assertions.assertNotNull(roleFeaturePk.toString()),
+                () -> Assertions.assertNotEquals(1, roleFeaturePk.hashCode()),
+                () -> Assertions.assertEquals(roleFeaturePk, roleFeaturePk2),
+                () -> Assertions.assertNotEquals(roleFeaturePk, new Object()),
+                () -> Assertions.assertNotEquals(null, roleFeaturePk),
+                () -> Assertions.assertNotEquals(roleFeaturePk, (RoleFeaturePK) null),
+                () -> Assertions.assertEquals(roleFeaturePk,roleFeaturePk4)
+        );
+
+        roleFeaturePk3.setFeature(11L);
+        roleFeaturePk3.setRole(roleFeaturePk.getRole());
+        Assertions.assertNotEquals(roleFeaturePk, roleFeaturePk3);
+        roleFeaturePk3.setFeature(roleFeaturePk.getFeature());
+        roleFeaturePk3.setRole(11L);
+        Assertions.assertNotEquals(roleFeaturePk, roleFeaturePk3);
     }
 
 }

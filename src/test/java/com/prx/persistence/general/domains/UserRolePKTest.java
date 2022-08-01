@@ -38,6 +38,8 @@ class UserRolePKTest {
         final var roleEntity2 = new RoleEntity();
         final var features2 = new HashSet<RoleFeatureEntity>();
         final var users2 = new HashSet<UserRoleEntity>();
+        final var userRolPK3 = new UserRolePK();
+        final var userRolePK4 = userRolePK;
 
         roleEntity.setId(3L);
         roleEntity.setName("Rol 0001");
@@ -54,7 +56,6 @@ class UserRolePKTest {
 
         userRolePK.setUser(userEntity);
         userRolePK.setRole(roleEntity);
-        final var userRolPK3 = userRolePK;
 
         roleEntity2.setId(3L);
         roleEntity2.setName("Rol 0002");
@@ -72,15 +73,30 @@ class UserRolePKTest {
         userRolePK2.setUser(userEntity2);
         userRolePK2.setRole(roleEntity2);
 
+        userRolPK3.setUser(userEntity);
+        userRolPK3.setRole(roleEntity);
+
         Assertions.assertAll("Test Getters and Setters",
             () -> Assertions.assertNotNull(userRolePK.getRole()),
             () -> Assertions.assertNotNull(userRolePK.getUser()),
             () -> Assertions.assertNotNull(userRolePK.toString()),
             () -> Assertions.assertNotEquals(1, userRolePK.hashCode()),
             () -> Assertions.assertNotEquals(userRolePK2, userRolePK),
+            () -> Assertions.assertNotEquals(userRolePK2, new Object()),
             () -> Assertions.assertNotEquals(null, userRolePK),
-            () -> Assertions.assertEquals(userRolePK,userRolPK3)
+            () -> Assertions.assertNotEquals(userRolePK, (UserRolePK) null),
+            () -> Assertions.assertEquals(userRolePK,userRolePK4)
         );
+
+        userRolPK3.setUser(userEntity2);
+        userRolPK3.setRole(roleEntity);
+        Assertions.assertNotEquals(userRolePK, userRolPK3);
+        userRolPK3.setUser(userEntity);
+        userRolPK3.setRole(roleEntity2);
+        Assertions.assertNotEquals(userRolePK, userRolPK3);
+        userRolPK3.setUser(userEntity);
+        userRolPK3.setRole(roleEntity);
+        Assertions.assertEquals(userRolePK, userRolPK3);
 
     }
 }
