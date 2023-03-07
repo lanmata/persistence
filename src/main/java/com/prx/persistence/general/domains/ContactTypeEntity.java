@@ -12,16 +12,12 @@
  */
 package com.prx.persistence.general.domains;
 
-import com.prx.commons.util.JsonUtil;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigInteger;
 
-import static javax.persistence.GenerationType.IDENTITY;
+import static jakarta.persistence.GenerationType.IDENTITY;
 
 /**
  * ContactType.
@@ -29,10 +25,7 @@ import static javax.persistence.GenerationType.IDENTITY;
  * @author <a href='mailto:luis.antonio.mata@gmail.com'>Luis Antonio Mata.</a>
  * @version 1.0.3.20200904-01, 18-01-2021
  */
-@Setter
-@Getter
 @Entity
-@NoArgsConstructor
 @Table(name = "contact_type", schema = "general")
 public class ContactTypeEntity implements Serializable {
     @Id
@@ -46,9 +39,52 @@ public class ContactTypeEntity implements Serializable {
     @Column(name = "active")
     private boolean active;
 
-    @Override
-    public String toString() {
-        return JsonUtil.toJson(this);
+    /**
+     * Default constructor.
+     */
+    public ContactTypeEntity() {
+        // Default constructor.
     }
 
+    public BigInteger getId() {
+        return this.id;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public boolean isActive() {
+        return this.active;
+    }
+
+    public void setId(BigInteger id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    @Override
+    public String toString() {
+        return "ContactTypeEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", active=" + active +
+                '}';
+    }
 }

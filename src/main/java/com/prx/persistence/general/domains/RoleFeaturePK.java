@@ -12,12 +12,8 @@
  */
 package com.prx.persistence.general.domains;
 
-import com.prx.commons.util.JsonUtil;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.Embeddable;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -27,16 +23,16 @@ import java.util.Objects;
  * @author <a href='mailto:luis.antonio.mata@gmail.com'>Luis Antonio Mata.</a>
  * @version 1.0.3.20200904-01, 18-01-2021
  */
-@Getter
-@Setter
 @Embeddable
-@NoArgsConstructor
 public class RoleFeaturePK implements Serializable {
     private Long role;
     private Long feature;
 
-    @Override public String toString() {
-        return JsonUtil.toJson(this);
+    /**
+     * Default constructor.
+     */
+    public RoleFeaturePK() {
+        // Default constructor.
     }
 
     @Override
@@ -50,5 +46,29 @@ public class RoleFeaturePK implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(role, feature);
+    }
+
+    public Long getRole() {
+        return this.role;
+    }
+
+    public Long getFeature() {
+        return this.feature;
+    }
+
+    public void setRole(Long role) {
+        this.role = role;
+    }
+
+    public void setFeature(Long feature) {
+        this.feature = feature;
+    }
+
+    @Override
+    public String toString() {
+        return "RoleFeaturePK{" +
+                "role=" + role +
+                ", feature=" + feature +
+                '}';
     }
 }

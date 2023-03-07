@@ -13,17 +13,14 @@
 package com.prx.persistence.general.domains;
 
 import com.prx.commons.enums.types.IdentificationType;
-import com.prx.commons.util.JsonUtil;
-import static javax.persistence.CascadeType.REFRESH;
-import static javax.persistence.FetchType.LAZY;
-import static javax.persistence.GenerationType.IDENTITY;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+
+import static jakarta.persistence.CascadeType.REFRESH;
+import static jakarta.persistence.FetchType.LAZY;
+import static jakarta.persistence.GenerationType.IDENTITY;
 
 /**
  * IdentificationDocument.
@@ -31,10 +28,7 @@ import java.time.LocalDateTime;
  * @author <a href="mailto:luis.antonio.mata@gmail.com">Luis Antonio Mata</a>
  * @version 1.0.2.20200904-01, 2020-10-25
  */
-@Getter
-@Setter
 @Entity
-@NoArgsConstructor
 @Table(name = "identification_document", schema = "general")
 public class IdentificationDocumentEntity implements Serializable {
 
@@ -52,8 +46,61 @@ public class IdentificationDocumentEntity implements Serializable {
     @JoinColumn(name = "person_id", referencedColumnName = "id")
     private PersonEntity person;
 
+    /**
+     * Default constructor.
+     */
+    public IdentificationDocumentEntity() {
+        // Default constructor.
+    }
+
+    public Integer getId() {
+        return this.id;
+    }
+
+    public Integer getNumber() {
+        return this.number;
+    }
+
+    public LocalDateTime getExpirationDate() {
+        return this.expirationDate;
+    }
+
+    public IdentificationType getIdentificationType() {
+        return this.identificationType;
+    }
+
+    public PersonEntity getPerson() {
+        return this.person;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setNumber(Integer number) {
+        this.number = number;
+    }
+
+    public void setExpirationDate(LocalDateTime expirationDate) {
+        this.expirationDate = expirationDate;
+    }
+
+    public void setIdentificationType(IdentificationType identificationType) {
+        this.identificationType = identificationType;
+    }
+
+    public void setPerson(PersonEntity person) {
+        this.person = person;
+    }
+
     @Override
     public String toString() {
-        return JsonUtil.toJson(this);
+        return "IdentificationDocumentEntity{" +
+                "id=" + id +
+                ", number=" + number +
+                ", expirationDate=" + expirationDate +
+                ", identificationType=" + identificationType +
+                ", person=" + person +
+                '}';
     }
 }

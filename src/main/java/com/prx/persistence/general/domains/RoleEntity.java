@@ -11,18 +11,13 @@
  * verbatim with this file.
  */
 package com.prx.persistence.general.domains;
+import jakarta.persistence.*;
 
-import com.prx.commons.util.JsonUtil;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
-import static javax.persistence.FetchType.EAGER;
-import static javax.persistence.GenerationType.IDENTITY;
+import static jakarta.persistence.FetchType.EAGER;
+import static jakarta.persistence.GenerationType.IDENTITY;
 
 /**
  * RolEntity.
@@ -30,10 +25,7 @@ import static javax.persistence.GenerationType.IDENTITY;
  * @author <a href='mailto:luis.antonio.mata@gmail.com'>Luis Antonio Mata.</a>
  * @version 1.0.3.20200904-01, 18-01-2021
  */
-@Getter
-@Setter
 @Entity
-@NoArgsConstructor
 @Table(name = "role", schema = "general")
 public class RoleEntity implements Serializable {
 
@@ -56,9 +48,70 @@ public class RoleEntity implements Serializable {
     @Column(name = "active")
     private boolean active;
 
-    @Override
-    public String toString() {
-        return JsonUtil.toJson(this);
+    /**
+     * Default constructor.
+     */
+    public RoleEntity() {
+        // Default constructor.
     }
 
+    public Long getId() {
+        return this.id;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public Set<UserRoleEntity> getUserRoleEntities() {
+        return this.userRoleEntities;
+    }
+
+    public Set<RoleFeatureEntity> getRoleFeatures() {
+        return this.roleFeatures;
+    }
+
+    public boolean isActive() {
+        return this.active;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setUserRoleEntities(Set<UserRoleEntity> userRoleEntities) {
+        this.userRoleEntities = userRoleEntities;
+    }
+
+    public void setRoleFeatures(Set<RoleFeatureEntity> roleFeatures) {
+        this.roleFeatures = roleFeatures;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    @Override
+    public String toString() {
+        return "RoleEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", userRoleEntities=" + userRoleEntities +
+                ", roleFeatures=" + roleFeatures +
+                ", active=" + active +
+                '}';
+    }
 }

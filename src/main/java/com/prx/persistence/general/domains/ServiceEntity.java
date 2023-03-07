@@ -12,15 +12,10 @@
  */
 package com.prx.persistence.general.domains;
 
-import com.prx.commons.util.JsonUtil;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.io.Serializable;
 
-import static javax.persistence.GenerationType.IDENTITY;
+import static jakarta.persistence.GenerationType.IDENTITY;
 
 /**
  * Service.
@@ -28,10 +23,7 @@ import static javax.persistence.GenerationType.IDENTITY;
  * @author <a href="mailto:luis.antonio.mata@gmail.com">Luis Antonio Mata</a>
  * @version 1.0.2.20200904-01, 2020-10-25
  */
-@Getter
-@Setter
 @Entity
-@NoArgsConstructor
 @Table(name = "service", schema = "general")
 public class ServiceEntity implements Serializable {
     @Id
@@ -45,9 +37,52 @@ public class ServiceEntity implements Serializable {
     @Column(name = "active")
     private boolean active;
 
-    @Override
-    public String toString() {
-        return JsonUtil.toJson(this);
+    /**
+     * Default constructor.
+     */
+    public ServiceEntity() {
+        // Default constructor.
     }
 
+    public Integer getId() {
+        return this.id;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public boolean isActive() {
+        return this.active;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    @Override
+    public String toString() {
+        return "ServiceEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", active=" + active +
+                '}';
+    }
 }

@@ -12,18 +12,15 @@
  */
 package com.prx.persistence.general.domains;
 
-import com.prx.commons.util.JsonUtil;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigInteger;
 
-import static javax.persistence.CascadeType.REFRESH;
-import static javax.persistence.FetchType.LAZY;
-import static javax.persistence.GenerationType.IDENTITY;
+import static jakarta.persistence.CascadeType.REFRESH;
+import static jakarta.persistence.FetchType.EAGER;
+import static jakarta.persistence.FetchType.LAZY;
+import static jakarta.persistence.GenerationType.IDENTITY;
 
 /**
  * ContactEntity.
@@ -31,10 +28,7 @@ import static javax.persistence.GenerationType.IDENTITY;
  * @author <a href="mailto:luis.antonio.mata@gmail.com">Luis Antonio Mata</a>
  * @version 1.0.2.20200904-01, 2020-10-25
  */
-@Setter
-@Getter
 @Entity
-@NoArgsConstructor
 @Table(name = "contact", schema = "general")
 public class ContactEntity implements Serializable {
 
@@ -44,7 +38,7 @@ public class ContactEntity implements Serializable {
     private BigInteger id;
     @Column(name = "content")
     private String content;
-    @OneToOne(fetch = LAZY)
+    @ManyToOne(fetch = EAGER)
     @JoinColumn(name = "contact_type_id", referencedColumnName = "id")
     private ContactTypeEntity contactType;
     @Column(name = "active")
@@ -53,8 +47,61 @@ public class ContactEntity implements Serializable {
     @JoinColumn(name = "person_id")
     private PersonEntity person;
 
+    /**
+     * Default constructor.
+     */
+    public ContactEntity() {
+        // Default constructor.
+    }
+
+    public BigInteger getId() {
+        return this.id;
+    }
+
+    public String getContent() {
+        return this.content;
+    }
+
+    public ContactTypeEntity getContactType() {
+        return this.contactType;
+    }
+
+    public Boolean getActive() {
+        return this.active;
+    }
+
+    public PersonEntity getPerson() {
+        return this.person;
+    }
+
+    public void setId(BigInteger id) {
+        this.id = id;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setContactType(ContactTypeEntity contactType) {
+        this.contactType = contactType;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public void setPerson(PersonEntity person) {
+        this.person = person;
+    }
+
     @Override
     public String toString() {
-        return JsonUtil.toJson(this);
+        return "ContactEntity{" +
+                "id=" + id +
+                ", content='" + content + '\'' +
+                ", contactType=" + contactType +
+                ", active=" + active +
+                ", person=" + person +
+                '}';
     }
 }

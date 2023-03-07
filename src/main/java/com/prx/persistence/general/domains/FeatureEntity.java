@@ -13,17 +13,13 @@
 
 package com.prx.persistence.general.domains;
 
-import com.prx.commons.util.JsonUtil;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
-import static javax.persistence.FetchType.EAGER;
-import static javax.persistence.GenerationType.IDENTITY;
+import static jakarta.persistence.FetchType.EAGER;
+import static jakarta.persistence.GenerationType.IDENTITY;
 
 /**
  * FeatureEntity.
@@ -31,10 +27,7 @@ import static javax.persistence.GenerationType.IDENTITY;
  * @author <a href='mailto:luis.antonio.mata@gmail.com'>Luis Antonio Mata.</a>
  * @version 1.0.3.20200904-01, 18-01-2021
  */
-@Getter
-@Setter
 @Entity
-@NoArgsConstructor
 @Table(name = "feature", schema = "general")
 public class FeatureEntity implements Serializable {
     @Id
@@ -55,8 +48,61 @@ public class FeatureEntity implements Serializable {
         })
     private Set<RoleFeatureEntity> rolFeatures;
 
+    /**
+     * Default constructor.
+     */
+    public FeatureEntity() {
+        // Default constructor.
+    }
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public Boolean getActive() {
+        return this.active;
+    }
+
+    public Set<RoleFeatureEntity> getRolFeatures() {
+        return this.rolFeatures;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public void setRolFeatures(Set<RoleFeatureEntity> rolFeatures) {
+        this.rolFeatures = rolFeatures;
+    }
+
     @Override
     public String toString() {
-        return JsonUtil.toJson(this);
+        return "FeatureEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", active=" + active +
+                ", rolFeatures=" + rolFeatures +
+                '}';
     }
 }

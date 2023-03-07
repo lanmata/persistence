@@ -12,17 +12,15 @@
  */
 package com.prx.persistence.general.domains;
 
-import com.prx.commons.util.JsonUtil;
-import static javax.persistence.GenerationType.IDENTITY;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
+
+import static jakarta.persistence.GenerationType.IDENTITY;
 
 /**
  * Service.
@@ -30,13 +28,11 @@ import java.time.LocalDate;
  * @author <a href="mailto:luis.antonio.mata@gmail.com">Luis Antonio Mata</a>
  * @version 1.0.2.20200904-01, 2020-10-25
  */
-@Getter
-@Setter
 @Entity
-@NoArgsConstructor
 @Table(name = "person", schema = "general")
 public class PersonEntity implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1884786506064757115L;
 
     @Id
@@ -59,9 +55,70 @@ public class PersonEntity implements Serializable {
     @Column(name = "birthdate")
     private LocalDate birthdate;
 
-    @Override
-    public String toString() {
-        return JsonUtil.toJson(this);
+    /**
+     * Default constructor.
+     */
+    public PersonEntity() {
+        // Default constructor.
     }
 
+    public Long getId() {
+        return this.id;
+    }
+
+    public @NotNull @Size(min = 2, max = 12) String getName() {
+        return this.name;
+    }
+
+    public String getMiddleName() {
+        return this.middleName;
+    }
+
+    public @NotNull @Size(min = 2, max = 12) String getLastName() {
+        return this.lastName;
+    }
+
+    public @Size(max = 1) String getGender() {
+        return this.gender;
+    }
+
+    public LocalDate getBirthdate() {
+        return this.birthdate;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(@NotNull @Size(min = 2, max = 12) String name) {
+        this.name = name;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    public void setLastName(@NotNull @Size(min = 2, max = 12) String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setGender(@Size(max = 1) String gender) {
+        this.gender = gender;
+    }
+
+    public void setBirthdate(LocalDate birthdate) {
+        this.birthdate = birthdate;
+    }
+
+    @Override
+    public String toString() {
+        return "PersonEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", middleName='" + middleName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", gender='" + gender + '\'' +
+                ", birthdate=" + birthdate +
+                '}';
+    }
 }

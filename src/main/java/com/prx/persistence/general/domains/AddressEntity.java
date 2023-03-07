@@ -12,16 +12,13 @@
  */
 package com.prx.persistence.general.domains;
 
-import com.prx.commons.util.JsonUtil;
-import static javax.persistence.CascadeType.REFRESH;
-import static javax.persistence.FetchType.LAZY;
-import static javax.persistence.GenerationType.IDENTITY;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
 
-import javax.persistence.*;
 import java.io.Serializable;
+
+import static jakarta.persistence.CascadeType.REFRESH;
+import static jakarta.persistence.FetchType.LAZY;
+import static jakarta.persistence.GenerationType.IDENTITY;
 
 /**
  * Address.
@@ -29,10 +26,7 @@ import java.io.Serializable;
  * @author <a href="mailto:luis.antonio.mata@gmail.com">Luis Antonio Mata</a>
  * @version 1.0.2.20200904-01, 2020-10-25
  */
-@Setter
-@Getter
 @Entity
-@NoArgsConstructor
 @Table(name = "address", schema = "general")
 public class AddressEntity implements Serializable {
 
@@ -48,8 +42,52 @@ public class AddressEntity implements Serializable {
     @JoinColumn(name = "person_id", referencedColumnName = "id")
     private PersonEntity person;
 
-    public String toString() {
-        return JsonUtil.toJson(this);
+    /**
+     * Default constructor.
+     */
+    public AddressEntity() {
+        // Default constructor.
     }
 
+    public Integer getId() {
+        return this.id;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public String getZipcode() {
+        return this.zipcode;
+    }
+
+    public PersonEntity getPerson() {
+        return this.person;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
+    }
+
+    public void setPerson(PersonEntity person) {
+        this.person = person;
+    }
+
+    @Override
+    public String toString() {
+        return "AddressEntity{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", zipcode='" + zipcode + '\'' +
+                ", person=" + person +
+                '}';
+    }
 }

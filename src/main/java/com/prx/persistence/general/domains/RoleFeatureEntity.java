@@ -12,12 +12,8 @@
  */
 package com.prx.persistence.general.domains;
 
-import com.prx.commons.util.JsonUtil;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
 
-import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -26,10 +22,7 @@ import java.io.Serializable;
  * @author <a href='mailto:luis.antonio.mata@gmail.com'>Luis Antonio Mata.</a>
  * @version 1.0.3.20200904-01, 18-01-2021
  */
-@Getter
-@Setter
 @Entity
-@NoArgsConstructor
 @IdClass(RoleFeaturePK.class)
 @Table(name = "role_feature", schema = "general")
 public class RoleFeatureEntity implements Serializable {
@@ -43,8 +36,43 @@ public class RoleFeatureEntity implements Serializable {
     @Column(name = "active")
     private Boolean active;
 
+    /**
+     * Default constructor.
+     */
+    public RoleFeatureEntity() {
+        // Default constructor.
+    }
+
+    public Long getRole() {
+        return this.role;
+    }
+
+    public Long getFeature() {
+        return this.feature;
+    }
+
+    public Boolean getActive() {
+        return this.active;
+    }
+
+    public void setRole(Long role) {
+        this.role = role;
+    }
+
+    public void setFeature(Long feature) {
+        this.feature = feature;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
     @Override
     public String toString() {
-        return JsonUtil.toJson(this);
+        return "RoleFeatureEntity{" +
+                "role=" + role +
+                ", feature=" + feature +
+                ", active=" + active +
+                '}';
     }
 }

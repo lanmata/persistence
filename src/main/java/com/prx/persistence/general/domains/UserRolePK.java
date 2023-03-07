@@ -12,12 +12,8 @@
  */
 package com.prx.persistence.general.domains;
 
-import com.prx.commons.util.JsonUtil;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -27,10 +23,7 @@ import java.util.Objects;
  * @author <a href='mailto:luis.antonio.mata@gmail.com'>Luis Antonio Mata.</a>
  * @version 1.0.3.20200904-01, 18-01-2021
  */
-@Getter
-@Setter
 @Embeddable
-@NoArgsConstructor
 public class UserRolePK implements Serializable {
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
@@ -39,8 +32,11 @@ public class UserRolePK implements Serializable {
     @JoinColumn(name = "role_id", referencedColumnName = "id")
     private RoleEntity role;
 
-    @Override public String toString() {
-        return JsonUtil.toJson(this);
+    /**
+     * Default constructor.
+     */
+    public UserRolePK() {
+        // Default constructor.
     }
 
     @Override
@@ -54,5 +50,29 @@ public class UserRolePK implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(user, role);
+    }
+
+    public UserEntity getUser() {
+        return this.user;
+    }
+
+    public RoleEntity getRole() {
+        return this.role;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
+    }
+
+    public void setRole(RoleEntity role) {
+        this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "UserRolePK{" +
+                "user=" + user +
+                ", role=" + role +
+                '}';
     }
 }

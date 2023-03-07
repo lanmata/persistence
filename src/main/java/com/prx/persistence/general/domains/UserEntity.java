@@ -12,19 +12,15 @@
  */
 package com.prx.persistence.general.domains;
 
-import com.prx.commons.util.JsonUtil;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Set;
 
-import static javax.persistence.FetchType.EAGER;
-import static javax.persistence.GenerationType.IDENTITY;
+import static jakarta.persistence.FetchType.EAGER;
+import static jakarta.persistence.GenerationType.IDENTITY;
 
 /**
  * UserEntity.
@@ -32,10 +28,7 @@ import static javax.persistence.GenerationType.IDENTITY;
  * @author <a href="mailto:luis.antonio.mata@gmail.com">Luis Antonio Mata</a>
  * @version 1.0.2.20200904-01, 2020-10-25
  */
-@Getter
-@Setter
 @Entity
-@NoArgsConstructor
 @Table(name = "user", schema = "general")
 public class UserEntity implements Serializable {
 
@@ -60,9 +53,70 @@ public class UserEntity implements Serializable {
     @OneToMany(mappedBy = "user")
     private Set<UserRoleEntity> userRole;
 
-    @Override
-    public String toString() {
-        return JsonUtil.toJson(this);
+    /**
+     * Default constructor.
+     */
+    public UserEntity() {
+        // Default constructor.
     }
 
+    public Long getId() {
+        return this.id;
+    }
+
+    public @NotNull @Size(max = 12) String getAlias() {
+        return this.alias;
+    }
+
+    public @NotNull @Size(max = 250) String getPassword() {
+        return this.password;
+    }
+
+    public @NotNull Boolean getActive() {
+        return this.active;
+    }
+
+    public PersonEntity getPerson() {
+        return this.person;
+    }
+
+    public Set<UserRoleEntity> getUserRole() {
+        return this.userRole;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setAlias(@NotNull @Size(max = 12) String alias) {
+        this.alias = alias;
+    }
+
+    public void setPassword(@NotNull @Size(max = 250) String password) {
+        this.password = password;
+    }
+
+    public void setActive(@NotNull Boolean active) {
+        this.active = active;
+    }
+
+    public void setPerson(PersonEntity person) {
+        this.person = person;
+    }
+
+    public void setUserRole(Set<UserRoleEntity> userRole) {
+        this.userRole = userRole;
+    }
+
+    @Override
+    public String toString() {
+        return "UserEntity{" +
+                "id=" + id +
+                ", alias='" + alias + '\'' +
+                ", password='" + password + '\'' +
+                ", active=" + active +
+                ", person=" + person +
+                ", userRole=" + userRole +
+                '}';
+    }
 }

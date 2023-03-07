@@ -12,12 +12,8 @@
  */
 package com.prx.persistence.general.domains;
 
-import com.prx.commons.util.JsonUtil;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
 
-import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -26,10 +22,7 @@ import java.io.Serializable;
  * @author <a href='mailto:luis.antonio.mata@gmail.com'>Luis Antonio Mata.</a>
  * @version 1.0.3.20200904-01, 18-01-2021
  */
-@Getter
-@Setter
 @Entity
-@NoArgsConstructor
 @IdClass(UserRolePK.class)
 @Table(name = "user_role", schema = "general")
 public class UserRoleEntity implements Serializable {
@@ -43,7 +36,43 @@ public class UserRoleEntity implements Serializable {
     @Column(name = "active")
     private Boolean active;
 
-    @Override public String toString() {
-        return JsonUtil.toJson(this);
+    /**
+     *
+     */
+    public UserRoleEntity() {
+        // Default constructor.
+    }
+
+    public UserEntity getUser() {
+        return this.user;
+    }
+
+    public RoleEntity getRole() {
+        return this.role;
+    }
+
+    public Boolean getActive() {
+        return this.active;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
+    }
+
+    public void setRole(RoleEntity role) {
+        this.role = role;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    @Override
+    public String toString() {
+        return "UserRoleEntity{" +
+                "user=" + user +
+                ", role=" + role +
+                ", active=" + active +
+                '}';
     }
 }
