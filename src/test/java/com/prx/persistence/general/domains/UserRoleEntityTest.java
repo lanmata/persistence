@@ -48,13 +48,13 @@ class UserRoleEntityTest {
         userEntity.setPerson(new PersonEntity());
 
 
-        userRoleEntity.setUser(userEntity);
-        userRoleEntity.setRole(roleEntity);
+        userRoleEntity.setUserId(userEntity);
+        userRoleEntity.setRoleId(roleEntity);
         userRoleEntity.setActive(true);
 
         assertAll("Test Getters and Setters",
-            () -> assertNotNull(userRoleEntity.getRole()),
-            () -> assertNotNull(userRoleEntity.getUser()),
+            () -> assertNotNull(userRoleEntity.getRoleId()),
+            () -> assertNotNull(userRoleEntity.getUserId()),
             () -> assertNotNull(userRoleEntity.toString()),
             () -> assertNotNull(userRoleEntity.getActive()),
             () -> assertNotEquals(1, userRoleEntity.hashCode()),

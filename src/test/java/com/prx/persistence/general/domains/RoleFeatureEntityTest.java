@@ -44,8 +44,8 @@ class RoleFeatureEntityTest {
         featureEntity.setName("Feature name");
         featureEntity.setDescription("Feature name");
 
-        roleFeatureEntity.setFeature(featureEntity.getId());
-        roleFeatureEntity.setRole(roleEntity.getId());
+        roleFeatureEntity.setFeature(featureEntity);
+        roleFeatureEntity.setRole(roleEntity);
         roleFeatureEntity.setActive(true);
 
         Assertions.assertAll("Test Getters and Setters",

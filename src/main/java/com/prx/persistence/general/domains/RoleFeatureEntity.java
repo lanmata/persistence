@@ -23,16 +23,20 @@ import java.io.Serializable;
  * @version 1.0.3.20200904-01, 18-01-2021
  */
 @Entity
-@IdClass(RoleFeaturePK.class)
 @Table(name = "role_feature", schema = "general")
 public class RoleFeatureEntity implements Serializable {
 
-    @Id
-    @Column(name = "role_id")
-    private Long role;
-    @Id
-    @Column(name = "feature_id")
-    private Long feature;
+    @EmbeddedId
+    private RoleFeaturePK roleFeaturePK;
+
+    @ManyToOne
+    @MapsId("role_id")
+    private RoleEntity role;
+
+    @ManyToOne
+    @MapsId("feature_id")
+    private FeatureEntity feature;
+
     @Column(name = "active")
     private Boolean active;
 
@@ -43,24 +47,32 @@ public class RoleFeatureEntity implements Serializable {
         // Default constructor.
     }
 
-    public Long getRole() {
-        return this.role;
+    public RoleFeaturePK getRoleFeaturePK() {
+        return roleFeaturePK;
     }
 
-    public Long getFeature() {
-        return this.feature;
+    public void setRoleFeaturePK(RoleFeaturePK roleFeaturePK) {
+        this.roleFeaturePK = roleFeaturePK;
     }
 
-    public Boolean getActive() {
-        return this.active;
+    public RoleEntity getRole() {
+        return role;
     }
 
-    public void setRole(Long role) {
+    public void setRole(RoleEntity role) {
         this.role = role;
     }
 
-    public void setFeature(Long feature) {
+    public FeatureEntity getFeature() {
+        return feature;
+    }
+
+    public void setFeature(FeatureEntity feature) {
         this.feature = feature;
+    }
+
+    public Boolean getActive() {
+        return active;
     }
 
     public void setActive(Boolean active) {

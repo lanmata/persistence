@@ -54,8 +54,8 @@ class UserRolePKTest {
         userEntity.setPassword("34567890");
         userEntity.setPerson(new PersonEntity());
 
-        userRolePK.setUser(userEntity);
-        userRolePK.setRole(roleEntity);
+        userRolePK.setUserId(userEntity.getId());
+        userRolePK.setRoleId(roleEntity.getId());
 
         roleEntity2.setId(3L);
         roleEntity2.setName("Rol 0002");
@@ -70,15 +70,15 @@ class UserRolePKTest {
         userEntity2.setPassword("34567890");
         userEntity2.setPerson(new PersonEntity());
 
-        userRolePK2.setUser(userEntity2);
-        userRolePK2.setRole(roleEntity2);
+        userRolePK2.setUserId(userEntity2.getId());
+        userRolePK2.setRoleId(roleEntity2.getId());
 
-        userRolPK3.setUser(userEntity);
-        userRolPK3.setRole(roleEntity);
+        userRolPK3.setUserId(userEntity.getId());
+        userRolPK3.setRoleId(roleEntity.getId());
 
         Assertions.assertAll("Test Getters and Setters",
-            () -> Assertions.assertNotNull(userRolePK.getRole()),
-            () -> Assertions.assertNotNull(userRolePK.getUser()),
+            () -> Assertions.assertNotNull(userRolePK.getRoleId()),
+            () -> Assertions.assertNotNull(userRolePK.getUserId()),
             () -> Assertions.assertNotNull(userRolePK.toString()),
             () -> Assertions.assertNotEquals(1, userRolePK.hashCode()),
             () -> Assertions.assertNotEquals(userRolePK2, userRolePK),
@@ -88,14 +88,14 @@ class UserRolePKTest {
             () -> Assertions.assertEquals(userRolePK,userRolePK4)
         );
 
-        userRolPK3.setUser(userEntity2);
-        userRolPK3.setRole(roleEntity);
+        userRolPK3.setUserId(userEntity2.getId());
+        userRolPK3.setRoleId(roleEntity.getId());
         Assertions.assertNotEquals(userRolePK, userRolPK3);
-        userRolPK3.setUser(userEntity);
-        userRolPK3.setRole(roleEntity2);
+        userRolPK3.setUserId(userEntity.getId());
+        userRolPK3.setRoleId(roleEntity2.getId());
         Assertions.assertNotEquals(userRolePK, userRolPK3);
-        userRolPK3.setUser(userEntity);
-        userRolPK3.setRole(roleEntity);
+        userRolPK3.setUserId(userEntity.getId());
+        userRolPK3.setRoleId(roleEntity.getId());
         Assertions.assertEquals(userRolePK, userRolPK3);
 
     }

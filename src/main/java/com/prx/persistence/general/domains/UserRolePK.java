@@ -25,12 +25,11 @@ import java.util.Objects;
  */
 @Embeddable
 public class UserRolePK implements Serializable {
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private UserEntity user;
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
-    @JoinColumn(name = "role_id", referencedColumnName = "id")
-    private RoleEntity role;
+
+    @Column(name = "user_id")
+    private Long userId;
+    @Column(name = "role_id")
+    private Long roleId;
 
     /**
      * Default constructor.
@@ -44,35 +43,35 @@ public class UserRolePK implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserRolePK userRolePK = (UserRolePK) o;
-        return user.equals(userRolePK.user) && role.equals(userRolePK.role);
+        return userId.equals(userRolePK.userId) && roleId.equals(userRolePK.roleId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(user, role);
+        return Objects.hash(userId, roleId);
     }
 
-    public UserEntity getUser() {
-        return this.user;
+    public Long getUserId() {
+        return this.userId;
     }
 
-    public RoleEntity getRole() {
-        return this.role;
+    public Long getRoleId() {
+        return this.roleId;
     }
 
-    public void setUser(UserEntity user) {
-        this.user = user;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
-    public void setRole(RoleEntity role) {
-        this.role = role;
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
     }
 
     @Override
     public String toString() {
         return "UserRolePK{" +
-                "user=" + user +
-                ", role=" + role +
+                "user=" + userId +
+                ", role=" + roleId +
                 '}';
     }
 }
