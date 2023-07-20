@@ -32,6 +32,7 @@ class RoleFeatureEntityTest {
         final var roleEntity = new RoleEntity();
         final var features = new HashSet<RoleFeatureEntity>();
         final var users = new HashSet<UserRoleEntity>();
+        final var roleFeaturePk = new RoleFeaturePK();
 
         roleEntity.setId(3L);
         roleEntity.setName("Rol 0001");
@@ -44,15 +45,22 @@ class RoleFeatureEntityTest {
         featureEntity.setName("Feature name");
         featureEntity.setDescription("Feature name");
 
+        roleFeaturePk.setRole(1L);
+        roleFeaturePk.setFeature(1L);
+
         roleFeatureEntity.setFeature(featureEntity);
         roleFeatureEntity.setRole(roleEntity);
         roleFeatureEntity.setActive(true);
+        roleFeatureEntity.setRoleFeaturePK(roleFeaturePk);
 
         Assertions.assertAll("Test Getters and Setters",
             () -> Assertions.assertNotNull(roleFeatureEntity.getRole()),
             () -> Assertions.assertNotNull(roleFeatureEntity.getFeature()),
             () -> Assertions.assertNotNull(roleFeatureEntity.getActive()),
             () -> Assertions.assertNotNull(roleFeatureEntity.toString()),
+            () -> Assertions.assertNotNull(roleFeatureEntity.getRoleFeaturePK()),
+            () -> Assertions.assertNotNull(roleFeatureEntity.getRoleFeaturePK().getRole()),
+            () -> Assertions.assertNotNull(roleFeatureEntity.getRoleFeaturePK().getFeature()),
             () -> Assertions.assertNotEquals(1, roleFeatureEntity.hashCode()),
             () -> Assertions.assertNotEquals(new RoleFeatureEntity(), roleFeatureEntity)
         );

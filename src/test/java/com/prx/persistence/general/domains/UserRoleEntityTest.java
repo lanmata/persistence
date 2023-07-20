@@ -33,6 +33,7 @@ class UserRoleEntityTest {
         final var roleEntity = new RoleEntity();
         final var features = new HashSet<RoleFeatureEntity>();
         final var users = new HashSet<UserRoleEntity>();
+        final var userRolePk = new UserRolePK();
 
         roleEntity.setId(3L);
         roleEntity.setName("Rol 0001");
@@ -47,16 +48,22 @@ class UserRoleEntityTest {
         userEntity.setPassword("34567890");
         userEntity.setPerson(new PersonEntity());
 
+        userRolePk.setRoleId(1L);
+        userRolePk.setUserId(1L);
 
         userRoleEntity.setUserId(userEntity);
         userRoleEntity.setRoleId(roleEntity);
         userRoleEntity.setActive(true);
+        userRoleEntity.setUserRolePK(userRolePk);
 
         assertAll("Test Getters and Setters",
             () -> assertNotNull(userRoleEntity.getRoleId()),
             () -> assertNotNull(userRoleEntity.getUserId()),
             () -> assertNotNull(userRoleEntity.toString()),
             () -> assertNotNull(userRoleEntity.getActive()),
+            () -> assertNotNull(userRoleEntity.getUserRolePK()),
+            () -> assertNotNull(userRoleEntity.getUserRolePK().getUserId()),
+            () -> assertNotNull(userRoleEntity.getUserRolePK().getRoleId()),
             () -> assertNotEquals(1, userRoleEntity.hashCode()),
             () -> assertNotEquals(new UserRoleEntity(), userRoleEntity)
         );
