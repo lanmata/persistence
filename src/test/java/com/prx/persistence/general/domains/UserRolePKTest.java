@@ -91,7 +91,7 @@ class UserRolePKTest {
         userRolPK3.setUserId(userEntity2.getId());
         userRolPK3.setRoleId(roleEntity.getId());
         Assertions.assertNotEquals(userRolePK, userRolPK3);
-        userRolPK3.setUserId(userEntity.getId());
+        userRolPK3.setUserId(userEntity2.getId());
         userRolPK3.setRoleId(roleEntity2.getId());
         Assertions.assertNotEquals(userRolePK, userRolPK3);
         userRolPK3.setUserId(userEntity.getId());
