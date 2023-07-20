@@ -47,9 +47,6 @@ class RoleFeaturePKTest {
         featureEntity.setName("Feature name");
         featureEntity.setDescription("Feature description");
         featureEntity.setRolFeatures(features);
-        roleFeature.setRole(1L);
-        roleFeature.setFeature(1L);
-        features.add(roleFeature);
 
         roleEntity.setId(3L);
         roleEntity.setName("Rol 0001");
@@ -57,6 +54,10 @@ class RoleFeaturePKTest {
         roleEntity.setActive(true);
         roleEntity.setRoleFeatures(features);
         roleEntity.setUserRoleEntities(users);
+
+        roleFeature.setRole(roleEntity);
+        roleFeature.setFeature(featureEntity);
+        features.add(roleFeature);
 
         roleFeaturePk.setFeature(featureEntity.getId());
         roleFeaturePk.setRole(roleEntity.getId());
@@ -68,8 +69,8 @@ class RoleFeaturePKTest {
         featureEntity2.setName("Feature name 2");
         featureEntity2.setDescription("Feature description 2");
         featureEntity2.setRolFeatures(features);
-        roleFeature2.setRole(2L);
-        roleFeature2.setFeature(2L);
+        roleFeature2.setRole(roleEntity);
+        roleFeature2.setFeature(featureEntity);
         features.add(roleFeature2);
 
         roleEntity2.setId(3L);

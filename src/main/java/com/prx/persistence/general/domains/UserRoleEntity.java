@@ -23,16 +23,20 @@ import java.io.Serializable;
  * @version 1.0.3.20200904-01, 18-01-2021
  */
 @Entity
-@IdClass(UserRolePK.class)
 @Table(name = "user_role", schema = "general")
 public class UserRoleEntity implements Serializable {
 
-    @Id
-    @Column(name = "user_id")
-    private UserEntity user;
-    @Id
-    @Column(name = "role_id")
-    private RoleEntity role;
+    @EmbeddedId
+    private UserRolePK userRolePK;
+
+    @ManyToOne
+    @MapsId("user_id")
+    private UserEntity userId;
+
+    @ManyToOne
+    @MapsId("role_id")
+    private RoleEntity roleId;
+
     @Column(name = "active")
     private Boolean active;
 
@@ -43,24 +47,32 @@ public class UserRoleEntity implements Serializable {
         // Default constructor.
     }
 
-    public UserEntity getUser() {
-        return this.user;
+    public UserRolePK getUserRolePK() {
+        return userRolePK;
     }
 
-    public RoleEntity getRole() {
-        return this.role;
+    public void setUserRolePK(UserRolePK userRolePK) {
+        this.userRolePK = userRolePK;
+    }
+
+    public UserEntity getUserId() {
+        return this.userId;
+    }
+
+    public RoleEntity getRoleId() {
+        return this.roleId;
     }
 
     public Boolean getActive() {
         return this.active;
     }
 
-    public void setUser(UserEntity user) {
-        this.user = user;
+    public void setUserId(UserEntity userId) {
+        this.userId = userId;
     }
 
-    public void setRole(RoleEntity role) {
-        this.role = role;
+    public void setRoleId(RoleEntity roleId) {
+        this.roleId = roleId;
     }
 
     public void setActive(Boolean active) {
@@ -70,8 +82,9 @@ public class UserRoleEntity implements Serializable {
     @Override
     public String toString() {
         return "UserRoleEntity{" +
-                "user=" + user +
-                ", role=" + role +
+                "userRolePK=" + userRolePK +
+                "user=" + userId +
+                ", role=" + roleId +
                 ", active=" + active +
                 '}';
     }

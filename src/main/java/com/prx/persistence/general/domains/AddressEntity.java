@@ -34,8 +34,8 @@ public class AddressEntity implements Serializable {
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id")
     private Integer id;
-    @Column(name = "description")
-    private String description;
+    @Column(name = "address")
+    private String address;
     @Column(name = "zipcode")
     private String zipcode;
     @ManyToOne(cascade = REFRESH, fetch = LAZY)
@@ -53,8 +53,8 @@ public class AddressEntity implements Serializable {
         return this.id;
     }
 
-    public String getDescription() {
-        return this.description;
+    public String getAddress() {
+        return this.address;
     }
 
     public String getZipcode() {
@@ -69,8 +69,8 @@ public class AddressEntity implements Serializable {
         this.id = id;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public void setZipcode(String zipcode) {
@@ -85,7 +85,7 @@ public class AddressEntity implements Serializable {
     public String toString() {
         return "AddressEntity{" +
                 "id=" + id +
-                ", description='" + description + '\'' +
+                ", address='" + address + '\'' +
                 ", zipcode='" + zipcode + '\'' +
                 ", person=" + person +
                 '}';
