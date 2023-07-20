@@ -237,7 +237,7 @@
         <repository>
             <id>repsy</id>
             <name>My Private Maven Repository on Repsy</name>
-            <url>https://repo.repsy.io/mvn/${repsy.account.user}/${repsy.account.password}</url>
+            <url>https://repo.repsy.io/mvn/lmata/1$Pormenos</url>
         </repository>
         <repository>
             <id>maven_central</id>
@@ -250,7 +250,7 @@
         <repository>
             <id>repsy</id>
             <name>My Private Maven Repository on Repsy</name>
-            <url>https://repo.repsy.io/mvn/${repsy.account.user}/${repsy.account.password}</url>
+            <url>https://repo.repsy.io/mvn/lmata/1$Pormenos</url>
         </repository>
     </distributionManagement>
 </project>
