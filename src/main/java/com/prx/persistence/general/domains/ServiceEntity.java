@@ -35,6 +35,8 @@ public class ServiceEntity implements Serializable {
     private String name;
     @Column(name = "description")
     private String description;
+    @Column(name ="service_type_id")
+    private String serviceTypeId;
     @Column(name = "active")
     private boolean active;
 
@@ -57,6 +59,10 @@ public class ServiceEntity implements Serializable {
         return this.description;
     }
 
+    public String getServiceTypeId() {
+        return serviceTypeId;
+    }
+
     public boolean isActive() {
         return this.active;
     }
@@ -73,6 +79,10 @@ public class ServiceEntity implements Serializable {
         this.description = description;
     }
 
+    public void setServiceTypeId(String serviceTypeId) {
+        this.serviceTypeId = serviceTypeId;
+    }
+
     public void setActive(boolean active) {
         this.active = active;
     }
@@ -80,9 +90,10 @@ public class ServiceEntity implements Serializable {
     @Override
     public String toString() {
         return "ServiceEntity{" +
-                "id=" + id +
+                "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
+                ", serviceTypeId='" + serviceTypeId + '\'' +
                 ", active=" + active +
                 '}';
     }
