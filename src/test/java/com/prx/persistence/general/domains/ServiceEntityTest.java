@@ -67,8 +67,8 @@ class ServiceEntityTest {
         assertEquals("42", actualServiceEntity.getId());
         assertEquals("Name", actualServiceEntity.getName());
         assertTrue(actualServiceEntity.isActive());
-        assertEquals("ServiceEntity{id=42, name='Name', description='The characteristics of someone or something',"
-                + " active=true}", actualToStringResult);
+        assertEquals("ServiceEntity{id='42', name='Name', description='The characteristics of someone or something',"
+                + " serviceTypeId='c29f4874-2260-425d-bebb-2d1448f82e2b', active=true}", actualToStringResult);
     }
 
 }
