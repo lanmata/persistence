@@ -59,6 +59,7 @@ class ServiceEntityTest {
         ServiceEntity actualServiceEntity = new ServiceEntity();
         actualServiceEntity.setActive(true);
         actualServiceEntity.setServiceTypeId("c29f4874-2260-425d-bebb-2d1448f82e2b");
+        actualServiceEntity.setDescription("The characteristics of someone or something");
         actualServiceEntity.setId("42");
         actualServiceEntity.setName("Name");
         String actualToStringResult = actualServiceEntity.toString();
