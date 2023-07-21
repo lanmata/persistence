@@ -33,7 +33,7 @@ public class FeatureEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private String id;
     @Column(name = "name")
     private String name;
     @Column(name = "description")
@@ -55,7 +55,7 @@ public class FeatureEntity implements Serializable {
         // Default constructor.
     }
 
-    public Long getId() {
+    public String getId() {
         return this.id;
     }
 
@@ -75,7 +75,7 @@ public class FeatureEntity implements Serializable {
         return this.rolFeatures;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

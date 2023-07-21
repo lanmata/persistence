@@ -38,7 +38,7 @@ public class PersonEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private String id;
     @NotNull
     @Size(min = 2, max = 12)
     @Column(name = "first_name")
@@ -62,7 +62,7 @@ public class PersonEntity implements Serializable {
         // Default constructor.
     }
 
-    public Long getId() {
+    public String getId() {
         return this.id;
     }
 
@@ -86,7 +86,7 @@ public class PersonEntity implements Serializable {
         return this.birthdate;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

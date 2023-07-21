@@ -25,8 +25,8 @@ import java.util.Objects;
  */
 @Embeddable
 public class RoleFeaturePK implements Serializable {
-    private Long role;
-    private Long feature;
+    private String role;
+    private String feature;
 
     /**
      * Default constructor.
@@ -48,19 +48,19 @@ public class RoleFeaturePK implements Serializable {
         return Objects.hash(role, feature);
     }
 
-    public Long getRole() {
+    public String getRole() {
         return this.role;
     }
 
-    public Long getFeature() {
+    public String getFeature() {
         return this.feature;
     }
 
-    public void setRole(Long role) {
+    public void setRole(String role) {
         this.role = role;
     }
 
-    public void setFeature(Long feature) {
+    public void setFeature(String feature) {
         this.feature = feature;
     }
 

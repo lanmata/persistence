@@ -13,6 +13,7 @@
 package com.prx.persistence.general.domains;
 
 import jakarta.persistence.*;
+
 import java.io.Serializable;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
@@ -29,7 +30,7 @@ public class ServiceEntity implements Serializable {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = IDENTITY)
-    private Integer id;
+    private String id;
     @Column(name = "name")
     private String name;
     @Column(name = "description")
@@ -41,10 +42,10 @@ public class ServiceEntity implements Serializable {
      * Default constructor.
      */
     public ServiceEntity() {
-        // Default constructor.
+        // ServiceEntity default constructor.
     }
 
-    public Integer getId() {
+    public String getId() {
         return this.id;
     }
 
@@ -60,7 +61,7 @@ public class ServiceEntity implements Serializable {
         return this.active;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
