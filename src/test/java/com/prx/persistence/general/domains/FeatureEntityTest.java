@@ -13,6 +13,12 @@
 
 package com.prx.persistence.general.domains;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.Set;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -26,25 +32,64 @@ import java.util.HashSet;
  */
 class FeatureEntityTest {
     @Test
-    void gettersAndSetters(){
+    void gettersAndSetters() {
         final var featureEntity = new FeatureEntity();
         final var rolFeatures = new HashSet<RoleFeatureEntity>();
 
-        featureEntity.setId(1L);
+        featureEntity.setId("76e47fc1-75d4-4c16-b40a-e67006964a7e");
         featureEntity.setActive(true);
         featureEntity.setName("Feature name");
         featureEntity.setDescription("Feature description");
         featureEntity.setRolFeatures(rolFeatures);
 
         Assertions.assertAll("Test Getters And Setters",
-            ()-> Assertions.assertNotNull(featureEntity.getId()),
-            ()-> Assertions.assertNotNull(featureEntity.getName()),
-            ()-> Assertions.assertNotNull(featureEntity.toString()),
-            ()-> Assertions.assertNotNull(featureEntity.getActive()),
-            ()-> Assertions.assertNotNull(featureEntity.getDescription()),
-            ()-> Assertions.assertNotNull(featureEntity.getRolFeatures()),
-            ()-> Assertions.assertNotEquals(1, featureEntity.hashCode()),
-            ()-> Assertions.assertNotEquals(new FeatureEntity(), featureEntity)
+                () -> Assertions.assertNotNull(featureEntity.getId()),
+                () -> Assertions.assertNotNull(featureEntity.getName()),
+                () -> Assertions.assertNotNull(featureEntity.toString()),
+                () -> Assertions.assertNotNull(featureEntity.getActive()),
+                () -> Assertions.assertNotNull(featureEntity.getDescription()),
+                () -> Assertions.assertNotNull(featureEntity.getRolFeatures()),
+                () -> Assertions.assertNotEquals(1, featureEntity.hashCode()),
+                () -> Assertions.assertNotEquals(new FeatureEntity(), featureEntity)
         );
+    }
+
+    /**
+     * Methods under test:
+     *
+     * <ul>
+     *   <li>default or parameterless constructor of {@link FeatureEntity}
+     *   <li>{@link FeatureEntity#setActive(Boolean)}
+     *   <li>{@link FeatureEntity#setDescription(String)}
+     *   <li>{@link FeatureEntity#setId(String)}
+     *   <li>{@link FeatureEntity#setName(String)}
+     *   <li>{@link FeatureEntity#setRolFeatures(Set)}
+     *   <li>{@link FeatureEntity#toString()}
+     *   <li>{@link FeatureEntity#getActive()}
+     *   <li>{@link FeatureEntity#getDescription()}
+     *   <li>{@link FeatureEntity#getId()}
+     *   <li>{@link FeatureEntity#getName()}
+     *   <li>{@link FeatureEntity#getRolFeatures()}
+     * </ul>
+     */
+    @Test
+    void testConstructor() {
+        FeatureEntity actualFeatureEntity = new FeatureEntity();
+        actualFeatureEntity.setActive(true);
+        actualFeatureEntity.setDescription("The characteristics of someone or something");
+        actualFeatureEntity.setId("42");
+        actualFeatureEntity.setName("Name");
+        HashSet<RoleFeatureEntity> rolFeatures = new HashSet<>();
+        actualFeatureEntity.setRolFeatures(rolFeatures);
+        String actualToStringResult = actualFeatureEntity.toString();
+        assertTrue(actualFeatureEntity.getActive());
+        assertEquals("The characteristics of someone or something", actualFeatureEntity.getDescription());
+        assertEquals("42", actualFeatureEntity.getId());
+        assertEquals("Name", actualFeatureEntity.getName());
+        assertSame(rolFeatures, actualFeatureEntity.getRolFeatures());
+        assertEquals(
+                "FeatureEntity{id=42, name='Name', description='The characteristics of someone or something', active=true,"
+                        + " rolFeatures=[]}",
+                actualToStringResult);
     }
 }

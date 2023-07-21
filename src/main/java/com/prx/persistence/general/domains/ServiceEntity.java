@@ -13,6 +13,7 @@
 package com.prx.persistence.general.domains;
 
 import jakarta.persistence.*;
+
 import java.io.Serializable;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
@@ -29,11 +30,13 @@ public class ServiceEntity implements Serializable {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = IDENTITY)
-    private Integer id;
+    private String id;
     @Column(name = "name")
     private String name;
     @Column(name = "description")
     private String description;
+    @Column(name ="service_type_id")
+    private String serviceTypeId;
     @Column(name = "active")
     private boolean active;
 
@@ -41,10 +44,10 @@ public class ServiceEntity implements Serializable {
      * Default constructor.
      */
     public ServiceEntity() {
-        // Default constructor.
+        // ServiceEntity default constructor.
     }
 
-    public Integer getId() {
+    public String getId() {
         return this.id;
     }
 
@@ -56,11 +59,15 @@ public class ServiceEntity implements Serializable {
         return this.description;
     }
 
+    public String getServiceTypeId() {
+        return serviceTypeId;
+    }
+
     public boolean isActive() {
         return this.active;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -72,6 +79,10 @@ public class ServiceEntity implements Serializable {
         this.description = description;
     }
 
+    public void setServiceTypeId(String serviceTypeId) {
+        this.serviceTypeId = serviceTypeId;
+    }
+
     public void setActive(boolean active) {
         this.active = active;
     }
@@ -79,9 +90,10 @@ public class ServiceEntity implements Serializable {
     @Override
     public String toString() {
         return "ServiceEntity{" +
-                "id=" + id +
+                "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
+                ", serviceTypeId='" + serviceTypeId + '\'' +
                 ", active=" + active +
                 '}';
     }

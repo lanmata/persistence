@@ -33,7 +33,7 @@ public class AddressEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id")
-    private Integer id;
+    private String id;
     @Column(name = "address")
     private String address;
     @Column(name = "zipcode")
@@ -49,7 +49,7 @@ public class AddressEntity implements Serializable {
         // Default constructor.
     }
 
-    public Integer getId() {
+    public String getId() {
         return this.id;
     }
 
@@ -65,7 +65,7 @@ public class AddressEntity implements Serializable {
         return this.person;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

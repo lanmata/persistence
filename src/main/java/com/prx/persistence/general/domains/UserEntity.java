@@ -35,7 +35,7 @@ public class UserEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private String id;
     @NotNull
     @Size(max = 12)
     @Column(name = "alias")
@@ -50,17 +50,17 @@ public class UserEntity implements Serializable {
     @OneToOne(fetch = EAGER)
     @JoinColumn(name = "person_id", referencedColumnName = "id")
     private PersonEntity person;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "userId")
     private Set<UserRoleEntity> userRole;
 
     /**
      * Default constructor.
      */
     public UserEntity() {
-        // Default constructor.
+        // Empty constructor
     }
 
-    public Long getId() {
+    public String getId() {
         return this.id;
     }
 
@@ -84,7 +84,7 @@ public class UserEntity implements Serializable {
         return this.userRole;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

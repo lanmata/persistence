@@ -27,9 +27,9 @@ import java.util.Objects;
 public class UserRolePK implements Serializable {
 
     @Column(name = "user_id")
-    private Long userId;
+    private String userId;
     @Column(name = "role_id")
-    private Long roleId;
+    private String roleId;
 
     /**
      * Default constructor.
@@ -51,19 +51,19 @@ public class UserRolePK implements Serializable {
         return Objects.hash(userId, roleId);
     }
 
-    public Long getUserId() {
+    public String getUserId() {
         return this.userId;
     }
 
-    public Long getRoleId() {
+    public String getRoleId() {
         return this.roleId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
-    public void setRoleId(Long roleId) {
+    public void setRoleId(String roleId) {
         this.roleId = roleId;
     }
 

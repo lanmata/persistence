@@ -32,12 +32,12 @@ public class RoleEntity implements Serializable {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = IDENTITY)
-    private Long id;
+    private String id;
     @Column(name = "name")
     private String name;
     @Column(name = "description")
     private String description;
-    @OneToMany(mappedBy = "role")
+    @OneToMany(mappedBy = "roleId")
     private Set<UserRoleEntity> userRoleEntities;
     @OneToMany(mappedBy = "role",
             fetch = EAGER,
@@ -55,7 +55,7 @@ public class RoleEntity implements Serializable {
         // Default constructor.
     }
 
-    public Long getId() {
+    public String getId() {
         return this.id;
     }
 
@@ -79,7 +79,7 @@ public class RoleEntity implements Serializable {
         return this.active;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

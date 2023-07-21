@@ -35,7 +35,7 @@ public class IdentificationDocumentEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id")
-    private Integer id;
+    private String id;
     @Column(name = "number")
     private Integer number;
     @Column(name = "expiration_date")
@@ -53,7 +53,7 @@ public class IdentificationDocumentEntity implements Serializable {
         // Default constructor.
     }
 
-    public Integer getId() {
+    public String getId() {
         return this.id;
     }
 
@@ -73,7 +73,7 @@ public class IdentificationDocumentEntity implements Serializable {
         return this.person;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

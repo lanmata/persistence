@@ -1,5 +1,10 @@
 package com.prx.persistence.general.domains;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
+
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -12,22 +17,63 @@ import org.junit.jupiter.api.Test;
 class AddressEntityTest {
 
     @Test
-    void gettersAndSetters(){
+    void gettersAndSetters() {
         final var address = new AddressEntity();
-        address.setId(1);
+        address.setId("4e5d31fe-78c9-4dc0-8001-75fdb7b4eba7");
         address.setPerson(new PersonEntity());
         address.setZipcode("1010-9");
         address.setAddress("Address description");
 
         Assertions.assertAll("Test Getters And Setters",
-            () -> Assertions.assertNotNull(address.getId()),
-            () -> Assertions.assertNotNull(address.getPerson()),
-            () -> Assertions.assertNotNull(address.getZipcode()),
-            () -> Assertions.assertNotNull(address.getAddress()),
-            () -> Assertions.assertNotNull(address.toString()),
-            () -> Assertions.assertNotEquals(1, address.hashCode()),
-            () -> Assertions.assertNotEquals(new AddressEntity(), address)
-                 );
+                () -> Assertions.assertNotNull(address.getId()),
+                () -> Assertions.assertNotNull(address.getPerson()),
+                () -> Assertions.assertNotNull(address.getZipcode()),
+                () -> Assertions.assertNotNull(address.getAddress()),
+                () -> Assertions.assertNotNull(address.toString()),
+                () -> Assertions.assertNotEquals(1, address.hashCode()),
+                () -> Assertions.assertNotEquals(new AddressEntity(), address)
+        );
     }
-    
+
+    /**
+     * Methods under test:
+     *
+     * <ul>
+     *   <li>default or parameterless constructor of {@link AddressEntity}
+     *   <li>{@link AddressEntity#setAddress(String)}
+     *   <li>{@link AddressEntity#setId(String)}
+     *   <li>{@link AddressEntity#setPerson(PersonEntity)}
+     *   <li>{@link AddressEntity#setZipcode(String)}
+     *   <li>{@link AddressEntity#toString()}
+     *   <li>{@link AddressEntity#getAddress()}
+     *   <li>{@link AddressEntity#getId()}
+     *   <li>{@link AddressEntity#getPerson()}
+     *   <li>{@link AddressEntity#getZipcode()}
+     * </ul>
+     */
+    @Test
+    void testConstructor() {
+        AddressEntity actualAddressEntity = new AddressEntity();
+        actualAddressEntity.setAddress("42 Main St");
+        actualAddressEntity.setId("42");
+        PersonEntity person = new PersonEntity();
+        person.setBirthdate(LocalDate.of(1970, 1, 1));
+        person.setGender("Gender");
+        person.setId("42");
+        person.setLastName("Doe");
+        person.setMiddleName("Middle Name");
+        person.setName("Name");
+        actualAddressEntity.setPerson(person);
+        actualAddressEntity.setZipcode("21654");
+        String actualToStringResult = actualAddressEntity.toString();
+        assertEquals("42 Main St", actualAddressEntity.getAddress());
+        assertEquals("42", actualAddressEntity.getId());
+        assertSame(person, actualAddressEntity.getPerson());
+        assertEquals("21654", actualAddressEntity.getZipcode());
+        assertEquals(
+                "AddressEntity{id=42, address='42 Main St', zipcode='21654', person=PersonEntity{id=42, name='Name',"
+                        + " middleName='Middle Name', lastName='Doe', gender='Gender', birthdate=1970-01-01}}",
+                actualToStringResult);
+    }
+
 }

@@ -1,5 +1,12 @@
 package com.prx.persistence.general.domains;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.time.LocalDate;
+import java.util.Set;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +24,7 @@ class UserEntityTest {
     void gettersAndSetters() {
         final var userEntity = new UserEntity();
 
-        userEntity.setId(3L);
+        userEntity.setId("1f23ab15-2a00-451b-b36e-275213eca3aa");
         userEntity.setAlias("Alias");
         userEntity.setActive(true);
         userEntity.setPassword("34567890");
@@ -36,6 +43,55 @@ class UserEntityTest {
                 () -> Assertions.assertNotEquals(new UserEntity(), userEntity)
         );
 
+    }
+
+    /**
+     * Methods under test:
+     *
+     * <ul>
+     *   <li>default or parameterless constructor of {@link UserEntity}
+     *   <li>{@link UserEntity#setActive(Boolean)}
+     *   <li>{@link UserEntity#setAlias(String)}
+     *   <li>{@link UserEntity#setId(String)}
+     *   <li>{@link UserEntity#setPassword(String)}
+     *   <li>{@link UserEntity#setPerson(PersonEntity)}
+     *   <li>{@link UserEntity#setUserRole(Set)}
+     *   <li>{@link UserEntity#toString()}
+     *   <li>{@link UserEntity#getActive()}
+     *   <li>{@link UserEntity#getAlias()}
+     *   <li>{@link UserEntity#getId()}
+     *   <li>{@link UserEntity#getPassword()}
+     *   <li>{@link UserEntity#getPerson()}
+     *   <li>{@link UserEntity#getUserRole()}
+     * </ul>
+     */
+    @Test
+    void testConstructor() {
+        UserEntity actualUserEntity = new UserEntity();
+        actualUserEntity.setActive(true);
+        actualUserEntity.setAlias("Alias");
+        actualUserEntity.setId("42");
+        actualUserEntity.setPassword("iloveyou");
+        PersonEntity person = new PersonEntity();
+        person.setBirthdate(LocalDate.of(1970, 1, 1));
+        person.setGender("Gender");
+        person.setId("42");
+        person.setLastName("Doe");
+        person.setMiddleName("Middle Name");
+        person.setName("Name");
+        actualUserEntity.setPerson(person);
+        HashSet<UserRoleEntity> userRole = new HashSet<>();
+        actualUserEntity.setUserRole(userRole);
+        String actualToStringResult = actualUserEntity.toString();
+        assertTrue(actualUserEntity.getActive());
+        assertEquals("Alias", actualUserEntity.getAlias());
+        assertEquals("42", actualUserEntity.getId());
+        assertEquals("iloveyou", actualUserEntity.getPassword());
+        assertSame(person, actualUserEntity.getPerson());
+        assertSame(userRole, actualUserEntity.getUserRole());
+        assertEquals("UserEntity{id=42, alias='Alias', password='iloveyou', active=true, person=PersonEntity{id=42,"
+                + " name='Name', middleName='Middle Name', lastName='Doe', gender='Gender', birthdate=1970-01-01},"
+                + " userRole=[]}", actualToStringResult);
     }
 
 }

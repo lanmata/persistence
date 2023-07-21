@@ -15,7 +15,6 @@ package com.prx.persistence.general.domains;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
@@ -31,7 +30,7 @@ public class ContactTypeEntity implements Serializable {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = IDENTITY)
-    private BigInteger id;
+    private String id;
     @Column(name = "name")
     private String name;
     @Column(name = "description")
@@ -43,10 +42,10 @@ public class ContactTypeEntity implements Serializable {
      * Default constructor.
      */
     public ContactTypeEntity() {
-        // Default constructor.
+        // ContactTypeEntity default constructor.
     }
 
-    public BigInteger getId() {
+    public String getId() {
         return this.id;
     }
 
@@ -62,7 +61,7 @@ public class ContactTypeEntity implements Serializable {
         return this.active;
     }
 
-    public void setId(BigInteger id) {
+    public void setId(String id) {
         this.id = id;
     }
 

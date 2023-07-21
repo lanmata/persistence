@@ -13,6 +13,10 @@
 
 package com.prx.persistence.general.domains;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -26,7 +30,7 @@ import java.util.HashSet;
  */
 class RoleFeatureEntityTest {
     @Test
-    void gettersAndSetters(){
+    void gettersAndSetters() {
         final var roleFeatureEntity = new RoleFeatureEntity();
         final var featureEntity = new FeatureEntity();
         final var roleEntity = new RoleEntity();
@@ -34,19 +38,19 @@ class RoleFeatureEntityTest {
         final var users = new HashSet<UserRoleEntity>();
         final var roleFeaturePk = new RoleFeaturePK();
 
-        roleEntity.setId(3L);
+        roleEntity.setId("416073e8-f117-466e-8183-a867616fa991");
         roleEntity.setName("Rol 0001");
         roleEntity.setDescription("Rol description");
         roleEntity.setActive(true);
         roleEntity.setRoleFeatures(features);
         roleEntity.setUserRoleEntities(users);
-        featureEntity.setId(1L);
+        featureEntity.setId("9d03ff25-842a-4625-9143-52eee8d710e7");
         featureEntity.setActive(true);
         featureEntity.setName("Feature name");
         featureEntity.setDescription("Feature name");
 
-        roleFeaturePk.setRole(1L);
-        roleFeaturePk.setFeature(1L);
+        roleFeaturePk.setRole("416073e8-f117-466e-8183-a867616fa991");
+        roleFeaturePk.setFeature("9d03ff25-842a-4625-9143-52eee8d710e7");
 
         roleFeatureEntity.setFeature(featureEntity);
         roleFeatureEntity.setRole(roleEntity);
@@ -54,15 +58,67 @@ class RoleFeatureEntityTest {
         roleFeatureEntity.setRoleFeaturePK(roleFeaturePk);
 
         Assertions.assertAll("Test Getters and Setters",
-            () -> Assertions.assertNotNull(roleFeatureEntity.getRole()),
-            () -> Assertions.assertNotNull(roleFeatureEntity.getFeature()),
-            () -> Assertions.assertNotNull(roleFeatureEntity.getActive()),
-            () -> Assertions.assertNotNull(roleFeatureEntity.toString()),
-            () -> Assertions.assertNotNull(roleFeatureEntity.getRoleFeaturePK()),
-            () -> Assertions.assertNotNull(roleFeatureEntity.getRoleFeaturePK().getRole()),
-            () -> Assertions.assertNotNull(roleFeatureEntity.getRoleFeaturePK().getFeature()),
-            () -> Assertions.assertNotEquals(1, roleFeatureEntity.hashCode()),
-            () -> Assertions.assertNotEquals(new RoleFeatureEntity(), roleFeatureEntity)
+                () -> Assertions.assertNotNull(roleFeatureEntity.getRole()),
+                () -> Assertions.assertNotNull(roleFeatureEntity.getFeature()),
+                () -> Assertions.assertNotNull(roleFeatureEntity.getActive()),
+                () -> Assertions.assertNotNull(roleFeatureEntity.toString()),
+                () -> Assertions.assertNotNull(roleFeatureEntity.getRoleFeaturePK()),
+                () -> Assertions.assertNotNull(roleFeatureEntity.getRoleFeaturePK().getRole()),
+                () -> Assertions.assertNotNull(roleFeatureEntity.getRoleFeaturePK().getFeature()),
+                () -> Assertions.assertNotEquals(1, roleFeatureEntity.hashCode()),
+                () -> Assertions.assertNotEquals(new RoleFeatureEntity(), roleFeatureEntity)
         );
+    }
+
+    /**
+     * Methods under test:
+     *
+     * <ul>
+     *   <li>default or parameterless constructor of {@link RoleFeatureEntity}
+     *   <li>{@link RoleFeatureEntity#setActive(Boolean)}
+     *   <li>{@link RoleFeatureEntity#setFeature(FeatureEntity)}
+     *   <li>{@link RoleFeatureEntity#setRole(RoleEntity)}
+     *   <li>{@link RoleFeatureEntity#setRoleFeaturePK(RoleFeaturePK)}
+     *   <li>{@link RoleFeatureEntity#toString()}
+     *   <li>{@link RoleFeatureEntity#getActive()}
+     *   <li>{@link RoleFeatureEntity#getFeature()}
+     *   <li>{@link RoleFeatureEntity#getRole()}
+     *   <li>{@link RoleFeatureEntity#getRoleFeaturePK()}
+     * </ul>
+     */
+    @Test
+    void testConstructor() {
+        RoleFeatureEntity actualRoleFeatureEntity = new RoleFeatureEntity();
+        actualRoleFeatureEntity.setActive(true);
+        FeatureEntity feature = new FeatureEntity();
+        feature.setActive(true);
+        feature.setDescription("The characteristics of someone or something");
+        feature.setId("42");
+        feature.setName("Name");
+        feature.setRolFeatures(new HashSet<>());
+        actualRoleFeatureEntity.setFeature(feature);
+        RoleEntity role = new RoleEntity();
+        role.setActive(true);
+        role.setDescription("The characteristics of someone or something");
+        role.setId("42");
+        role.setName("Name");
+        role.setRoleFeatures(new HashSet<>());
+        role.setUserRoleEntities(new HashSet<>());
+        actualRoleFeatureEntity.setRole(role);
+        RoleFeaturePK roleFeaturePK = new RoleFeaturePK();
+        roleFeaturePK.setFeature("Feature");
+        roleFeaturePK.setRole("Role");
+        actualRoleFeatureEntity.setRoleFeaturePK(roleFeaturePK);
+        String actualToStringResult = actualRoleFeatureEntity.toString();
+        assertTrue(actualRoleFeatureEntity.getActive());
+        assertSame(feature, actualRoleFeatureEntity.getFeature());
+        assertSame(role, actualRoleFeatureEntity.getRole());
+        assertSame(roleFeaturePK, actualRoleFeatureEntity.getRoleFeaturePK());
+        assertEquals(
+                "RoleFeatureEntity{role=RoleEntity{id=42, name='Name', description='The characteristics of someone or"
+                        + " something', userRoleEntities=[], roleFeatures=[], active=true}, feature=FeatureEntity{id=42,"
+                        + " name='Name', description='The characteristics of someone or something', active=true, rolFeatures=[]},"
+                        + " active=true}",
+                actualToStringResult);
     }
 }

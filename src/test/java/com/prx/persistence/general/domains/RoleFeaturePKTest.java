@@ -13,7 +13,12 @@
 
 package com.prx.persistence.general.domains;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
@@ -42,13 +47,13 @@ class RoleFeaturePKTest {
         final var users2 = new HashSet<UserRoleEntity>();
         final var featureEntity2 = new FeatureEntity();
 
-        featureEntity.setId(1L);
+        featureEntity.setId("9d03ff25-842a-4625-9143-52eee8d710e7");
         featureEntity.setActive(true);
         featureEntity.setName("Feature name");
         featureEntity.setDescription("Feature description");
         featureEntity.setRolFeatures(features);
 
-        roleEntity.setId(3L);
+        roleEntity.setId("416073e8-f117-466e-8183-a867616fa991");
         roleEntity.setName("Rol 0001");
         roleEntity.setDescription("Rol description");
         roleEntity.setActive(true);
@@ -64,7 +69,7 @@ class RoleFeaturePKTest {
         final var roleFeaturePk3 = new RoleFeaturePK();
         final var roleFeaturePk4 = roleFeaturePk;
 
-        featureEntity2.setId(1L);
+        featureEntity2.setId("9d03ff25-842a-4625-9143-52eee8d710e7");
         featureEntity2.setActive(true);
         featureEntity2.setName("Feature name 2");
         featureEntity2.setDescription("Feature description 2");
@@ -73,7 +78,7 @@ class RoleFeaturePKTest {
         roleFeature2.setFeature(featureEntity);
         features.add(roleFeature2);
 
-        roleEntity2.setId(3L);
+        roleEntity2.setId("416073e8-f117-466e-8183-a867616fa991");
         roleEntity2.setName("Rol 0002");
         roleEntity2.setDescription("Rol description 2");
         roleEntity2.setActive(true);
@@ -83,7 +88,7 @@ class RoleFeaturePKTest {
         roleFeaturePk2.setFeature(featureEntity2.getId());
         roleFeaturePk2.setRole(roleEntity2.getId());
 
-        featureEntity2.setId(1L);
+        featureEntity2.setId("1f23ab15-2a00-451b-b36e-275213eca3aa");
         featureEntity2.setActive(true);
         featureEntity2.setName("Feature name 2");
         featureEntity2.setDescription("Feature description 2");
@@ -97,16 +102,154 @@ class RoleFeaturePKTest {
                 () -> Assertions.assertEquals(roleFeaturePk, roleFeaturePk2),
                 () -> Assertions.assertNotEquals(roleFeaturePk, new Object()),
                 () -> Assertions.assertNotEquals(null, roleFeaturePk),
-                () -> Assertions.assertNotEquals(roleFeaturePk, (RoleFeaturePK) null),
-                () -> Assertions.assertEquals(roleFeaturePk,roleFeaturePk4)
+                () -> Assertions.assertEquals(roleFeaturePk, roleFeaturePk4)
         );
 
-        roleFeaturePk3.setFeature(11L);
+        roleFeaturePk3.setFeature("1f23ab15-2a00-451b-b36e-275213eca3aa");
         roleFeaturePk3.setRole(roleFeaturePk.getRole());
         Assertions.assertNotEquals(roleFeaturePk, roleFeaturePk3);
         roleFeaturePk3.setFeature(roleFeaturePk.getFeature());
-        roleFeaturePk3.setRole(11L);
+        roleFeaturePk3.setRole("1f23ab15-2a00-451b-b36e-275213eca3aa");
         Assertions.assertNotEquals(roleFeaturePk, roleFeaturePk3);
+    }
+
+    /**
+     * Methods under test:
+     *
+     * <ul>
+     *   <li>default or parameterless constructor of {@link RoleFeaturePK}
+     *   <li>{@link RoleFeaturePK#setFeature(String)}
+     *   <li>{@link RoleFeaturePK#setRole(String)}
+     *   <li>{@link RoleFeaturePK#toString()}
+     *   <li>{@link RoleFeaturePK#getFeature()}
+     *   <li>{@link RoleFeaturePK#getRole()}
+     * </ul>
+     */
+    @Test
+    void testConstructor() {
+        RoleFeaturePK actualRoleFeaturePK = new RoleFeaturePK();
+        actualRoleFeaturePK.setFeature("Feature");
+        actualRoleFeaturePK.setRole("Role");
+        String actualToStringResult = actualRoleFeaturePK.toString();
+        assertEquals("Feature", actualRoleFeaturePK.getFeature());
+        assertEquals("Role", actualRoleFeaturePK.getRole());
+        assertEquals("RoleFeaturePK{role=Role, feature=Feature}", actualToStringResult);
+    }
+
+    /**
+     * Method under test: {@link RoleFeaturePK#equals(Object)}
+     */
+    @Test
+    @Disabled("TODO: Complete this test")
+    void testEquals6() {
+        // TODO: Complete this test.
+        //   Reason: R013 No inputs found that don't throw a trivial exception.
+        //   Diffblue Cover tried to run the arrange/act section, but the method under
+        //   test threw
+        //   java.lang.NullPointerException: Cannot invoke "String.equals(Object)" because "str" is null
+        //       at com.prx.persistence.general.domains.RoleFeaturePK.equals(RoleFeaturePK.java:43)
+        //   See https://diff.blue/R013 to resolve this issue.
+
+        RoleFeaturePK roleFeaturePK = new RoleFeaturePK();
+        roleFeaturePK.setFeature(null);
+        roleFeaturePK.setRole("Role");
+
+        RoleFeaturePK roleFeaturePK2 = new RoleFeaturePK();
+        roleFeaturePK2.setFeature("Feature");
+        roleFeaturePK2.setRole("Role");
+        assertThrows(NullPointerException.class, () -> roleFeaturePK.equals(roleFeaturePK2));
+    }
+
+    /**
+     * Method under test: {@link RoleFeaturePK#equals(Object)}
+     */
+    @Test
+    void testEquals() {
+        RoleFeaturePK roleFeaturePK = new RoleFeaturePK();
+        roleFeaturePK.setFeature("Feature");
+        roleFeaturePK.setRole("Role");
+        assertNotEquals(null, roleFeaturePK);
+    }
+
+    /**
+     * Method under test: {@link RoleFeaturePK#equals(Object)}
+     */
+    @Test
+    void testEquals2() {
+        RoleFeaturePK roleFeaturePK = new RoleFeaturePK();
+        roleFeaturePK.setFeature("Feature");
+        roleFeaturePK.setRole("Role");
+        assertNotEquals("Different type to RoleFeaturePK", roleFeaturePK);
+    }
+
+    /**
+     * Methods under test:
+     *
+     * <ul>
+     *   <li>{@link RoleFeaturePK#equals(Object)}
+     *   <li>{@link RoleFeaturePK#hashCode()}
+     * </ul>
+     */
+    @Test
+    void testEquals3() {
+        RoleFeaturePK roleFeaturePK = new RoleFeaturePK();
+        roleFeaturePK.setFeature("Feature");
+        roleFeaturePK.setRole("Role");
+        assertEquals(roleFeaturePK, roleFeaturePK);
+        int expectedHashCodeResult = roleFeaturePK.hashCode();
+        assertEquals(expectedHashCodeResult, roleFeaturePK.hashCode());
+    }
+
+    /**
+     * Methods under test:
+     *
+     * <ul>
+     *   <li>{@link RoleFeaturePK#equals(Object)}
+     *   <li>{@link RoleFeaturePK#hashCode()}
+     * </ul>
+     */
+    @Test
+    void testEquals4() {
+        RoleFeaturePK roleFeaturePK = new RoleFeaturePK();
+        roleFeaturePK.setFeature("Feature");
+        roleFeaturePK.setRole("Role");
+
+        RoleFeaturePK roleFeaturePK2 = new RoleFeaturePK();
+        roleFeaturePK2.setFeature("Feature");
+        roleFeaturePK2.setRole("Role");
+        assertEquals(roleFeaturePK, roleFeaturePK2);
+        int expectedHashCodeResult = roleFeaturePK.hashCode();
+        assertEquals(expectedHashCodeResult, roleFeaturePK2.hashCode());
+    }
+
+    /**
+     * Method under test: {@link RoleFeaturePK#equals(Object)}
+     */
+    @Test
+    void testEquals5() {
+        RoleFeaturePK roleFeaturePK = new RoleFeaturePK();
+        roleFeaturePK.setFeature("Role");
+        roleFeaturePK.setRole("Role");
+
+        RoleFeaturePK roleFeaturePK2 = new RoleFeaturePK();
+        roleFeaturePK2.setFeature("Feature");
+        roleFeaturePK2.setRole("Role");
+        assertNotEquals(roleFeaturePK, roleFeaturePK2);
+    }
+
+    /**
+     * Method under test: {@link RoleFeaturePK#equals(Object)}
+     */
+    @Test
+    void testEquals7() {
+        RoleFeaturePK roleFeaturePK = new RoleFeaturePK();
+        roleFeaturePK.setFeature("Feature");
+        roleFeaturePK.setRole("Feature");
+
+        RoleFeaturePK roleFeaturePK2 = new RoleFeaturePK();
+        roleFeaturePK2.setFeature("Feature");
+        roleFeaturePK2.setRole("Role");
+        assertNotEquals(roleFeaturePK, roleFeaturePK2);
     }
 
 }
