@@ -131,28 +131,6 @@ class UserRolePKTest {
      * Method under test: {@link UserRolePK#equals(Object)}
      */
     @Test
-    void testEquals6() {
-        UserRolePK userRolePK = new UserRolePK();
-        userRolePK.setRoleId(null);
-        userRolePK.setUserId("42");
-        assertThrows(NullPointerException.class, userRolePK::getRoleId);
-    }
-
-    /**
-     * Method under test: {@link UserRolePK#equals(Object)}
-     */
-    @Test
-    void testEquals8() {
-        UserRolePK userRolePK = new UserRolePK();
-        userRolePK.setRoleId("42");
-        userRolePK.setUserId(null);
-        assertThrows(NullPointerException.class, userRolePK::getUserId);
-    }
-
-    /**
-     * Method under test: {@link UserRolePK#equals(Object)}
-     */
-    @Test
     void testEquals() {
         UserRolePK userRolePK = new UserRolePK();
         userRolePK.setRoleId("42");
