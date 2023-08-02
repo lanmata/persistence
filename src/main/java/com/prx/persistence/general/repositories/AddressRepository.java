@@ -18,5 +18,5 @@ import org.springframework.data.repository.CrudRepository;
 /**
  * @author <a href="mailto:luis.antonio.mata@gmail.com">Luis Antonio Mata</a>
  */
-public interface AddressRepository extends CrudRepository<AddressEntity, Long> {
+public interface AddressRepository extends CrudRepository<AddressEntity, String> {
 }

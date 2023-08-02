@@ -26,18 +26,18 @@ import java.util.Optional;
  * @author <a href='mailto:luis.antonio.mata@gmail.com'>Luis Antonio Mata.</a>
  * @version 1.0.3.20200904-01, 18-01-2021
  */
-public interface RoleRepository extends CrudRepository<RoleEntity, Long> {
+public interface RoleRepository extends CrudRepository<RoleEntity, String> {
 
     /**
      * Busca todos los registros de roles en base a un conjunto de identificadores.
      *
-     * @param idRoles {@link Iterable} con elmentos de tipo {@link Long}
+     * @param idRoles {@link Iterable} con elmentos de tipo {@link String}
      * @return Objeto de tipo {@link Optional} con elemento {@link List}
      */
     @Query(value = "SELECT r FROM RoleEntity r WHERE r.id IN :idRoles ORDER BY r.id ASC")
-    Optional<List<RoleEntity>> findAllById(@Param("idRoles") List<Long> idRoles);
+    Optional<List<RoleEntity>> findAllById(@Param("idRoles") List<String> idRoles);
 
-    @Query(value = "SELECT ur.role FROM UserRoleEntity ur WHERE ur.user.id = :idUser ORDER BY ur.id ASC")
-    Optional<List<RoleEntity>> findAllByUserId(@Param("idUser") long idUser);
+    @Query(value = "SELECT ur.role FROM UserRoleEntity ur WHERE ur.user.id = :idUser ORDER BY ur.user.id ASC")
+    Optional<List<RoleEntity>> findAllByUserId(@Param("idUser") String idUser);
 
 }

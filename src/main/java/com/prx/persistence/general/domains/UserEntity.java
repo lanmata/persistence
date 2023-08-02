@@ -50,7 +50,7 @@ public class UserEntity implements Serializable {
     @OneToOne(fetch = EAGER)
     @JoinColumn(name = "person_id", referencedColumnName = "id")
     private PersonEntity person;
-    @OneToMany(mappedBy = "userId")
+    @OneToMany(mappedBy = "user")
     private Set<UserRoleEntity> userRole;
 
     /**

@@ -56,14 +56,14 @@ class UserRoleEntityTest {
         userRolePk.setRoleId("1f23ab15-2a00-451b-b36e-275213eca3aa");
         userRolePk.setUserId("e8c8f126-09f2-4ae9-9bb6-4fa459b77609");
 
-        userRoleEntity.setUserId(userEntity);
-        userRoleEntity.setRoleId(roleEntity);
+        userRoleEntity.setUser(userEntity);
+        userRoleEntity.setRole(roleEntity);
         userRoleEntity.setActive(true);
         userRoleEntity.setUserRolePK(userRolePk);
 
         assertAll("Test Getters and Setters",
-                () -> assertNotNull(userRoleEntity.getRoleId()),
-                () -> assertNotNull(userRoleEntity.getUserId()),
+                () -> assertNotNull(userRoleEntity.getRole()),
+                () -> assertNotNull(userRoleEntity.getUser()),
                 () -> assertNotNull(userRoleEntity.toString()),
                 () -> assertNotNull(userRoleEntity.getActive()),
                 () -> assertNotNull(userRoleEntity.getUserRolePK()),
@@ -80,13 +80,13 @@ class UserRoleEntityTest {
      * <ul>
      *   <li>default or parameterless constructor of {@link UserRoleEntity}
      *   <li>{@link UserRoleEntity#setActive(Boolean)}
-     *   <li>{@link UserRoleEntity#setRoleId(RoleEntity)}
-     *   <li>{@link UserRoleEntity#setUserId(UserEntity)}
+     *   <li>{@link UserRoleEntity#setRole(RoleEntity)}
+     *   <li>{@link UserRoleEntity#setUser(UserEntity)}
      *   <li>{@link UserRoleEntity#setUserRolePK(UserRolePK)}
      *   <li>{@link UserRoleEntity#toString()}
      *   <li>{@link UserRoleEntity#getActive()}
-     *   <li>{@link UserRoleEntity#getRoleId()}
-     *   <li>{@link UserRoleEntity#getUserId()}
+     *   <li>{@link UserRoleEntity#getRole()}
+     *   <li>{@link UserRoleEntity#getUser()}
      *   <li>{@link UserRoleEntity#getUserRolePK()}
      * </ul>
      */
@@ -101,7 +101,7 @@ class UserRoleEntityTest {
         roleId.setName("Name");
         roleId.setRoleFeatures(new HashSet<>());
         roleId.setUserRoleEntities(new HashSet<>());
-        actualUserRoleEntity.setRoleId(roleId);
+        actualUserRoleEntity.setRole(roleId);
         PersonEntity person = new PersonEntity();
         person.setBirthdate(LocalDate.of(1970, 1, 1));
         person.setGender("Gender");
@@ -116,15 +116,15 @@ class UserRoleEntityTest {
         userId.setPassword("iloveyou");
         userId.setPerson(person);
         userId.setUserRole(new HashSet<>());
-        actualUserRoleEntity.setUserId(userId);
+        actualUserRoleEntity.setUser(userId);
         UserRolePK userRolePK = new UserRolePK();
         userRolePK.setRoleId("42");
         userRolePK.setUserId("42");
         actualUserRoleEntity.setUserRolePK(userRolePK);
         String actualToStringResult = actualUserRoleEntity.toString();
         assertTrue(actualUserRoleEntity.getActive());
-        assertSame(roleId, actualUserRoleEntity.getRoleId());
-        assertSame(userId, actualUserRoleEntity.getUserId());
+        assertSame(roleId, actualUserRoleEntity.getRole());
+        assertSame(userId, actualUserRoleEntity.getUser());
         assertSame(userRolePK, actualUserRoleEntity.getUserRolePK());
         assertEquals("UserRoleEntity{userRolePK=UserRolePK{user=42, role=42}user=UserEntity{id=42, alias='Alias',"
                 + " password='iloveyou', active=true, person=PersonEntity{id=42, name='Name', middleName='Middle Name',"

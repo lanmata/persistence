@@ -6,9 +6,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-public interface RoleFeatureRepository extends CrudRepository<RoleFeatureEntity, Long> {
+public interface RoleFeatureRepository extends CrudRepository<RoleFeatureEntity, String> {
 
     @Modifying
     @Query("Delete from RoleFeatureEntity entt where entt.role = :roleId and entt.feature = :featureId")
-    void deleteRoleFeatureByRoleIdAndFeatureId(@Param("roleId") Long roleId, @Param("featureId") Long featureId);
+    void deleteRoleFeatureByRoleIdAndFeatureId(@Param("roleId") String roleId, @Param("featureId") String featureId);
 }

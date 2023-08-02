@@ -37,7 +37,7 @@ public class RoleEntity implements Serializable {
     private String name;
     @Column(name = "description")
     private String description;
-    @OneToMany(mappedBy = "roleId")
+    @OneToMany(mappedBy = "role")
     private Set<UserRoleEntity> userRoleEntities;
     @OneToMany(mappedBy = "role",
             fetch = EAGER,

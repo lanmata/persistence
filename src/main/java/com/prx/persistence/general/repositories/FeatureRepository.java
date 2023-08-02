@@ -25,7 +25,7 @@ import java.util.Optional;
  * @author <a href='mailto:luis.antonio.mata@gmail.com'>Luis Antonio Mata.</a>
  * @version 1.0.3.20200904-01, 18-01-2021
  */
-public interface FeatureRepository extends CrudRepository<FeatureEntity, Long> {
+public interface FeatureRepository extends CrudRepository<FeatureEntity, String> {
 
     /**
      * Busca un feature en base al nombre.
