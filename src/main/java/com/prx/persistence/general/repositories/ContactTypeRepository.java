@@ -21,6 +21,6 @@ import org.springframework.data.repository.CrudRepository;
  * @author <a href='mailto:luis.antonio.mata@gmail.com'>Luis Antonio Mata.</a>
  * @version 1.0.3.20200904-01, 19-01-2021
  */
-public interface ContactTypeRepository  extends CrudRepository<ContactTypeEntity, Integer> {
+public interface ContactTypeRepository  extends CrudRepository<ContactTypeEntity, String> {
 
 }

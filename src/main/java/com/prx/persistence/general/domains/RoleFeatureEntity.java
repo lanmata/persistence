@@ -30,11 +30,11 @@ public class RoleFeatureEntity implements Serializable {
     private RoleFeaturePK roleFeaturePK;
 
     @ManyToOne
-    @MapsId("role_id")
+    @MapsId("role")
     private RoleEntity role;
 
     @ManyToOne
-    @MapsId("feature_id")
+    @MapsId("feature")
     private FeatureEntity feature;
 
     @Column(name = "active")

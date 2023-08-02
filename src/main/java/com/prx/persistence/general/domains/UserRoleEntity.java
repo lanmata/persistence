@@ -30,12 +30,12 @@ public class UserRoleEntity implements Serializable {
     private UserRolePK userRolePK;
 
     @ManyToOne
-    @MapsId("user_id")
-    private UserEntity userId;
+    @MapsId("user")
+    private UserEntity user;
 
     @ManyToOne
-    @MapsId("role_id")
-    private RoleEntity roleId;
+    @MapsId("role")
+    private RoleEntity role;
 
     @Column(name = "active")
     private Boolean active;
@@ -55,24 +55,24 @@ public class UserRoleEntity implements Serializable {
         this.userRolePK = userRolePK;
     }
 
-    public UserEntity getUserId() {
-        return this.userId;
+    public UserEntity getUser() {
+        return this.user;
     }
 
-    public RoleEntity getRoleId() {
-        return this.roleId;
+    public RoleEntity getRole() {
+        return this.role;
     }
 
     public Boolean getActive() {
         return this.active;
     }
 
-    public void setUserId(UserEntity userId) {
-        this.userId = userId;
+    public void setUser(UserEntity user) {
+        this.user = user;
     }
 
-    public void setRoleId(RoleEntity roleId) {
-        this.roleId = roleId;
+    public void setRole(RoleEntity role) {
+        this.role = role;
     }
 
     public void setActive(Boolean active) {
@@ -83,8 +83,8 @@ public class UserRoleEntity implements Serializable {
     public String toString() {
         return "UserRoleEntity{" +
                 "userRolePK=" + userRolePK +
-                "user=" + userId +
-                ", role=" + roleId +
+                "user=" + user +
+                ", role=" + role +
                 ", active=" + active +
                 '}';
     }

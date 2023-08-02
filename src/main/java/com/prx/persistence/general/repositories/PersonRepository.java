@@ -20,7 +20,7 @@ import org.springframework.data.repository.query.Param;
 /**
  * @author <a href="mailto:luis.antonio.mata@gmail.com">Luis Antonio Mata</a>
  */
-public interface PersonRepository extends CrudRepository<PersonEntity, Long> {
+public interface PersonRepository extends CrudRepository<PersonEntity, String> {
     @Query("SELECT p FROM PersonEntity p WHERE p.name = :name AND p.middleName = :middleName AND p.lastName = :lastName")
     PersonEntity findByFirstNameMiddleNameLastName(@Param("name") String name, @Param("middleName") String middleName, @Param("lastName") String lastName);
 
