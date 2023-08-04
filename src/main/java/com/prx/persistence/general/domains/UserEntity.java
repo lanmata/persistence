@@ -18,6 +18,7 @@ import jakarta.validation.constraints.Size;
 
 import java.io.Serializable;
 import java.util.Set;
+import java.util.UUID;
 
 import static jakarta.persistence.FetchType.EAGER;
 import static jakarta.persistence.GenerationType.IDENTITY;
@@ -35,7 +36,7 @@ public class UserEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id")
-    private String id;
+    private UUID id;
     @NotNull
     @Size(max = 12)
     @Column(name = "alias")
@@ -60,7 +61,7 @@ public class UserEntity implements Serializable {
         // Empty constructor
     }
 
-    public String getId() {
+    public UUID getId() {
         return this.id;
     }
 
@@ -84,7 +85,7 @@ public class UserEntity implements Serializable {
         return this.userRole;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

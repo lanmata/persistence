@@ -19,6 +19,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 /**
  * RolRepository.
@@ -26,7 +27,7 @@ import java.util.Optional;
  * @author <a href='mailto:luis.antonio.mata@gmail.com'>Luis Antonio Mata.</a>
  * @version 1.0.3.20200904-01, 18-01-2021
  */
-public interface RoleRepository extends CrudRepository<RoleEntity, String> {
+public interface RoleRepository extends CrudRepository<RoleEntity, UUID> {
 
     /**
      * Busca todos los registros de roles en base a un conjunto de identificadores.
@@ -35,9 +36,9 @@ public interface RoleRepository extends CrudRepository<RoleEntity, String> {
      * @return Objeto de tipo {@link Optional} con elemento {@link List}
      */
     @Query(value = "SELECT r FROM RoleEntity r WHERE r.id IN :idRoles ORDER BY r.id ASC")
-    Optional<List<RoleEntity>> findAllById(@Param("idRoles") List<String> idRoles);
+    Optional<List<RoleEntity>> findAllById(@Param("idRoles") List<UUID> idRoles);
 
     @Query(value = "SELECT ur.role FROM UserRoleEntity ur WHERE ur.user.id = :idUser ORDER BY ur.user.id ASC")
-    Optional<List<RoleEntity>> findAllByUserId(@Param("idUser") String idUser);
+    Optional<List<RoleEntity>> findAllByUserId(@Param("idUser") UUID idUser);
 
 }

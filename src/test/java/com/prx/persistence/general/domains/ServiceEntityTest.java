@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.UUID;
+
 /**
  * ServiceTest.
  *
@@ -18,7 +20,7 @@ class ServiceEntityTest {
     void gettersAndSetters() {
         final var service = new ServiceEntity();
 
-        service.setId("1f23ab15-2a00-451b-b36e-275213eca3aa");
+        service.setId(UUID.fromString("1f23ab15-2a00-451b-b36e-275213eca3aa"));
         service.setName("Application name");
         service.setDescription("Service description");
         service.setServiceTypeId("1f23ab15-2a00-451b-b36e-275213eca3aa");
@@ -44,7 +46,7 @@ class ServiceEntityTest {
      *   <li>{@link ServiceEntity#setActive(boolean)}
      *   <li>{@link ServiceEntity#setDescription(String)}
      *   <li>{@link ServiceEntity#setServiceTypeId(String)}
-     *   <li>{@link ServiceEntity#setId(String)}
+     *   <li>{@link ServiceEntity#setId(UUID)}
      *   <li>{@link ServiceEntity#setName(String)}
      *   <li>{@link ServiceEntity#toString()}
      *   <li>{@link ServiceEntity#getDescription()}
@@ -60,14 +62,14 @@ class ServiceEntityTest {
         actualServiceEntity.setActive(true);
         actualServiceEntity.setServiceTypeId("c29f4874-2260-425d-bebb-2d1448f82e2b");
         actualServiceEntity.setDescription("The characteristics of someone or something");
-        actualServiceEntity.setId("42");
+        actualServiceEntity.setId(UUID.fromString("849a7d96-5fda-413c-9926-41f660078e76"));
         actualServiceEntity.setName("Name");
         String actualToStringResult = actualServiceEntity.toString();
         assertEquals("The characteristics of someone or something", actualServiceEntity.getDescription());
-        assertEquals("42", actualServiceEntity.getId());
+        assertEquals(UUID.fromString("849a7d96-5fda-413c-9926-41f660078e76"), actualServiceEntity.getId());
         assertEquals("Name", actualServiceEntity.getName());
         assertTrue(actualServiceEntity.isActive());
-        assertEquals("ServiceEntity{id='42', name='Name', description='The characteristics of someone or something',"
+        assertEquals("ServiceEntity{id=849a7d96-5fda-413c-9926-41f660078e76, name='Name', description='The characteristics of someone or something',"
                 + " serviceTypeId='c29f4874-2260-425d-bebb-2d1448f82e2b', active=true}", actualToStringResult);
     }
 

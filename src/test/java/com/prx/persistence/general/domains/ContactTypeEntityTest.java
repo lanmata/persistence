@@ -18,6 +18,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.UUID;
+
 /**
  * TestContactTypeEntity.
  *
@@ -29,7 +31,7 @@ class ContactTypeEntityTest {
     @Test
     void gettersAndSetters() {
         final var contactTypeEntity = new ContactTypeEntity();
-        contactTypeEntity.setId("072b1d5c-993e-43b3-b084-4c9ec4b3aa79");
+        contactTypeEntity.setId(UUID.fromString("072b1d5c-993e-43b3-b084-4c9ec4b3aa79"));
         contactTypeEntity.setName("Contact type 0001");
         contactTypeEntity.setDescription("Contact type description");
         contactTypeEntity.setActive(true);
@@ -52,7 +54,7 @@ class ContactTypeEntityTest {
      *   <li>default or parameterless constructor of {@link ContactTypeEntity}
      *   <li>{@link ContactTypeEntity#setActive(boolean)}
      *   <li>{@link ContactTypeEntity#setDescription(String)}
-     *   <li>{@link ContactTypeEntity#setId(String)}
+     *   <li>{@link ContactTypeEntity#setId(UUID)}
      *   <li>{@link ContactTypeEntity#setName(String)}
      *   <li>{@link ContactTypeEntity#toString()}
      *   <li>{@link ContactTypeEntity#getDescription()}
@@ -66,14 +68,14 @@ class ContactTypeEntityTest {
         ContactTypeEntity actualContactTypeEntity = new ContactTypeEntity();
         actualContactTypeEntity.setActive(true);
         actualContactTypeEntity.setDescription("The characteristics of someone or something");
-        actualContactTypeEntity.setId("42");
+        actualContactTypeEntity.setId(UUID.fromString("849a7d96-5fda-413c-9926-41f660078e76"));
         actualContactTypeEntity.setName("Name");
         String actualToStringResult = actualContactTypeEntity.toString();
         assertEquals("The characteristics of someone or something", actualContactTypeEntity.getDescription());
-        assertEquals("42", actualContactTypeEntity.getId());
+        assertEquals(UUID.fromString("849a7d96-5fda-413c-9926-41f660078e76"), actualContactTypeEntity.getId());
         assertEquals("Name", actualContactTypeEntity.getName());
         assertTrue(actualContactTypeEntity.isActive());
-        assertEquals("ContactTypeEntity{id=42, name='Name', description='The characteristics of someone or something',"
+        assertEquals("ContactTypeEntity{id=849a7d96-5fda-413c-9926-41f660078e76, name='Name', description='The characteristics of someone or something',"
                 + " active=true}", actualToStringResult);
     }
 

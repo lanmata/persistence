@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.UUID;
 
 /**
  * IdentificationDocumentTest.
@@ -25,7 +26,7 @@ class IdentificationDocumentEntityTest {
     void gettersAndSetters() {
         final var identificationDocument = new IdentificationDocumentEntity();
 
-        identificationDocument.setId("42c24163-4716-47f0-b158-25806755306a");
+        identificationDocument.setId(UUID.fromString("42c24163-4716-47f0-b158-25806755306a"));
         identificationDocument.setNumber(114);
         identificationDocument.setPerson(new PersonEntity());
         identificationDocument.setExpirationDate(LocalDateTime.now(ZoneId.systemDefault()));
@@ -49,7 +50,7 @@ class IdentificationDocumentEntityTest {
      * <ul>
      *   <li>default or parameterless constructor of {@link IdentificationDocumentEntity}
      *   <li>{@link IdentificationDocumentEntity#setExpirationDate(LocalDateTime)}
-     *   <li>{@link IdentificationDocumentEntity#setId(String)}
+     *   <li>{@link IdentificationDocumentEntity#setId(UUID)}
      *   <li>{@link IdentificationDocumentEntity#setIdentificationType(IdentificationType)}
      *   <li>{@link IdentificationDocumentEntity#setNumber(Integer)}
      *   <li>{@link IdentificationDocumentEntity#setPerson(PersonEntity)}
@@ -66,26 +67,26 @@ class IdentificationDocumentEntityTest {
         IdentificationDocumentEntity actualIdentificationDocumentEntity = new IdentificationDocumentEntity();
         LocalDateTime expirationDate = LocalDate.of(1970, 1, 1).atStartOfDay();
         actualIdentificationDocumentEntity.setExpirationDate(expirationDate);
-        actualIdentificationDocumentEntity.setId("42");
+        actualIdentificationDocumentEntity.setId(UUID.fromString("849a7d96-5fda-413c-9926-41f660078e76"));
         actualIdentificationDocumentEntity.setIdentificationType(IdentificationType.PASSPORT);
         actualIdentificationDocumentEntity.setNumber(10);
         PersonEntity person = new PersonEntity();
         person.setBirthdate(LocalDate.of(1970, 1, 1));
         person.setGender("Gender");
-        person.setId("42");
+        person.setId(UUID.fromString("849a7d96-5fda-413c-9926-41f660078e76"));
         person.setLastName("Doe");
         person.setMiddleName("Middle Name");
         person.setName("Name");
         actualIdentificationDocumentEntity.setPerson(person);
         String actualToStringResult = actualIdentificationDocumentEntity.toString();
         assertSame(expirationDate, actualIdentificationDocumentEntity.getExpirationDate());
-        assertEquals("42", actualIdentificationDocumentEntity.getId());
+        assertEquals(UUID.fromString("849a7d96-5fda-413c-9926-41f660078e76"), actualIdentificationDocumentEntity.getId());
         assertEquals(IdentificationType.PASSPORT, actualIdentificationDocumentEntity.getIdentificationType());
         assertEquals(10, actualIdentificationDocumentEntity.getNumber().intValue());
         assertSame(person, actualIdentificationDocumentEntity.getPerson());
         assertEquals(
-                "IdentificationDocumentEntity{id=42, number=10, expirationDate=1970-01-01T00:00, identificationType=PASSPORT,"
-                        + " person=PersonEntity{id=42, name='Name', middleName='Middle Name', lastName='Doe', gender='Gender',"
+                "IdentificationDocumentEntity{id=849a7d96-5fda-413c-9926-41f660078e76, number=10, expirationDate=1970-01-01T00:00, identificationType=PASSPORT,"
+                        + " person=PersonEntity{id=849a7d96-5fda-413c-9926-41f660078e76, name='Name', middleName='Middle Name', lastName='Doe', gender='Gender',"
                         + " birthdate=1970-01-01}}",
                 actualToStringResult);
     }

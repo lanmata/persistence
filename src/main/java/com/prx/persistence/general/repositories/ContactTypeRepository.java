@@ -15,12 +15,14 @@ package com.prx.persistence.general.repositories;
 import com.prx.persistence.general.domains.ContactTypeEntity;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.UUID;
+
 /**
  * ContactTypeRepository.
  *
  * @author <a href='mailto:luis.antonio.mata@gmail.com'>Luis Antonio Mata.</a>
  * @version 1.0.3.20200904-01, 19-01-2021
  */
-public interface ContactTypeRepository  extends CrudRepository<ContactTypeEntity, String> {
+public interface ContactTypeRepository  extends CrudRepository<ContactTypeEntity, UUID> {
 
 }

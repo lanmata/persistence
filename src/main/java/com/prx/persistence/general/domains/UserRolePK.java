@@ -16,6 +16,7 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.UUID;
 
 /**
  * UserRolPK.
@@ -27,9 +28,9 @@ import java.util.Objects;
 public class UserRolePK implements Serializable {
 
     @Column(name = "user_id")
-    private String userId;
+    private UUID userId;
     @Column(name = "role_id")
-    private String roleId;
+    private UUID roleId;
 
     /**
      * Default constructor.
@@ -51,19 +52,19 @@ public class UserRolePK implements Serializable {
         return Objects.hash(userId, roleId);
     }
 
-    public String getUserId() {
+    public UUID getUserId() {
         return this.userId;
     }
 
-    public String getRoleId() {
+    public UUID getRoleId() {
         return this.roleId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(UUID userId) {
         this.userId = userId;
     }
 
-    public void setRoleId(String roleId) {
+    public void setRoleId(UUID roleId) {
         this.roleId = roleId;
     }
 

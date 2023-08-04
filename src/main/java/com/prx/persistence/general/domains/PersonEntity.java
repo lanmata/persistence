@@ -19,6 +19,7 @@ import jakarta.validation.constraints.Size;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.UUID;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
@@ -38,7 +39,7 @@ public class PersonEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id")
-    private String id;
+    private UUID id;
     @NotNull
     @Size(min = 2, max = 12)
     @Column(name = "first_name")
@@ -62,7 +63,7 @@ public class PersonEntity implements Serializable {
         // Default constructor.
     }
 
-    public String getId() {
+    public UUID getId() {
         return this.id;
     }
 
@@ -86,7 +87,7 @@ public class PersonEntity implements Serializable {
         return this.birthdate;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

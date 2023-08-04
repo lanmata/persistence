@@ -15,6 +15,7 @@ package com.prx.persistence.general.domains;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
@@ -30,7 +31,7 @@ public class ServiceEntity implements Serializable {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = IDENTITY)
-    private String id;
+    private UUID id;
     @Column(name = "name")
     private String name;
     @Column(name = "description")
@@ -47,7 +48,7 @@ public class ServiceEntity implements Serializable {
         // ServiceEntity default constructor.
     }
 
-    public String getId() {
+    public UUID getId() {
         return this.id;
     }
 
@@ -67,7 +68,7 @@ public class ServiceEntity implements Serializable {
         return this.active;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -90,7 +91,7 @@ public class ServiceEntity implements Serializable {
     @Override
     public String toString() {
         return "ServiceEntity{" +
-                "id='" + id + '\'' +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", serviceTypeId='" + serviceTypeId + '\'' +

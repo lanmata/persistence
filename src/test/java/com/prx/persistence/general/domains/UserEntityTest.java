@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
+import java.util.UUID;
 
 /**
  * UserEntityTest.
@@ -24,7 +25,7 @@ class UserEntityTest {
     void gettersAndSetters() {
         final var userEntity = new UserEntity();
 
-        userEntity.setId("1f23ab15-2a00-451b-b36e-275213eca3aa");
+        userEntity.setId(UUID.fromString("1f23ab15-2a00-451b-b36e-275213eca3aa"));
         userEntity.setAlias("Alias");
         userEntity.setActive(true);
         userEntity.setPassword("34567890");
@@ -52,7 +53,7 @@ class UserEntityTest {
      *   <li>default or parameterless constructor of {@link UserEntity}
      *   <li>{@link UserEntity#setActive(Boolean)}
      *   <li>{@link UserEntity#setAlias(String)}
-     *   <li>{@link UserEntity#setId(String)}
+     *   <li>{@link UserEntity#setId(UUID)}
      *   <li>{@link UserEntity#setPassword(String)}
      *   <li>{@link UserEntity#setPerson(PersonEntity)}
      *   <li>{@link UserEntity#setUserRole(Set)}
@@ -67,15 +68,17 @@ class UserEntityTest {
      */
     @Test
     void testConstructor() {
+        var userUuid = UUID.fromString("c018c63d-60ce-4744-9051-fe25eb417108");
+        var personUuid = UUID.fromString("1f8573b4-80c0-408a-8a98-0051c88912cc");
         UserEntity actualUserEntity = new UserEntity();
         actualUserEntity.setActive(true);
         actualUserEntity.setAlias("Alias");
-        actualUserEntity.setId("42");
+        actualUserEntity.setId(userUuid);
         actualUserEntity.setPassword("iloveyou");
         PersonEntity person = new PersonEntity();
         person.setBirthdate(LocalDate.of(1970, 1, 1));
         person.setGender("Gender");
-        person.setId("42");
+        person.setId(personUuid);
         person.setLastName("Doe");
         person.setMiddleName("Middle Name");
         person.setName("Name");
@@ -85,13 +88,14 @@ class UserEntityTest {
         String actualToStringResult = actualUserEntity.toString();
         assertTrue(actualUserEntity.getActive());
         assertEquals("Alias", actualUserEntity.getAlias());
-        assertEquals("42", actualUserEntity.getId());
+        assertEquals(userUuid, actualUserEntity.getId());
         assertEquals("iloveyou", actualUserEntity.getPassword());
         assertSame(person, actualUserEntity.getPerson());
         assertSame(userRole, actualUserEntity.getUserRole());
-        assertEquals("UserEntity{id=42, alias='Alias', password='iloveyou', active=true, person=PersonEntity{id=42,"
-                + " name='Name', middleName='Middle Name', lastName='Doe', gender='Gender', birthdate=1970-01-01},"
-                + " userRole=[]}", actualToStringResult);
+        assertEquals("UserEntity{id=c018c63d-60ce-4744-9051-fe25eb417108, alias='Alias', password='iloveyou'," +
+                " active=true, person=PersonEntity{id=1f8573b4-80c0-408a-8a98-0051c88912cc, name='Name'," +
+                " middleName='Middle Name', lastName='Doe', gender='Gender', birthdate=1970-01-01}," +
+                " userRole=[]}", actualToStringResult);
     }
 
 }
