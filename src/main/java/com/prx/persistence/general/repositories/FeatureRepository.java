@@ -18,6 +18,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import java.util.Optional;
+import java.util.UUID;
 
 /**
  * FeatureRepository.
@@ -25,7 +26,7 @@ import java.util.Optional;
  * @author <a href='mailto:luis.antonio.mata@gmail.com'>Luis Antonio Mata.</a>
  * @version 1.0.3.20200904-01, 18-01-2021
  */
-public interface FeatureRepository extends CrudRepository<FeatureEntity, String> {
+public interface FeatureRepository extends CrudRepository<FeatureEntity, UUID> {
 
     /**
      * Busca un feature en base al nombre.

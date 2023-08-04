@@ -13,8 +13,10 @@
 package com.prx.persistence.general.domains;
 import jakarta.persistence.*;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Set;
+import java.util.UUID;
 
 import static jakarta.persistence.FetchType.EAGER;
 import static jakarta.persistence.GenerationType.IDENTITY;
@@ -29,22 +31,30 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @Table(name = "role", schema = "general")
 public class RoleEntity implements Serializable {
 
+    @Serial
+    private static final long serialVersionUID = 2457876775820934879L;
+
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = IDENTITY)
-    private String id;
+    private UUID id;
+
     @Column(name = "name")
     private String name;
+
     @Column(name = "description")
     private String description;
+
     @OneToMany(mappedBy = "role")
     private Set<UserRoleEntity> userRoleEntities;
+
     @OneToMany(mappedBy = "role",
             fetch = EAGER,
             cascade = {
                     CascadeType.PERSIST
             })
     private Set<RoleFeatureEntity> roleFeatures;
+
     @Column(name = "active")
     private boolean active;
 
@@ -55,7 +65,7 @@ public class RoleEntity implements Serializable {
         // Default constructor.
     }
 
-    public String getId() {
+    public UUID getId() {
         return this.id;
     }
 
@@ -79,7 +89,7 @@ public class RoleEntity implements Serializable {
         return this.active;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

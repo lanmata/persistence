@@ -13,14 +13,14 @@
 
 package com.prx.persistence.general.domains;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
+import java.util.UUID;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 /**
  * UserRolPKTest.
@@ -45,14 +45,14 @@ class UserRolePKTest {
         final var userRolPK3 = new UserRolePK();
         final var userRolePK4 = userRolePK;
 
-        roleEntity.setId("e8c8f126-09f2-4ae9-9bb6-4fa459b77609");
+        roleEntity.setId(UUID.fromString("e8c8f126-09f2-4ae9-9bb6-4fa459b77609"));
         roleEntity.setName("Rol 0001");
         roleEntity.setDescription("Rol description");
         roleEntity.setActive(true);
         roleEntity.setRoleFeatures(features);
         roleEntity.setUserRoleEntities(users);
 
-        userEntity.setId("b09c7f73-ce44-46b3-b561-0db1791688cd");
+        userEntity.setId(UUID.fromString("b09c7f73-ce44-46b3-b561-0db1791688cd"));
         userEntity.setAlias("Alias 2");
         userEntity.setActive(true);
         userEntity.setPassword("34567890");
@@ -61,14 +61,14 @@ class UserRolePKTest {
         userRolePK.setUserId(userEntity.getId());
         userRolePK.setRoleId(roleEntity.getId());
 
-        roleEntity2.setId("e8c8f126-09f2-4ae9-9bb6-4fa459b77609");
+        roleEntity2.setId(UUID.fromString("e8c8f126-09f2-4ae9-9bb6-4fa459b77609"));
         roleEntity2.setName("Rol 0002");
         roleEntity2.setDescription("Rol description 2");
         roleEntity2.setActive(true);
         roleEntity2.setRoleFeatures(features2);
         roleEntity2.setUserRoleEntities(users2);
 
-        userEntity2.setId("98cc6676-fbc0-43ac-bb3b-695ab8ee7dba");
+        userEntity2.setId(UUID.fromString("98cc6676-fbc0-43ac-bb3b-695ab8ee7dba"));
         userEntity2.setAlias("Alias 2");
         userEntity2.setActive(true);
         userEntity2.setPassword("34567890");
@@ -109,8 +109,8 @@ class UserRolePKTest {
      *
      * <ul>
      *   <li>default or parameterless constructor of {@link UserRolePK}
-     *   <li>{@link UserRolePK#setRoleId(String)}
-     *   <li>{@link UserRolePK#setUserId(String)}
+     *   <li>{@link UserRolePK#setRoleId(UUID)}
+     *   <li>{@link UserRolePK#setUserId(UUID)}
      *   <li>{@link UserRolePK#toString()}
      *   <li>{@link UserRolePK#getRoleId()}
      *   <li>{@link UserRolePK#getUserId()}
@@ -118,13 +118,16 @@ class UserRolePKTest {
      */
     @Test
     void testConstructor() {
+        var roleUuid = UUID.fromString("5c5838d8-eaba-4441-ac3a-14d1f53732a0");
+        var userUuid = UUID.fromString("ec06f759-2bc5-4e47-bf95-b6bf244a7101");
         UserRolePK actualUserRolePK = new UserRolePK();
-        actualUserRolePK.setRoleId("42");
-        actualUserRolePK.setUserId("42");
+        actualUserRolePK.setRoleId(roleUuid);
+        actualUserRolePK.setUserId(userUuid);
         String actualToStringResult = actualUserRolePK.toString();
-        assertEquals("42", actualUserRolePK.getRoleId());
-        assertEquals("42", actualUserRolePK.getUserId());
-        assertEquals("UserRolePK{user=42, role=42}", actualToStringResult);
+        assertEquals(roleUuid, actualUserRolePK.getRoleId());
+        assertEquals(userUuid, actualUserRolePK.getUserId());
+        assertEquals("UserRolePK{user=ec06f759-2bc5-4e47-bf95-b6bf244a7101," +
+                " role=5c5838d8-eaba-4441-ac3a-14d1f53732a0}", actualToStringResult);
     }
 
     /**
@@ -132,9 +135,11 @@ class UserRolePKTest {
      */
     @Test
     void testEquals() {
+        var roleUuid = UUID.fromString("5c5838d8-eaba-4441-ac3a-14d1f53732a0");
+        var userUuid = UUID.fromString("ec06f759-2bc5-4e47-bf95-b6bf244a7101");
         UserRolePK userRolePK = new UserRolePK();
-        userRolePK.setRoleId("42");
-        userRolePK.setUserId("42");
+        userRolePK.setRoleId(roleUuid);
+        userRolePK.setUserId(userUuid);
         assertNotEquals(null, userRolePK);
     }
 
@@ -143,9 +148,11 @@ class UserRolePKTest {
      */
     @Test
     void testEquals2() {
+        var roleUuid = UUID.fromString("5c5838d8-eaba-4441-ac3a-14d1f53732a0");
+        var userUuid = UUID.fromString("ec06f759-2bc5-4e47-bf95-b6bf244a7101");
         UserRolePK userRolePK = new UserRolePK();
-        userRolePK.setRoleId("42");
-        userRolePK.setUserId("42");
+        userRolePK.setRoleId(roleUuid);
+        userRolePK.setUserId(userUuid);
         assertNotEquals("Different type to UserRolePK", userRolePK);
     }
 
@@ -160,11 +167,11 @@ class UserRolePKTest {
     @Test
     void testEquals3() {
         UserRolePK userRolePK = new UserRolePK();
-        userRolePK.setRoleId("7cf1a019-a6c3-452e-a6db-54afa039f1d6");
-        userRolePK.setUserId("35457947-3114-41dc-b303-8dc39cf6d29f");
+        userRolePK.setRoleId(UUID.fromString("7cf1a019-a6c3-452e-a6db-54afa039f1d6"));
+        userRolePK.setUserId(UUID.fromString("35457947-3114-41dc-b303-8dc39cf6d29f"));
         UserRolePK userRolePK1 = new UserRolePK();
-        userRolePK.setRoleId("98cc6676-fbc0-43ac-bb3b-695ab8ee7dba");
-        userRolePK.setUserId("87d86eed-cbf3-43a6-8751-40500ed13260");
+        userRolePK.setRoleId(UUID.fromString("98cc6676-fbc0-43ac-bb3b-695ab8ee7dba"));
+        userRolePK.setUserId(UUID.fromString("87d86eed-cbf3-43a6-8751-40500ed13260"));
         assertNotEquals(userRolePK, userRolePK1);
         int expectedHashCodeResult = userRolePK.hashCode();
         assertEquals(expectedHashCodeResult, userRolePK.hashCode());
@@ -181,12 +188,14 @@ class UserRolePKTest {
     @Test
     void testEquals4() {
         UserRolePK userRolePK = new UserRolePK();
-        userRolePK.setRoleId("42");
-        userRolePK.setUserId("42");
+        var roleUuid = UUID.fromString("5c5838d8-eaba-4441-ac3a-14d1f53732a0");
+        var userUuid = UUID.fromString("ec06f759-2bc5-4e47-bf95-b6bf244a7101");
+        userRolePK.setRoleId(roleUuid);
+        userRolePK.setUserId(userUuid);
 
         UserRolePK userRolePK2 = new UserRolePK();
-        userRolePK2.setRoleId("42");
-        userRolePK2.setUserId("42");
+        userRolePK2.setRoleId(roleUuid);
+        userRolePK2.setUserId(userUuid);
         assertEquals(userRolePK, userRolePK2);
         int expectedHashCodeResult = userRolePK.hashCode();
         assertEquals(expectedHashCodeResult, userRolePK2.hashCode());
@@ -197,13 +206,17 @@ class UserRolePKTest {
      */
     @Test
     void testEquals5() {
+        var roleUuid = UUID.fromString("5c5838d8-eaba-4441-ac3a-14d1f53732a0");
+        var userUuid = UUID.fromString("ec06f759-2bc5-4e47-bf95-b6bf244a7101");
+        var roleUuid2 = UUID.fromString("b83214a0-d872-49a2-99f5-d8815271dfe0");
+        var userUuid2 = UUID.fromString("95125051-980e-421f-b329-60a4791322ab");
         UserRolePK userRolePK = new UserRolePK();
-        userRolePK.setRoleId("Role Id");
-        userRolePK.setUserId("42");
+        userRolePK.setRoleId(roleUuid);
+        userRolePK.setUserId(userUuid);
 
         UserRolePK userRolePK2 = new UserRolePK();
-        userRolePK2.setRoleId("42");
-        userRolePK2.setUserId("42");
+        userRolePK2.setRoleId(roleUuid2);
+        userRolePK2.setUserId(userUuid2);
         assertNotEquals(userRolePK, userRolePK2);
     }
 
@@ -213,12 +226,16 @@ class UserRolePKTest {
     @Test
     void testEquals7() {
         UserRolePK userRolePK = new UserRolePK();
-        userRolePK.setRoleId("42");
-        userRolePK.setUserId("User Id");
+        var roleUuid = UUID.fromString("5c5838d8-eaba-4441-ac3a-14d1f53732a0");
+        var userUuid = UUID.fromString("ec06f759-2bc5-4e47-bf95-b6bf244a7101");
+        var roleUuid2 = UUID.fromString("b83214a0-d872-49a2-99f5-d8815271dfe0");
+        var userUuid2 = UUID.fromString("95125051-980e-421f-b329-60a4791322ab");
+        userRolePK.setRoleId(roleUuid);
+        userRolePK.setUserId(userUuid);
 
         UserRolePK userRolePK2 = new UserRolePK();
-        userRolePK2.setRoleId("42");
-        userRolePK2.setUserId("42");
+        userRolePK2.setRoleId(roleUuid2);
+        userRolePK2.setUserId(userUuid2);
         assertNotEquals(userRolePK, userRolePK2);
     }
 }

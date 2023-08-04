@@ -17,6 +17,7 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.Set;
+import java.util.UUID;
 
 import static jakarta.persistence.FetchType.EAGER;
 import static jakarta.persistence.GenerationType.IDENTITY;
@@ -33,7 +34,7 @@ public class FeatureEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id")
-    private String id;
+    private UUID id;
     @Column(name = "name")
     private String name;
     @Column(name = "description")
@@ -55,7 +56,7 @@ public class FeatureEntity implements Serializable {
         // Default constructor.
     }
 
-    public String getId() {
+    public UUID getId() {
         return this.id;
     }
 
@@ -75,7 +76,7 @@ public class FeatureEntity implements Serializable {
         return this.rolFeatures;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

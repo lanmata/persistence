@@ -23,6 +23,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
+import java.util.UUID;
 
 /**
  * RolEntityTest.
@@ -38,7 +39,7 @@ class RoleEntityTest {
         final var features = new HashSet<RoleFeatureEntity>();
         final var users = new HashSet<UserRoleEntity>();
 
-        roleEntity.setId("f12dab93-0ea0-414e-a062-568f88af49cb");
+        roleEntity.setId(UUID.fromString("f12dab93-0ea0-414e-a062-568f88af49cb"));
         roleEntity.setName("Rol 0001");
         roleEntity.setDescription("Description rol");
         roleEntity.setActive(true);
@@ -66,7 +67,7 @@ class RoleEntityTest {
      *   <li>default or parameterless constructor of {@link RoleEntity}
      *   <li>{@link RoleEntity#setActive(boolean)}
      *   <li>{@link RoleEntity#setDescription(String)}
-     *   <li>{@link RoleEntity#setId(String)}
+     *   <li>{@link RoleEntity#setId(UUID)}
      *   <li>{@link RoleEntity#setName(String)}
      *   <li>{@link RoleEntity#setRoleFeatures(Set)}
      *   <li>{@link RoleEntity#setUserRoleEntities(Set)}
@@ -84,7 +85,7 @@ class RoleEntityTest {
         RoleEntity actualRoleEntity = new RoleEntity();
         actualRoleEntity.setActive(true);
         actualRoleEntity.setDescription("The characteristics of someone or something");
-        actualRoleEntity.setId("42");
+        actualRoleEntity.setId(UUID.fromString("849a7d96-5fda-413c-9926-41f660078e76"));
         actualRoleEntity.setName("Name");
         HashSet<RoleFeatureEntity> roleFeatures = new HashSet<>();
         actualRoleEntity.setRoleFeatures(roleFeatures);
@@ -92,13 +93,13 @@ class RoleEntityTest {
         actualRoleEntity.setUserRoleEntities(userRoleEntities);
         String actualToStringResult = actualRoleEntity.toString();
         assertEquals("The characteristics of someone or something", actualRoleEntity.getDescription());
-        assertEquals("42", actualRoleEntity.getId());
+        assertEquals(UUID.fromString("849a7d96-5fda-413c-9926-41f660078e76"), actualRoleEntity.getId());
         assertEquals("Name", actualRoleEntity.getName());
         assertSame(roleFeatures, actualRoleEntity.getRoleFeatures());
         assertSame(userRoleEntities, actualRoleEntity.getUserRoleEntities());
         assertTrue(actualRoleEntity.isActive());
         assertEquals(
-                "RoleEntity{id=42, name='Name', description='The characteristics of someone or something', userRoleEntities"
+                "RoleEntity{id=849a7d96-5fda-413c-9926-41f660078e76, name='Name', description='The characteristics of someone or something', userRoleEntities"
                         + "=[], roleFeatures=[], active=true}",
                 actualToStringResult);
     }

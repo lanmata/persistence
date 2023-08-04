@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
+import java.util.UUID;
 
 /**
  * RolFeatureEntityTest.
@@ -38,19 +39,19 @@ class RoleFeatureEntityTest {
         final var users = new HashSet<UserRoleEntity>();
         final var roleFeaturePk = new RoleFeaturePK();
 
-        roleEntity.setId("416073e8-f117-466e-8183-a867616fa991");
+        roleEntity.setId(UUID.fromString("416073e8-f117-466e-8183-a867616fa991"));
         roleEntity.setName("Rol 0001");
         roleEntity.setDescription("Rol description");
         roleEntity.setActive(true);
         roleEntity.setRoleFeatures(features);
         roleEntity.setUserRoleEntities(users);
-        featureEntity.setId("9d03ff25-842a-4625-9143-52eee8d710e7");
+        featureEntity.setId(UUID.fromString("9d03ff25-842a-4625-9143-52eee8d710e7"));
         featureEntity.setActive(true);
         featureEntity.setName("Feature name");
         featureEntity.setDescription("Feature name");
 
-        roleFeaturePk.setRole("416073e8-f117-466e-8183-a867616fa991");
-        roleFeaturePk.setFeature("9d03ff25-842a-4625-9143-52eee8d710e7");
+        roleFeaturePk.setRoleId(UUID.fromString("416073e8-f117-466e-8183-a867616fa991"));
+        roleFeaturePk.setFeatureId(UUID.fromString("9d03ff25-842a-4625-9143-52eee8d710e7"));
 
         roleFeatureEntity.setFeature(featureEntity);
         roleFeatureEntity.setRole(roleEntity);
@@ -63,8 +64,8 @@ class RoleFeatureEntityTest {
                 () -> Assertions.assertNotNull(roleFeatureEntity.getActive()),
                 () -> Assertions.assertNotNull(roleFeatureEntity.toString()),
                 () -> Assertions.assertNotNull(roleFeatureEntity.getRoleFeaturePK()),
-                () -> Assertions.assertNotNull(roleFeatureEntity.getRoleFeaturePK().getRole()),
-                () -> Assertions.assertNotNull(roleFeatureEntity.getRoleFeaturePK().getFeature()),
+                () -> Assertions.assertNotNull(roleFeatureEntity.getRoleFeaturePK().getRoleId()),
+                () -> Assertions.assertNotNull(roleFeatureEntity.getRoleFeaturePK().getFeatureId()),
                 () -> Assertions.assertNotEquals(1, roleFeatureEntity.hashCode()),
                 () -> Assertions.assertNotEquals(new RoleFeatureEntity(), roleFeatureEntity)
         );
@@ -88,26 +89,28 @@ class RoleFeatureEntityTest {
      */
     @Test
     void testConstructor() {
+        var featureUuid = UUID.fromString("611aec48-f8f6-4e05-9b95-7080f50dd624");
+        var roleUuid = UUID.fromString("07648dfe-e606-49bb-a13e-d0753faab8ea");
         RoleFeatureEntity actualRoleFeatureEntity = new RoleFeatureEntity();
         actualRoleFeatureEntity.setActive(true);
         FeatureEntity feature = new FeatureEntity();
         feature.setActive(true);
         feature.setDescription("The characteristics of someone or something");
-        feature.setId("42");
+        feature.setId(featureUuid);
         feature.setName("Name");
         feature.setRolFeatures(new HashSet<>());
         actualRoleFeatureEntity.setFeature(feature);
         RoleEntity role = new RoleEntity();
         role.setActive(true);
         role.setDescription("The characteristics of someone or something");
-        role.setId("42");
+        role.setId(roleUuid);
         role.setName("Name");
         role.setRoleFeatures(new HashSet<>());
         role.setUserRoleEntities(new HashSet<>());
         actualRoleFeatureEntity.setRole(role);
         RoleFeaturePK roleFeaturePK = new RoleFeaturePK();
-        roleFeaturePK.setFeature("Feature");
-        roleFeaturePK.setRole("Role");
+        roleFeaturePK.setFeatureId(featureUuid);
+        roleFeaturePK.setRoleId(roleUuid);
         actualRoleFeatureEntity.setRoleFeaturePK(roleFeaturePK);
         String actualToStringResult = actualRoleFeatureEntity.toString();
         assertTrue(actualRoleFeatureEntity.getActive());
@@ -115,10 +118,11 @@ class RoleFeatureEntityTest {
         assertSame(role, actualRoleFeatureEntity.getRole());
         assertSame(roleFeaturePK, actualRoleFeatureEntity.getRoleFeaturePK());
         assertEquals(
-                "RoleFeatureEntity{role=RoleEntity{id=42, name='Name', description='The characteristics of someone or"
-                        + " something', userRoleEntities=[], roleFeatures=[], active=true}, feature=FeatureEntity{id=42,"
-                        + " name='Name', description='The characteristics of someone or something', active=true, rolFeatures=[]},"
-                        + " active=true}",
+                "RoleFeatureEntity{role=RoleEntity{id=07648dfe-e606-49bb-a13e-d0753faab8ea, name='Name', "
+                        + "description='The characteristics of someone or something', userRoleEntities=[], "
+                        + "roleFeatures=[], active=true}, feature=FeatureEntity{id=611aec48-f8f6-4e05-9b95-7080f50dd624,"
+                        + " name='Name', description='The characteristics of someone or something', active=true, "
+                        + "rolFeatures=[]}, active=true}",
                 actualToStringResult);
     }
 }

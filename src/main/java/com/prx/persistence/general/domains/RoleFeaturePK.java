@@ -12,10 +12,13 @@
  */
 package com.prx.persistence.general.domains;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.UUID;
 
 /**
  * RolFeaturePK.
@@ -25,8 +28,15 @@ import java.util.Objects;
  */
 @Embeddable
 public class RoleFeaturePK implements Serializable {
-    private String role;
-    private String feature;
+
+    @Serial
+    private static final long serialVersionUID = 6017520908402540913L;
+
+    @Column(name = "role_id")
+    private UUID roleId;
+
+    @Column(name = "feature_id")
+    private UUID featureId;
 
     /**
      * Default constructor.
@@ -40,35 +50,35 @@ public class RoleFeaturePK implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RoleFeaturePK that = (RoleFeaturePK) o;
-        return role.equals(that.role) && feature.equals(that.feature);
+        return roleId.equals(that.roleId) && featureId.equals(that.featureId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(role, feature);
+        return Objects.hash(roleId, featureId);
     }
 
-    public String getRole() {
-        return this.role;
+    public UUID getRoleId() {
+        return this.roleId;
     }
 
-    public String getFeature() {
-        return this.feature;
+    public UUID getFeatureId() {
+        return this.featureId;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRoleId(UUID roleId) {
+        this.roleId = roleId;
     }
 
-    public void setFeature(String feature) {
-        this.feature = feature;
+    public void setFeatureId(UUID featureId) {
+        this.featureId = featureId;
     }
 
     @Override
     public String toString() {
         return "RoleFeaturePK{" +
-                "role=" + role +
-                ", feature=" + feature +
+                "role=" + roleId +
+                ", feature=" + featureId +
                 '}';
     }
 }

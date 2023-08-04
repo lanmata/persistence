@@ -15,6 +15,7 @@ package com.prx.persistence.general.domains;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
@@ -30,7 +31,7 @@ public class ContactTypeEntity implements Serializable {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = IDENTITY)
-    private String id;
+    private UUID id;
     @Column(name = "name")
     private String name;
     @Column(name = "description")
@@ -45,7 +46,7 @@ public class ContactTypeEntity implements Serializable {
         // ContactTypeEntity default constructor.
     }
 
-    public String getId() {
+    public UUID getId() {
         return this.id;
     }
 
@@ -61,7 +62,7 @@ public class ContactTypeEntity implements Serializable {
         return this.active;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

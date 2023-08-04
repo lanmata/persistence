@@ -17,6 +17,7 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 import static jakarta.persistence.CascadeType.REFRESH;
 import static jakarta.persistence.FetchType.LAZY;
@@ -35,7 +36,7 @@ public class IdentificationDocumentEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "id")
-    private String id;
+    private UUID id;
     @Column(name = "number")
     private Integer number;
     @Column(name = "expiration_date")
@@ -53,7 +54,7 @@ public class IdentificationDocumentEntity implements Serializable {
         // Default constructor.
     }
 
-    public String getId() {
+    public UUID getId() {
         return this.id;
     }
 
@@ -73,7 +74,7 @@ public class IdentificationDocumentEntity implements Serializable {
         return this.person;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

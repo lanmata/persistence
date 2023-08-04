@@ -18,6 +18,7 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -40,21 +41,21 @@ class UserRoleEntityTest {
         final var users = new HashSet<UserRoleEntity>();
         final var userRolePk = new UserRolePK();
 
-        roleEntity.setId("1f23ab15-2a00-451b-b36e-275213eca3aa");
+        roleEntity.setId(UUID.fromString("1f23ab15-2a00-451b-b36e-275213eca3aa"));
         roleEntity.setName("Rol 0001");
         roleEntity.setDescription("Rol description");
         roleEntity.setActive(true);
         roleEntity.setRoleFeatures(features);
         roleEntity.setUserRoleEntities(users);
 
-        userEntity.setId("e8c8f126-09f2-4ae9-9bb6-4fa459b77609");
+        userEntity.setId(UUID.fromString("e8c8f126-09f2-4ae9-9bb6-4fa459b77609"));
         userEntity.setAlias("Alias");
         userEntity.setActive(true);
         userEntity.setPassword("34567890");
         userEntity.setPerson(new PersonEntity());
 
-        userRolePk.setRoleId("1f23ab15-2a00-451b-b36e-275213eca3aa");
-        userRolePk.setUserId("e8c8f126-09f2-4ae9-9bb6-4fa459b77609");
+        userRolePk.setRoleId(UUID.fromString("1f23ab15-2a00-451b-b36e-275213eca3aa"));
+        userRolePk.setUserId(UUID.fromString("e8c8f126-09f2-4ae9-9bb6-4fa459b77609"));
 
         userRoleEntity.setUser(userEntity);
         userRoleEntity.setRole(roleEntity);
@@ -92,12 +93,15 @@ class UserRoleEntityTest {
      */
     @Test
     void testConstructor() {
+        var roleUuid = UUID.fromString("5c5838d8-eaba-4441-ac3a-14d1f53732a0");
+        var personUuid = UUID.fromString("5de2fd78-37a6-4962-883e-6208f9366bd0");
+        var userUuid = UUID.fromString("0cf6dfaf-283a-4e91-8159-3df4d99e9f93");
         UserRoleEntity actualUserRoleEntity = new UserRoleEntity();
         actualUserRoleEntity.setActive(true);
         RoleEntity roleId = new RoleEntity();
         roleId.setActive(true);
         roleId.setDescription("The characteristics of someone or something");
-        roleId.setId("42");
+        roleId.setId(roleUuid);
         roleId.setName("Name");
         roleId.setRoleFeatures(new HashSet<>());
         roleId.setUserRoleEntities(new HashSet<>());
@@ -105,31 +109,33 @@ class UserRoleEntityTest {
         PersonEntity person = new PersonEntity();
         person.setBirthdate(LocalDate.of(1970, 1, 1));
         person.setGender("Gender");
-        person.setId("42");
+        person.setId(personUuid);
         person.setLastName("Doe");
         person.setMiddleName("Middle Name");
         person.setName("Name");
         UserEntity userId = new UserEntity();
         userId.setActive(true);
         userId.setAlias("Alias");
-        userId.setId("42");
+        userId.setId(userUuid);
         userId.setPassword("iloveyou");
         userId.setPerson(person);
         userId.setUserRole(new HashSet<>());
         actualUserRoleEntity.setUser(userId);
         UserRolePK userRolePK = new UserRolePK();
-        userRolePK.setRoleId("42");
-        userRolePK.setUserId("42");
+        userRolePK.setRoleId(roleUuid);
+        userRolePK.setUserId(userUuid);
         actualUserRoleEntity.setUserRolePK(userRolePK);
         String actualToStringResult = actualUserRoleEntity.toString();
         assertTrue(actualUserRoleEntity.getActive());
         assertSame(roleId, actualUserRoleEntity.getRole());
         assertSame(userId, actualUserRoleEntity.getUser());
         assertSame(userRolePK, actualUserRoleEntity.getUserRolePK());
-        assertEquals("UserRoleEntity{userRolePK=UserRolePK{user=42, role=42}user=UserEntity{id=42, alias='Alias',"
-                + " password='iloveyou', active=true, person=PersonEntity{id=42, name='Name', middleName='Middle Name',"
-                + " lastName='Doe', gender='Gender', birthdate=1970-01-01}, userRole=[]}, role=RoleEntity{id=42, name='Name',"
-                + " description='The characteristics of someone or something', userRoleEntities=[], roleFeatures=[],"
-                + " active=true}, active=true}", actualToStringResult);
+        assertEquals("UserRoleEntity{userRolePK=UserRolePK{user=0cf6dfaf-283a-4e91-8159-3df4d99e9f93," +
+                " role=5c5838d8-eaba-4441-ac3a-14d1f53732a0}user=UserEntity{id=0cf6dfaf-283a-4e91-8159-3df4d99e9f93," +
+                " alias='Alias', password='iloveyou', active=true, person=PersonEntity{id=5de2fd78-37a6-4962-883e-6208f9366bd0," +
+                " name='Name', middleName='Middle Name', lastName='Doe', gender='Gender', birthdate=1970-01-01}," +
+                " userRole=[]}, role=RoleEntity{id=5c5838d8-eaba-4441-ac3a-14d1f53732a0, name='Name', " +
+                "description='The characteristics of someone or something', userRoleEntities=[], roleFeatures=[]," +
+                " active=true}, active=true}", actualToStringResult);
     }
 }
