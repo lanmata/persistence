@@ -276,7 +276,7 @@
 
     <repositories>
         <repository>
-            <id>PRX Repsy</id>
+            <id>repsy</id>
             <name>My Private Maven Repository on Repsy</name>
             <url>https://repo.repsy.io/mvn/lmata/prx</url>
         </repository>
@@ -289,7 +289,7 @@
 
     <distributionManagement>
         <repository>
-            <id>PRX Repsy</id>
+            <id>repsy</id>
             <name>My Private Maven Repository on Repsy</name>
             <url>https://repo.repsy.io/mvn/lmata/prx</url>
         </repository>
