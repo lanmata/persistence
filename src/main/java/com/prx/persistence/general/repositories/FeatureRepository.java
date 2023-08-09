@@ -17,6 +17,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -36,5 +37,15 @@ public interface FeatureRepository extends CrudRepository<FeatureEntity, UUID> {
      */
     @Query(value = "SELECT f FROM FeatureEntity f WHERE f.name = :name ORDER BY f.name DESC")
     Optional<FeatureEntity> findByName(@Param("name") String name);
+
+    /**
+     * Busca un feature en base al Id y el estado.
+     *
+     * @param ids {@link String}
+     * @param active {@link boolean}
+     * @return Objeto de tipo {@link Optional}<{@link FeatureEntity>
+     */
+    @Query(value = "SELECT f FROM FeatureEntity f WHERE f.id IN :ids and f.active = :active ORDER BY f.name DESC")
+    Optional<Iterable<FeatureEntity>> findByIdAndStatus(@Param("ids") List<UUID> ids, @Param("active") boolean active);
 
 }
