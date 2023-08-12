@@ -2,6 +2,10 @@ variables:
   SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
   GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
 qodana:
+  only:
+    - merge_requests
+    - master
+    - develop
   image:
     name: jetbrains/qodana-jvm:2023.2 
     entrypoint: [""]
@@ -13,7 +17,7 @@ qodana:
       paths:
         - .qodana/cache
   variables:
-    QODANA_TOKEN: $qodana_token
+    QODANA_TOKEN: $QODANA_TOKEN
   script:
     - qodana --cache-dir=$CI_PROJECT_DIR/.qodana/cache
   artifacts:
