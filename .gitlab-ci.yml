@@ -1,26 +1,25 @@
 variables:
   SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
   GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
-stages:
-  - build
-  - test
-  - lint
-build:
-  stage: build
+qodana:
+  image:
+    name: jetbrains/qodana-<linter>
+    entrypoint: [""]
+  cache:
+    - key: qodana-2023.2-$CI_DEFAULT_BRANCH-$CI_COMMIT_REF_SLUG
+      fallback_keys:
+        - qodana-2023.2-$CI_DEFAULT_BRANCH-
+        - qodana-2023.2-
+      paths:
+        - .qodana/cache
+  variables:
+    QODANA_TOKEN: $qodana_token
   script:
-    - mvn clean install
-test:
-  stage: test
-  script:
-    - mvn test
-lint:
-  stage: lint
-  image: jetbrains/qodana-cli
-  script:
-    - qodana analyze --project .
+    - qodana --cache-dir=$CI_PROJECT_DIR/.qodana/cache
   artifacts:
     paths:
-      - .qodana/report.html
+      - qodana/report/
+    expose_as: 'Qodana report'
 sonarcloud-check:
   image: maven:3.6.3-jdk-11
   cache:
