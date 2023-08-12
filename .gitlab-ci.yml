@@ -3,7 +3,7 @@ variables:
   GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
 qodana:
   image:
-    name: jetbrains/qodana-jvm
+    name: jetbrains/qodana-jvm:2023.2 
     entrypoint: [""]
   cache:
     - key: qodana-2023.2-$CI_DEFAULT_BRANCH-$CI_COMMIT_REF_SLUG
