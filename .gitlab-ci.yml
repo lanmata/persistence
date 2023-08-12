@@ -3,7 +3,7 @@ variables:
   GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
 qodana:
   image:
-    name: jetbrains/qodana-<linter>
+    name: jetbrains/qodana-jvm
     entrypoint: [""]
   cache:
     - key: qodana-2023.2-$CI_DEFAULT_BRANCH-$CI_COMMIT_REF_SLUG
@@ -21,7 +21,7 @@ qodana:
       - qodana/report/
     expose_as: 'Qodana report'
 sonarcloud-check:
-  image: maven:3.6.3-jdk-11
+  image: maven:3.9.0-amazoncorretto-17 # Or newer
   cache:
     key: "${CI_JOB_NAME}"
     paths:
