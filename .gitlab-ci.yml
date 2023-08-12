@@ -7,7 +7,7 @@ qodana:
     - master
     - develop
   image:
-    name: jetbrains/qodana-jvm:2023.2 
+    name: jetbrains/qodana-jvm-community:2023.2
     entrypoint: [""]
   cache:
     - key: qodana-2023.2-$CI_DEFAULT_BRANCH-$CI_COMMIT_REF_SLUG
