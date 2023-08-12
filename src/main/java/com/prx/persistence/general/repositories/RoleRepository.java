@@ -30,15 +30,33 @@ import java.util.UUID;
 public interface RoleRepository extends CrudRepository<RoleEntity, UUID> {
 
     /**
-     * Busca todos los registros de roles en base a un conjunto de identificadores.
+     * Search roles by role id list.
      *
-     * @param idRoles {@link Iterable} con elmentos de tipo {@link String}
-     * @return Objeto de tipo {@link Optional} con elemento {@link List}
+     * @param idRoles {@link Iterable<String>} elements.
+     * @return {@link Optional} object type with {@link List<RoleEntity>} elements.
      */
     @Query(value = "SELECT r FROM RoleEntity r WHERE r.id IN :idRoles ORDER BY r.id ASC")
-    Optional<List<RoleEntity>> findAllById(@Param("idRoles") List<UUID> idRoles);
+    Optional<List<RoleEntity>> findById(@Param("idRoles") List<UUID> idRoles);
 
+    /**
+     * Search roles by user id.
+     *
+     * @param idUser {@link String} with {@link String} elements.
+     *
+     * @return {@link Optional} object type with {@link List<RoleEntity>} elements.
+     */
     @Query(value = "SELECT ur.role FROM UserRoleEntity ur WHERE ur.user.id = :idUser ORDER BY ur.user.id ASC")
-    Optional<List<RoleEntity>> findAllByUserId(@Param("idUser") UUID idUser);
+    Optional<List<RoleEntity>> findByUserId(@Param("idUser") UUID idUser);
+
+    /**
+     * Search roles by user id
+     * .
+     * @param active {@link boolean}.
+     * @param ids {@link List<UUID>}.
+     *
+     * @return {@link Optional} with {@link List<RoleEntity>} elements.
+     */
+    @Query(value="SELECT r FROM RoleEntity r WHERE r.id IN :ids AND r.active = :active")
+    Optional<List<RoleEntity>> findByStatusAndRoleId(@Param("active") boolean active, @Param("ids") List<UUID> ids);
 
 }
