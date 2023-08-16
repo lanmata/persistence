@@ -39,6 +39,15 @@ public interface RoleRepository extends CrudRepository<RoleEntity, UUID> {
     Optional<List<RoleEntity>> findById(@Param("idRoles") List<UUID> idRoles);
 
     /**
+     * Search roles by status list.
+     *
+     * @param status {@link Boolean} elements.
+     * @return {@link Optional} object type with {@link List<RoleEntity>} elements.
+     */
+    @Query(value = "SELECT r FROM RoleEntity r WHERE r.active = :status ORDER BY r.id ASC")
+    Optional<List<RoleEntity>> findByStatus(@Param("status") Boolean status);
+
+    /**
      * Search roles by user id.
      *
      * @param idUser {@link String} with {@link String} elements.
