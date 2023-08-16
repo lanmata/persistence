@@ -53,8 +53,8 @@
         <!--        JUnit 4.x-->
         <junit-core.version>4.13.1</junit-core.version>
         <!--        JUnit 5.x-->
-        <junit.jupiter.version>5.9.1</junit.jupiter.version>
-        <junit.jupiter.core.version>5.9.1</junit.jupiter.core.version>
+        <junit.jupiter.version>5.10.0</junit.jupiter.version>
+        <junit.jupiter.core.version>5.10.0</junit.jupiter.core.version>
         <!--        Mockito-->
         <mockserver.junit.jupiter.version>5.11.2</mockserver.junit.jupiter.version>
         <mockito.junit.jupiter.version>4.8.0</mockito.junit.jupiter.version>
@@ -92,11 +92,13 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit.jupiter.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.jupiter.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
