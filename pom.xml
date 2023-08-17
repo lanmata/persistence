@@ -42,6 +42,7 @@
         <maven.plugin.jacoco.version>0.8.8</maven.plugin.jacoco.version>
         <maven.plugin.pmd.version>3.19.0</maven.plugin.pmd.version>
         <maven.plugin.jxr.version>3.0.0</maven.plugin.jxr.version>
+        <maven.surefire.version>3.0.0</maven.surefire.version>
         <!--        REPOSITORY-->
         <repsy.account.user>lmata</repsy.account.user>
         <repsy.account.password>1$Pormenos</repsy.account.password>
@@ -53,8 +54,8 @@
         <!--        JUnit 4.x-->
         <junit-core.version>4.13.1</junit-core.version>
         <!--        JUnit 5.x-->
-        <junit.jupiter.version>5.10.0</junit.jupiter.version>
-        <junit.jupiter.core.version>5.10.0</junit.jupiter.core.version>
+        <junit.jupiter.version>5.9.3</junit.jupiter.version>
+        <junit.jupiter.core.version>5.9.3</junit.jupiter.core.version>
         <!--        Mockito-->
         <mockserver.junit.jupiter.version>5.11.2</mockserver.junit.jupiter.version>
         <mockito.junit.jupiter.version>4.8.0</mockito.junit.jupiter.version>
@@ -160,11 +161,11 @@
         <plugins>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.2</version>
+                <version>${maven.surefire.version}</version>
             </plugin>
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.22.2</version>
+                <version>${maven.surefire.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
