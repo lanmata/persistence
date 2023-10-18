@@ -13,12 +13,26 @@
 package com.prx.persistence.general.repositories;
 
 import com.prx.persistence.general.domains.ContactEntity;
+import com.prx.persistence.general.domains.FeatureEntity;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 /**
  * @author <a href="mailto:luis.antonio.mata@gmail.com">Luis Antonio Mata</a>
  */
 public interface ContactRepository extends CrudRepository<ContactEntity, UUID> {
+
+    /**
+     * Getting a contact list by person ID.
+     *
+     * @param personId {@link String}.
+     * @return {@link Optional}<{@link List}<{@link ContactEntity}>>
+     */
+    @Query(value = "SELECT ce FROM ContactEntity ce WHERE ce.person.id = :personId ORDER BY ce.contactType.name")
+    Optional<List<ContactEntity>> listByPersonId(@Param("personId") String personId);
 }

@@ -58,8 +58,8 @@ public interface RoleRepository extends CrudRepository<RoleEntity, UUID> {
     Optional<List<RoleEntity>> findByUserId(@Param("idUser") UUID idUser);
 
     /**
-     * Search roles by user id
-     * .
+     * Search roles by user id.
+     *
      * @param active {@link boolean}.
      * @param ids {@link List<UUID>}.
      *
