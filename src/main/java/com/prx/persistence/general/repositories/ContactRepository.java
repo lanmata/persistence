@@ -34,5 +34,5 @@ public interface ContactRepository extends CrudRepository<ContactEntity, UUID> {
      * @return {@link Optional}<{@link List}<{@link ContactEntity}>>
      */
     @Query(value = "SELECT ce FROM ContactEntity ce WHERE ce.person.id = :personId ORDER BY ce.contactType.name")
-    Optional<List<ContactEntity>> listByPersonId(@Param("personId") String personId);
+    Optional<List<ContactEntity>> listByPersonId(@Param("personId") UUID personId);
 }
