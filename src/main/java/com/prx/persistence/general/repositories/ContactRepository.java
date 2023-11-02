@@ -13,7 +13,6 @@
 package com.prx.persistence.general.repositories;
 
 import com.prx.persistence.general.domains.ContactEntity;
-import com.prx.persistence.general.domains.FeatureEntity;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
