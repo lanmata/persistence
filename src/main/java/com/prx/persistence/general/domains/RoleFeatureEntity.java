@@ -31,12 +31,12 @@ public class RoleFeatureEntity implements Serializable {
 
     @ManyToOne
     @MapsId("role")
-    @JoinColumn(name = "role_id", insertable = false, updatable = false)
+    @JoinColumn(name = "role_id")
     private RoleEntity role;
 
     @ManyToOne
     @MapsId("feature")
-    @JoinColumn(name = "feature_id", insertable = false, updatable = false)
+    @JoinColumn(name = "feature_id")
     private FeatureEntity feature;
 
     @Column(name = "active")
