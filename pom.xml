@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.prx</groupId>
+    <artifactId>persistence</artifactId>
+    <version>0.0.2-2023</version>
+    <description>Persistence object component</description>
+    <name>PRX persistence</name>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.1.2</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <developers>
+        <developer>
+            <id>lmata</id>
+            <name>Luis Antonio Mata</name>
+            <email>luis.antonio.mata@gmail.com</email>
+            <url>www.prx-dev.com</url>
+            <organization>PRX Innovation</organization>
+            <organizationUrl>www.prx.com</organizationUrl>
+        </developer>
+    </developers>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>17</java.version>
+        <postgresql.version>42.5.1</postgresql.version>
+        <google.gson.version>2.10.1</google.gson.version>
+        <!--        PRX Commons-->
+        <com.prx.commons.version>0.0.2-2023</com.prx.commons.version>
+        <!--        MAVEN-->
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <maven.plugin.javadoc.version>3.2.0</maven.plugin.javadoc.version>
+        <maven.plugin.jacoco.version>0.8.8</maven.plugin.jacoco.version>
+        <maven.plugin.pmd.version>3.19.0</maven.plugin.pmd.version>
+        <maven.plugin.jxr.version>3.0.0</maven.plugin.jxr.version>
+        <maven.surefire.version>3.0.0</maven.surefire.version>
+        <!--        REPOSITORY-->
+        <repsy.account.user>lmata</repsy.account.user>
+        <repsy.account.password>1$Pormenos</repsy.account.password>
+        <!--        SPRING -->
+        <spring-core.version>6.0.6</spring-core.version>
+        <spring-boot.version>3.1.2</spring-boot.version>
+        <spring-cloud.version>2022.0.3</spring-cloud.version>
+        <!--        Test Dependencies-->
+        <!--        JUnit 4.x-->
+        <junit-core.version>4.13.1</junit-core.version>
+        <!--        JUnit 5.x-->
+        <junit.jupiter.version>5.9.3</junit.jupiter.version>
+        <junit.jupiter.core.version>5.9.3</junit.jupiter.core.version>
+        <!--        Mockito-->
+        <mockserver.junit.jupiter.version>5.11.2</mockserver.junit.jupiter.version>
+        <mockito.junit.jupiter.version>4.8.0</mockito.junit.jupiter.version>
+        <mockito.version>4.8.0</mockito.version>
+        <!--        Coverage and Sonar-->
+        <sonar.organization>prx-open</sonar.organization>
+        <sonar.projectKey>${groupId}:${artifactId}</sonar.projectKey>
+        <sonar.coverage.exclusions>**/*.xml,**/*Application.*,**/config/*,**/mapper/*</sonar.coverage.exclusions>
+        <sonar.exclusions>**/*.xml,**/*Application.*,**/config/*,**/mapper/*</sonar.exclusions>
+        <project.ruleset>${project.basedir}/ruleset.xml</project.ruleset>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgresql.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>${google.gson.version}</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.prx</groupId>
+            <artifactId>prx-commons</artifactId>
+            <version>${com.prx.commons.version}</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit.jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit</groupId>
+            <artifactId>junit-bom</artifactId>
+            <version>${junit.jupiter.version}</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>6.0.6</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-test</artifactId>
+            <version>3.0.4</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>5.4.0</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>${junit.jupiter.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-bom</artifactId>
+                <version>2023.0.2</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven.surefire.version}</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>${maven.surefire.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>${maven.plugin.pmd.version}</version>
+                <configuration>
+                    <targetJdk>${java.version}</targetJdk>
+                    <linkXRef>false</linkXRef>
+                    <rulesets>
+                        <ruleset>${project.ruleset}</ruleset>
+                    </rulesets>
+                    <excludes>
+                        <exclude>${sonar.exclusions}</exclude>
+                    </excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>pmd-check</id>
+                        <phase>test</phase>
+                        <configuration>
+                            <failOnViolation>true</failOnViolation>
+                            <failurePriority>5</failurePriority>
+                        </configuration>
+                        <goals>
+                            <goal>check</goal>
+                            <goal>cpd-check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${maven.plugin.jacoco.version}</version>
+                <configuration>
+                    <excludes>
+                        <exclude>${sonar.coverage.exclusions}</exclude>
+                    </excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>jacoco-report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>jacoco-check</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <rule>
+                                    <element>PACKAGE</element>
+                                    <limits>
+                                        <limit>
+                                            <counter>LINE</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>0.8</minimum>
+                                        </limit>
+                                    </limits>
+                                </rule>
+                                <rule>
+                                    <element>PACKAGE</element>
+                                    <limits>
+                                        <limit>
+                                            <counter>BRANCH</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>0.5</minimum>
+                                        </limit>
+                                    </limits>
+                                </rule>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${maven.plugin.javadoc.version}</version>
+                <configuration>
+                    <show>public</show>
+                    <nohelp>true</nohelp>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>repsy</id>
+            <name>My Private Maven Repository on Repsy</name>
+            <url>https://repo.repsy.io/mvn/lmata/prx</url>
+        </repository>
+        <repository>
+            <id>maven_central</id>
+            <name>Maven Central</name>
+            <url>https://repo.maven.apache.org/maven2/</url>
+        </repository>
+    </repositories>
+
+    <distributionManagement>
+        <repository>
+            <id>repsy</id>
+            <name>My Private Maven Repository on Repsy</name>
+            <url>https://repo.repsy.io/mvn/lmata/prx</url>
+        </repository>
+    </distributionManagement>
+</project>
