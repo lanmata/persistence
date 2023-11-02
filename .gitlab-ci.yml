@@ -31,7 +31,7 @@ sonarcloud-check:
     paths:
       - .sonar/cache
   script:
-    - mvn verify sonar:sonar -Dsonar.projectKey=prx-persistence -s ci_settings.xml
+    - mvn verify sonar:sonar -Dsonar.projectKey=com.prx:persistence -s ci_settings.xml
   only:
     - merge_requests
     - master
