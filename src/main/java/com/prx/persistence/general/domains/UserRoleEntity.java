@@ -30,11 +30,11 @@ public class UserRoleEntity implements Serializable {
     private UserRolePK userRolePK;
 
     @ManyToOne
-    @MapsId("user")
+    @MapsId("userId")
     private UserEntity user;
 
     @ManyToOne
-    @MapsId("role")
+    @MapsId("roleId")
     private RoleEntity role;
 
     @Column(name = "active")
