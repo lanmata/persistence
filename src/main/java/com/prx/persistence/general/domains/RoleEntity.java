@@ -36,7 +36,7 @@ public class RoleEntity implements Serializable {
 
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy = IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column(name = "name")
@@ -45,7 +45,9 @@ public class RoleEntity implements Serializable {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(mappedBy = "role")
+    @OneToMany(mappedBy = "role", fetch = EAGER, cascade = {
+            CascadeType.PERSIST
+    })
     private Set<UserRoleEntity> userRoleEntities;
 
     @OneToMany(mappedBy = "role",

@@ -28,9 +28,9 @@ import java.util.UUID;
 @Embeddable
 public class UserRolePK implements Serializable {
 
-    @Column(name = "user_id")
+    @Column(name = "user_id", nullable = false, updatable = false)
     private UUID userId;
-    @Column(name = "role_id")
+    @Column(name = "role_id", nullable = false, updatable = false)
     private UUID roleId;
 
     /**

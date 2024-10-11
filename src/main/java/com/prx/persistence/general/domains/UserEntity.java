@@ -21,7 +21,6 @@ import java.util.Set;
 import java.util.UUID;
 
 import static jakarta.persistence.FetchType.EAGER;
-import static jakarta.persistence.GenerationType.IDENTITY;
 
 /**
  * UserEntity.
@@ -34,7 +33,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 public class UserEntity implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id")
     private UUID id;
     @NotNull
