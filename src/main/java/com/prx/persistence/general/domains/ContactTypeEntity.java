@@ -12,11 +12,18 @@
  */
 package com.prx.persistence.general.domains;
 
+import com.prx.persistence.general.util.ConstantPersistenceApp;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import org.hibernate.annotations.ColumnDefault;
 
 import java.io.Serializable;
 import java.util.UUID;
 
+import static com.prx.persistence.general.util.ConstantPersistenceApp.PG_UUID_FUNCTION;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 /**
@@ -26,17 +33,29 @@ import static jakarta.persistence.GenerationType.IDENTITY;
  * @version 1.0.3.20200904-01, 18-01-2021
  */
 @Entity
-@Table(name = "contact_type", schema = "general")
+@Table(name = ConstantPersistenceApp.CONTACT_TYPE_TABLE_NAME, schema = ConstantPersistenceApp.SCHEMA_NAME)
 public class ContactTypeEntity implements Serializable {
     @Id
-    @Column(name = "id")
+    @Column(name = ConstantPersistenceApp.ID_CN )
     @GeneratedValue(strategy = IDENTITY)
+    @ColumnDefault(PG_UUID_FUNCTION)
     private UUID id;
-    @Column(name = "name")
+
+    @Size(min = 2, max = 20)
+    @NotBlank
+    @NotEmpty
+    @NotNull
+    @Column(name = ConstantPersistenceApp.NAME_CN, nullable = false)
     private String name;
-    @Column(name = "description")
+
+    @Size(min = 5, max = 250)
+    @NotBlank
+    @NotEmpty
+    @NotNull
+    @Column(name = ConstantPersistenceApp.DESCRIPTION_CN, nullable = false)
     private String description;
-    @Column(name = "active")
+
+    @Column(name = ConstantPersistenceApp.ACTIVE_CN, nullable = false)
     private boolean active;
 
     /**

@@ -12,6 +12,7 @@
  */
 package com.prx.persistence.general.domains;
 
+import com.prx.persistence.general.util.ConstantPersistenceApp;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -23,7 +24,7 @@ import java.io.Serializable;
  * @version 1.0.3.20200904-01, 18-01-2021
  */
 @Entity
-@Table(name = "user_role", schema = "general")
+@Table(name = ConstantPersistenceApp.USER_ROLE_TABLE_NAME, schema = ConstantPersistenceApp.SCHEMA_NAME)
 public class UserRoleEntity implements Serializable {
 
     @EmbeddedId
@@ -37,7 +38,7 @@ public class UserRoleEntity implements Serializable {
     @MapsId("roleId")
     private RoleEntity role;
 
-    @Column(name = "active")
+    @Column(name = ConstantPersistenceApp.ACTIVE_CN)
     private Boolean active;
 
     /**

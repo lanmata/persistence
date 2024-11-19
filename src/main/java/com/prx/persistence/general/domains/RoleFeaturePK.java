@@ -14,6 +14,8 @@ package com.prx.persistence.general.domains;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import jakarta.validation.constraints.NotNull;
+import org.hibernate.Hibernate;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -28,46 +30,34 @@ import java.util.UUID;
  */
 @Embeddable
 public class RoleFeaturePK implements Serializable {
-
     @Serial
-    private static final long serialVersionUID = 6017520908402540913L;
+    private static final long serialVersionUID = 8234464971231796238L;
 
-    @Column(name = "role_id")
+    @NotNull
+    @Column(name = "role_id", nullable = false)
     private UUID roleId;
 
-    @Column(name = "feature_id")
+    @NotNull
+    @Column(name = "feature_id", nullable = false)
     private UUID featureId;
 
     /**
      * Default constructor.
      */
     public RoleFeaturePK() {
-        // Default constructor.
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        RoleFeaturePK that = (RoleFeaturePK) o;
-        return roleId.equals(that.roleId) && featureId.equals(that.featureId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(roleId, featureId);
+        // Default constructor
     }
 
     public UUID getRoleId() {
-        return this.roleId;
-    }
-
-    public UUID getFeatureId() {
-        return this.featureId;
+        return roleId;
     }
 
     public void setRoleId(UUID roleId) {
         this.roleId = roleId;
+    }
+
+    public UUID getFeatureId() {
+        return featureId;
     }
 
     public void setFeatureId(UUID featureId) {
@@ -75,10 +65,24 @@ public class RoleFeaturePK implements Serializable {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        RoleFeaturePK entity = (RoleFeaturePK) o;
+        return Objects.equals(this.roleId, entity.roleId) &&
+                Objects.equals(this.featureId, entity.featureId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(roleId, featureId);
+    }
+
     public String toString() {
         return "RoleFeaturePK{" +
                 "role=" + roleId +
                 ", feature=" + featureId +
                 '}';
     }
+
 }

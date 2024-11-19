@@ -13,12 +13,15 @@
 package com.prx.persistence.general.domains;
 
 import com.prx.commons.enums.types.IdentificationType;
+import com.prx.persistence.general.util.ConstantPersistenceApp;
 import jakarta.persistence.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import static com.prx.persistence.general.util.ConstantPersistenceApp.PG_UUID_FUNCTION;
 import static jakarta.persistence.CascadeType.REFRESH;
 import static jakarta.persistence.FetchType.LAZY;
 import static jakarta.persistence.GenerationType.IDENTITY;
@@ -30,19 +33,24 @@ import static jakarta.persistence.GenerationType.IDENTITY;
  * @version 1.0.2.20200904-01, 2020-10-25
  */
 @Entity
-@Table(name = "identification_document", schema = "general")
+@Table(name = ConstantPersistenceApp.IDENTIFICATION_DOCUMENT_TABLE_NAME, schema = ConstantPersistenceApp.SCHEMA_NAME)
 public class IdentificationDocumentEntity implements Serializable {
 
     @Id
+    @Column(name = ConstantPersistenceApp.ID_CN)
+    @ColumnDefault(PG_UUID_FUNCTION)
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "id")
     private UUID id;
+
     @Column(name = "number")
     private Integer number;
+
     @Column(name = "expiration_date")
     private LocalDateTime expirationDate;
+
     @Column(name = "identification_type")
     private IdentificationType identificationType;
+
     @ManyToOne(cascade = REFRESH, fetch = LAZY)
     @JoinColumn(name = "person_id", referencedColumnName = "id")
     private PersonEntity person;
