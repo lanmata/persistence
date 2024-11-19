@@ -12,13 +12,18 @@
  */
 package com.prx.persistence.general.domains;
 
+import com.prx.persistence.general.util.ConstantPersistenceApp;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import org.hibernate.annotations.ColumnDefault;
 
 import java.io.Serializable;
 import java.util.UUID;
 
-import static jakarta.persistence.CascadeType.REFRESH;
-import static jakarta.persistence.FetchType.LAZY;
+import static com.prx.persistence.general.util.ConstantPersistenceApp.PG_UUID_FUNCTION;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 /**
@@ -28,19 +33,31 @@ import static jakarta.persistence.GenerationType.IDENTITY;
  * @version 1.0.2.20200904-01, 2020-10-25
  */
 @Entity
-@Table(name = "address", schema = "general")
+@Table(name = ConstantPersistenceApp.ADDRESS_TABLE_NAME, schema = ConstantPersistenceApp.SCHEMA_NAME)
 public class AddressEntity implements Serializable {
 
     @Id
+    @Column(name = ConstantPersistenceApp.ID_CN)
+    @ColumnDefault(PG_UUID_FUNCTION)
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "id")
     private UUID id;
-    @Column(name = "address")
+
+    @Size(min = 5, max = 500)
+    @NotBlank
+    @NotEmpty
+    @NotNull
+    @Column(name = "address", nullable = false)
     private String address;
-    @Column(name = "zipcode")
+
+    @Size(min = 3, max = 20)
+    @NotBlank
+    @NotEmpty
+    @NotNull
+    @Column(name = "zipcode", nullable = false)
     private String zipcode;
-    @ManyToOne(cascade = REFRESH, fetch = LAZY)
-    @JoinColumn(name = "person_id", referencedColumnName = "id")
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     private PersonEntity person;
 
     /**

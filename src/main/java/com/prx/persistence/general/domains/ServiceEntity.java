@@ -12,11 +12,14 @@
  */
 package com.prx.persistence.general.domains;
 
+import com.prx.persistence.general.util.ConstantPersistenceApp;
 import jakarta.persistence.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import java.io.Serializable;
 import java.util.UUID;
 
+import static com.prx.persistence.general.util.ConstantPersistenceApp.PG_UUID_FUNCTION;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 /**
@@ -26,19 +29,24 @@ import static jakarta.persistence.GenerationType.IDENTITY;
  * @version 1.0.2.20200904-01, 2020-10-25
  */
 @Entity
-@Table(name = "service", schema = "general")
+@Table(name = ConstantPersistenceApp.SERVICE_TABLE_NAME, schema = ConstantPersistenceApp.SCHEMA_NAME)
 public class ServiceEntity implements Serializable {
     @Id
-    @Column(name = "id")
+    @Column(name = ConstantPersistenceApp.ID_CN)
+    @ColumnDefault(PG_UUID_FUNCTION)
     @GeneratedValue(strategy = IDENTITY)
     private UUID id;
-    @Column(name = "name")
+
+    @Column(name = ConstantPersistenceApp.NAME_CN)
     private String name;
-    @Column(name = "description")
+
+    @Column(name = ConstantPersistenceApp.DESCRIPTION_CN)
     private String description;
+
     @Column(name ="service_type_id")
     private String serviceTypeId;
-    @Column(name = "active")
+
+    @Column(name = ConstantPersistenceApp.ACTIVE_CN)
     private boolean active;
 
     /**

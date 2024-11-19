@@ -42,7 +42,7 @@ class RoleFeatureEntityTest {
         roleEntity.setDescription("Rol description");
         roleEntity.setActive(true);
         roleEntity.setRoleFeatures(features);
-        roleEntity.setUserRoleEntities(users);
+        roleEntity.setUserRoles(users);
         featureEntity.setId(UUID.fromString("9d03ff25-842a-4625-9143-52eee8d710e7"));
         featureEntity.setActive(true);
         featureEntity.setName("Feature name");
@@ -104,7 +104,7 @@ class RoleFeatureEntityTest {
         role.setId(roleUuid);
         role.setName("Name");
         role.setRoleFeatures(new HashSet<>());
-        role.setUserRoleEntities(new HashSet<>());
+        role.setUserRoles(new HashSet<>());
         actualRoleFeatureEntity.setRole(role);
         RoleFeaturePK roleFeaturePK = new RoleFeaturePK();
         roleFeaturePK.setFeatureId(featureUuid);

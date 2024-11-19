@@ -42,7 +42,7 @@ class UserRoleEntityTest {
         roleEntity.setDescription("Rol description");
         roleEntity.setActive(true);
         roleEntity.setRoleFeatures(features);
-        roleEntity.setUserRoleEntities(users);
+        roleEntity.setUserRoles(users);
 
         userEntity.setId(UUID.fromString("e8c8f126-09f2-4ae9-9bb6-4fa459b77609"));
         userEntity.setAlias("Alias");
@@ -100,7 +100,7 @@ class UserRoleEntityTest {
         roleId.setId(roleUuid);
         roleId.setName("Name");
         roleId.setRoleFeatures(new HashSet<>());
-        roleId.setUserRoleEntities(new HashSet<>());
+        roleId.setUserRoles(new HashSet<>());
         actualUserRoleEntity.setRole(roleId);
         PersonEntity person = new PersonEntity();
         person.setBirthdate(LocalDate.of(1970, 1, 1));

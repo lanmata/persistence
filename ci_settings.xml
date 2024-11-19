@@ -22,12 +22,12 @@ under the License.
 <!--
  | This is the configuration file for Maven. It can be specified at two levels:
  |
- |  1. User Level. This settings.xml file provides configuration for a single user,
- |                 and is normally provided in ${user.home}/.m2/settings.xml.
+ |  1. User Level. This settings.xml file provides configuration for a single userEntity,
+ |                 and is normally provided in ${userEntity.home}/.m2/settings.xml.
  |
  |                 NOTE: This location can be overridden with the CLI option:
  |
- |                 -s /path/to/user/settings.xml
+ |                 -s /path/to/userEntity/settings.xml
  |
  |  2. Global Level. This settings.xml file provides configuration for all Maven
  |                 users on a machine (assuming they're all using the same Maven

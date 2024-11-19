@@ -12,9 +12,10 @@
  */
 package com.prx.persistence.general.domains;
 
+import com.prx.persistence.general.util.ConstantPersistenceApp;
 import jakarta.persistence.*;
-
-import java.io.Serializable;
+import jakarta.validation.constraints.NotNull;
+import org.hibernate.annotations.ColumnDefault;
 
 /**
  * RolFeatureEntity.
@@ -23,30 +24,28 @@ import java.io.Serializable;
  * @version 1.0.3.20200904-01, 18-01-2021
  */
 @Entity
-@Table(name = "role_feature", schema = "general")
-public class RoleFeatureEntity implements Serializable {
-
+@Table(name = ConstantPersistenceApp.ROLE_FEATURE_TABLE_NAME, schema = ConstantPersistenceApp.SCHEMA_NAME)
+public class RoleFeatureEntity {
     @EmbeddedId
     private RoleFeaturePK roleFeaturePK;
 
-    @ManyToOne
     @MapsId("roleId")
-    @JoinColumn(name = "role_id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "role_id", nullable = false)
     private RoleEntity role;
 
-    @ManyToOne
     @MapsId("featureId")
-    @JoinColumn(name = "feature_id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "feature_id", nullable = false)
     private FeatureEntity feature;
 
-    @Column(name = "active")
-    private Boolean active;
+    @NotNull
+    @ColumnDefault("false")
+    @Column(name = ConstantPersistenceApp.ACTIVE_CN, nullable = false)
+    private Boolean active = false;
 
-    /**
-     * Default constructor.
-     */
     public RoleFeatureEntity() {
-        // Default constructor.
+        // Default Constructor
     }
 
     public RoleFeaturePK getRoleFeaturePK() {

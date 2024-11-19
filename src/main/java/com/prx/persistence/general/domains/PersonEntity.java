@@ -12,15 +12,17 @@
  */
 package com.prx.persistence.general.domains;
 
+import com.prx.persistence.general.util.ConstantPersistenceApp;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.UUID;
 
+import static com.prx.persistence.general.util.ConstantPersistenceApp.PG_UUID_FUNCTION;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 /**
@@ -30,30 +32,47 @@ import static jakarta.persistence.GenerationType.IDENTITY;
  * @version 1.0.2.20200904-01, 2020-10-25
  */
 @Entity
-@Table(name = "person", schema = "general")
+@Table(name = ConstantPersistenceApp.PERSON_TABLE_NAME, schema = ConstantPersistenceApp.SCHEMA_NAME)
 public class PersonEntity implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1884786506064757115L;
 
     @Id
+    @Column(name = ConstantPersistenceApp.ID_CN)
+    @ColumnDefault(PG_UUID_FUNCTION)
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "id")
     private UUID id;
+
+    @NotBlank
+    @NotEmpty
     @NotNull
-    @Size(min = 2, max = 12)
-    @Column(name = "first_name")
+    @Size(min = 2, max = 20)
+    @Column(name = "first_name", nullable = false)
     private String name;
+
+    @Size(max = 20)
+    @NotEmpty
+    @NotNull
     @Column(name = "middle_name")
     private String middleName;
+
+    @NotEmpty
     @NotNull
-    @Size(min = 2, max = 12)
+    @Size(max = 20)
     @Column(name = "last_name")
     private String lastName;
-    @Size(max = 1)
-    @Column(name = "gender")
+
+    @NotBlank
+    @NotEmpty
+    @NotNull
+    @Size(min = 1, max = 1)
+    @Column(name = "gender", nullable = false)
     private String gender;
-    @Column(name = "birthdate")
+
+    @Past
+    @NotNull
+    @Column(name = "birthdate", nullable = false)
     private LocalDate birthdate;
 
     /**

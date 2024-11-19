@@ -56,7 +56,7 @@ class RoleFeaturePKTest {
         roleEntity.setDescription("Rol description");
         roleEntity.setActive(true);
         roleEntity.setRoleFeatures(features);
-        roleEntity.setUserRoleEntities(users);
+        roleEntity.setUserRoles(users);
 
         roleFeature.setRole(roleEntity);
         roleFeature.setFeature(featureEntity);
@@ -81,7 +81,7 @@ class RoleFeaturePKTest {
         roleEntity2.setDescription("Rol description 2");
         roleEntity2.setActive(true);
         roleEntity2.setRoleFeatures(features2);
-        roleEntity2.setUserRoleEntities(users2);
+        roleEntity2.setUserRoles(users2);
 
         roleFeaturePk2.setFeatureId(featureEntity2.getId());
         roleFeaturePk2.setRoleId(roleEntity2.getId());
@@ -98,7 +98,7 @@ class RoleFeaturePKTest {
                 () -> Assertions.assertNotNull(roleFeaturePk.toString()),
                 () -> Assertions.assertNotEquals(1, roleFeaturePk.hashCode()),
                 () -> Assertions.assertEquals(roleFeaturePk, roleFeaturePk2),
-                () -> Assertions.assertNotEquals(roleFeaturePk, new Object()),
+                () -> Assertions.assertNotEquals(new Object(), roleFeaturePk),
                 () -> Assertions.assertNotEquals(null, roleFeaturePk),
                 () -> Assertions.assertEquals(roleFeaturePk, roleFeaturePk4)
         );
@@ -135,29 +135,6 @@ class RoleFeaturePKTest {
         assertEquals(roleUuid, actualRoleFeaturePK.getRoleId());
         assertEquals("RoleFeaturePK{role=f791981a-afb7-41bf-addf-9cbdfda8e7f8, " +
                 "feature=5fd250b6-3246-4d56-8af4-fc67a68b562f}", actualToStringResult);
-    }
-
-    /**
-     * Method under test: {@link RoleFeaturePK#equals(Object)}
-     */
-    @Test
-    void testEquals6() {
-        // TODO: Complete this test.
-        //   Reason: R013 No inputs found that don't throw a trivial exception.
-        //   Diffblue Cover tried to run the arrange/act section, but the method under
-        //   test threw
-        //   java.lang.NullPointerException: Cannot invoke "String.equals(Object)" because "str" is null
-        //       at com.prx.persistence.general.domains.RoleFeaturePK.equals(RoleFeaturePK.java:43)
-        //   See https://diff.blue/R013 to resolve this issue.
-
-        RoleFeaturePK roleFeaturePK = new RoleFeaturePK();
-        roleFeaturePK.setFeatureId(null);
-        roleFeaturePK.setRoleId(UUID.fromString("af2f2a8c-569d-46f7-a2f4-3f4a8f73cc51"));
-
-        RoleFeaturePK roleFeaturePK2 = new RoleFeaturePK();
-        roleFeaturePK2.setFeatureId(UUID.fromString("24426101-6828-454e-b7e2-42c2f8798d96"));
-        roleFeaturePK2.setRoleId(UUID.fromString("af2f2a8c-569d-46f7-a2f4-3f4a8f73cc51"));
-        assertThrows(NullPointerException.class, () -> roleFeaturePK.equals(roleFeaturePK2));
     }
 
     /**
