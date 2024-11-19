@@ -50,7 +50,7 @@ class UserRolePKTest {
         roleEntity.setDescription("Rol description");
         roleEntity.setActive(true);
         roleEntity.setRoleFeatures(features);
-        roleEntity.setUserRoleEntities(users);
+        roleEntity.setUserRoles(users);
 
         userEntity.setId(UUID.fromString("b09c7f73-ce44-46b3-b561-0db1791688cd"));
         userEntity.setAlias("Alias 2");
@@ -66,7 +66,7 @@ class UserRolePKTest {
         roleEntity2.setDescription("Rol description 2");
         roleEntity2.setActive(true);
         roleEntity2.setRoleFeatures(features2);
-        roleEntity2.setUserRoleEntities(users2);
+        roleEntity2.setUserRoles(users2);
 
         userEntity2.setId(UUID.fromString("98cc6676-fbc0-43ac-bb3b-695ab8ee7dba"));
         userEntity2.setAlias("Alias 2");
@@ -86,7 +86,7 @@ class UserRolePKTest {
                 () -> Assertions.assertNotNull(userRolePK.toString()),
                 () -> Assertions.assertNotEquals(1, userRolePK.hashCode()),
                 () -> Assertions.assertNotEquals(userRolePK2, userRolePK),
-                () -> Assertions.assertNotEquals(userRolePK2, new Object()),
+                () -> Assertions.assertNotEquals(new Object(), userRolePK2),
                 () -> Assertions.assertNotEquals(null, userRolePK),
                 () -> Assertions.assertNotEquals(null, userRolePK),
                 () -> Assertions.assertEquals(userRolePK, userRolePK4)

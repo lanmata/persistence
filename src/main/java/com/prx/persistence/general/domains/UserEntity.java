@@ -12,7 +12,10 @@
  */
 package com.prx.persistence.general.domains;
 
+import com.prx.persistence.general.util.ConstantPersistenceApp;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -29,28 +32,37 @@ import static jakarta.persistence.FetchType.EAGER;
  * @version 1.0.2.20200904-01, 2020-10-25
  */
 @Entity
-@Table(name = "user", schema = "general")
+@Table(name = ConstantPersistenceApp.USER_TABLE_NAME, schema = ConstantPersistenceApp.SCHEMA_NAME)
 public class UserEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name = "id")
+    @Column(name = ConstantPersistenceApp.ID_CN)
     private UUID id;
+
+    @NotBlank
+    @NotEmpty
     @NotNull
-    @Size(max = 12)
-    @Column(name = "alias")
+    @Size(min = 5, max = 12)
+    @Column(name = "alias", nullable = false, unique = true)
     private String alias;
+
+    @NotBlank
+    @NotEmpty
     @NotNull
-    @Size(max = 250)
-    @Column(name = "password")
+    @Size(min = 5, max = 250)
+    @Column(name = "password", nullable = false)
     private String password;
+
     @NotNull
-    @Column(name = "active")
-    private Boolean active;
+    @Column(name = ConstantPersistenceApp.ACTIVE_CN, nullable = false)
+    private Boolean active = false;
+
     @OneToOne(fetch = EAGER)
     @JoinColumn(name = "person_id", referencedColumnName = "id")
     private PersonEntity person;
-    @OneToMany(mappedBy = "user")
+
+    @OneToMany(mappedBy = ConstantPersistenceApp.USER_TABLE_NAME)
     private Set<UserRoleEntity> userRole;
 
     /**

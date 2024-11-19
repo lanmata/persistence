@@ -41,7 +41,7 @@ class RoleEntityTest {
         roleEntity.setDescription("Description rol");
         roleEntity.setActive(true);
         roleEntity.setRoleFeatures(features);
-        roleEntity.setUserRoleEntities(users);
+        roleEntity.setUserRoles(users);
 
         Assertions.assertAll("Test Getters and Setters",
                 () -> Assertions.assertNotNull(roleEntity.getId()),
@@ -49,7 +49,7 @@ class RoleEntityTest {
                 () -> Assertions.assertNotNull(roleEntity.getDescription()),
                 () -> Assertions.assertTrue(roleEntity.isActive()),
                 () -> Assertions.assertNotNull(roleEntity.getRoleFeatures()),
-                () -> Assertions.assertNotNull(roleEntity.getUserRoleEntities()),
+                () -> Assertions.assertNotNull(roleEntity.getUserRoles()),
                 () -> Assertions.assertNotNull(roleEntity.toString()),
                 () -> Assertions.assertNotEquals(1, roleEntity.hashCode()),
                 () -> Assertions.assertNotEquals(new RoleEntity(), roleEntity)
@@ -67,13 +67,13 @@ class RoleEntityTest {
      *   <li>{@link RoleEntity#setId(UUID)}
      *   <li>{@link RoleEntity#setName(String)}
      *   <li>{@link RoleEntity#setRoleFeatures(Set)}
-     *   <li>{@link RoleEntity#setUserRoleEntities(Set)}
+     *   <li>{@link RoleEntity#setUserRoles(Set)}
      *   <li>{@link RoleEntity#toString()}
      *   <li>{@link RoleEntity#getDescription()}
      *   <li>{@link RoleEntity#getId()}
      *   <li>{@link RoleEntity#getName()}
      *   <li>{@link RoleEntity#getRoleFeatures()}
-     *   <li>{@link RoleEntity#getUserRoleEntities()}
+     *   <li>{@link RoleEntity#getUserRoles()}
      *   <li>{@link RoleEntity#isActive()}
      * </ul>
      */
@@ -87,13 +87,13 @@ class RoleEntityTest {
         HashSet<RoleFeatureEntity> roleFeatures = new HashSet<>();
         actualRoleEntity.setRoleFeatures(roleFeatures);
         HashSet<UserRoleEntity> userRoleEntities = new HashSet<>();
-        actualRoleEntity.setUserRoleEntities(userRoleEntities);
+        actualRoleEntity.setUserRoles(userRoleEntities);
         String actualToStringResult = actualRoleEntity.toString();
         assertEquals("The characteristics of someone or something", actualRoleEntity.getDescription());
         assertEquals(UUID.fromString("849a7d96-5fda-413c-9926-41f660078e76"), actualRoleEntity.getId());
         assertEquals("Name", actualRoleEntity.getName());
         assertSame(roleFeatures, actualRoleEntity.getRoleFeatures());
-        assertSame(userRoleEntities, actualRoleEntity.getUserRoleEntities());
+        assertSame(userRoleEntities, actualRoleEntity.getUserRoles());
         assertTrue(actualRoleEntity.isActive());
         assertEquals(
                 "RoleEntity{id=849a7d96-5fda-413c-9926-41f660078e76, name='Name', description='The characteristics of someone or something', userRoleEntities"

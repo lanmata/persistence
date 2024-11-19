@@ -25,4 +25,7 @@ import java.util.UUID;
 public interface UserRepository extends JpaRepository<UserEntity, UUID> {
     @Query("SELECT u FROM UserEntity u WHERE u.alias = :alias")
     UserEntity findByAlias(@Param("alias") String alias);
+
+    @Query("SELECT u FROM UserEntity u LEFT JOIN FETCH u.person WHERE u.alias = :alias")
+    UserEntity findUserInfo(@Param("alias") String alias);
 }

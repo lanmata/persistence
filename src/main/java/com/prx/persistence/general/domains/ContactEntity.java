@@ -12,14 +12,18 @@
  */
 package com.prx.persistence.general.domains;
 
+import com.prx.persistence.general.util.ConstantPersistenceApp;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import org.hibernate.annotations.ColumnDefault;
 
 import java.io.Serializable;
 import java.util.UUID;
 
 import static jakarta.persistence.CascadeType.REFRESH;
-import static jakarta.persistence.FetchType.EAGER;
-import static jakarta.persistence.FetchType.LAZY;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 /**
@@ -29,21 +33,31 @@ import static jakarta.persistence.GenerationType.IDENTITY;
  * @version 1.0.2.20200904-01, 2020-10-25
  */
 @Entity
-@Table(name = "contact", schema = "general")
+@Table(name = ConstantPersistenceApp.CONTACT_TABLE_NAME, schema = ConstantPersistenceApp.SCHEMA_NAME)
 public class ContactEntity implements Serializable {
 
     @Id
+    @ColumnDefault(ConstantPersistenceApp.PG_UUID_FUNCTION)
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "id")
+    @Column(name = ConstantPersistenceApp.ID_CN)
     private UUID id;
-    @Column(name = "content")
+
+    @Size(min = 5, max = 50)
+    @NotBlank
+    @NotEmpty
+    @NotNull
+    @Column(name = "content", nullable = false)
     private String content;
-    @ManyToOne(fetch = EAGER)
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "contact_type_id", referencedColumnName = "id")
     private ContactTypeEntity contactType;
-    @Column(name = "active")
-    private Boolean active;
-    @ManyToOne(cascade = REFRESH, fetch = LAZY)
+
+    @NotNull
+    @Column(name = ConstantPersistenceApp.ACTIVE_CN, nullable = false)
+    private Boolean active = false;
+
+    @ManyToOne(cascade = REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "person_id")
     private PersonEntity person;
 

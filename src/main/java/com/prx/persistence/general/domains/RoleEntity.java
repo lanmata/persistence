@@ -11,7 +11,13 @@
  * verbatim with this file.
  */
 package com.prx.persistence.general.domains;
+
+import com.prx.persistence.general.util.ConstantPersistenceApp;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -19,7 +25,6 @@ import java.util.Set;
 import java.util.UUID;
 
 import static jakarta.persistence.FetchType.EAGER;
-import static jakarta.persistence.GenerationType.IDENTITY;
 
 /**
  * RolEntity.
@@ -28,36 +33,44 @@ import static jakarta.persistence.GenerationType.IDENTITY;
  * @version 1.0.3.20200904-01, 18-01-2021
  */
 @Entity
-@Table(name = "role", schema = "general")
+@Table(name = ConstantPersistenceApp.ROLE_TABLE_NAME, schema = ConstantPersistenceApp.SCHEMA_NAME)
 public class RoleEntity implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 2457876775820934879L;
 
     @Id
-    @Column(name = "id")
+    @Column(name = ConstantPersistenceApp.ID_CN)
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(name = "name")
+    @Size(min = 2, max = 20)
+    @NotBlank
+    @NotEmpty
+    @NotNull
+    @Column(name = ConstantPersistenceApp.NAME_CN, nullable = false)
     private String name;
 
-    @Column(name = "description")
+    @Size(min = 2, max = 250)
+    @NotBlank
+    @NotEmpty
+    @NotNull
+    @Column(name = ConstantPersistenceApp.DESCRIPTION_CN, nullable = false)
     private String description;
 
     @OneToMany(mappedBy = "role", fetch = EAGER, cascade = {
             CascadeType.PERSIST
     })
-    private Set<UserRoleEntity> userRoleEntities;
+    private Set<UserRoleEntity> userRole;
 
-    @OneToMany(mappedBy = "role",
+    @OneToMany(mappedBy = ConstantPersistenceApp.ROLE_TABLE_NAME,
             fetch = EAGER,
             cascade = {
                     CascadeType.PERSIST
             })
     private Set<RoleFeatureEntity> roleFeatures;
 
-    @Column(name = "active")
+    @Column(name = ConstantPersistenceApp.ACTIVE_CN)
     private boolean active;
 
     /**
@@ -79,8 +92,8 @@ public class RoleEntity implements Serializable {
         return this.description;
     }
 
-    public Set<UserRoleEntity> getUserRoleEntities() {
-        return this.userRoleEntities;
+    public Set<UserRoleEntity> getUserRoles() {
+        return this.userRole;
     }
 
     public Set<RoleFeatureEntity> getRoleFeatures() {
@@ -103,8 +116,8 @@ public class RoleEntity implements Serializable {
         this.description = description;
     }
 
-    public void setUserRoleEntities(Set<UserRoleEntity> userRoleEntities) {
-        this.userRoleEntities = userRoleEntities;
+    public void setUserRoles(Set<UserRoleEntity> userRoleEntities) {
+        this.userRole = userRoleEntities;
     }
 
     public void setRoleFeatures(Set<RoleFeatureEntity> roleFeatures) {
@@ -121,7 +134,7 @@ public class RoleEntity implements Serializable {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", userRoleEntities=" + userRoleEntities +
+                ", userRoleEntities=" + userRole +
                 ", roleFeatures=" + roleFeatures +
                 ", active=" + active +
                 '}';
