@@ -16,6 +16,7 @@ package com.prx.persistence.general.domains;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.UUID;
 
@@ -92,6 +93,7 @@ class UserRoleEntityTest {
         var roleUuid = UUID.fromString("5c5838d8-eaba-4441-ac3a-14d1f53732a0");
         var personUuid = UUID.fromString("5de2fd78-37a6-4962-883e-6208f9366bd0");
         var userUuid = UUID.fromString("0cf6dfaf-283a-4e91-8159-3df4d99e9f93");
+        var dateTime = LocalDateTime.of(2011, 12, 15, 12, 30, 25);
         UserRoleEntity actualUserRoleEntity = new UserRoleEntity();
         actualUserRoleEntity.setActive(true);
         RoleEntity roleId = new RoleEntity();
@@ -114,6 +116,8 @@ class UserRoleEntityTest {
         userId.setAlias("Alias");
         userId.setId(userUuid);
         userId.setPassword("iloveyou");
+        userId.setCreatedDate(dateTime);
+        userId.setLastUpdate(dateTime);
         userId.setPerson(person);
         userId.setUserRole(new HashSet<>());
         actualUserRoleEntity.setUser(userId);
@@ -126,12 +130,14 @@ class UserRoleEntityTest {
         assertSame(roleId, actualUserRoleEntity.getRole());
         assertSame(userId, actualUserRoleEntity.getUser());
         assertSame(userRolePK, actualUserRoleEntity.getUserRolePK());
+//        var dateTime = LocalDateTime.of(2011, 12, 15, 12, 30, 25);
         assertEquals("UserRoleEntity{userRolePK=UserRolePK{user=0cf6dfaf-283a-4e91-8159-3df4d99e9f93," +
                 " role=5c5838d8-eaba-4441-ac3a-14d1f53732a0}user=UserEntity{id=0cf6dfaf-283a-4e91-8159-3df4d99e9f93," +
-                " alias='Alias', password='iloveyou', active=true, person=PersonEntity{id=5de2fd78-37a6-4962-883e-6208f9366bd0," +
-                " name='Name', middleName='Middle Name', lastName='Doe', gender='Gender', birthdate=1970-01-01}," +
-                " userRole=[]}, role=RoleEntity{id=5c5838d8-eaba-4441-ac3a-14d1f53732a0, name='Name', " +
-                "description='The characteristics of someone or something', userRoleEntities=[], roleFeatures=[]," +
-                " active=true}, active=true}", actualToStringResult);
+                " alias='Alias', password='iloveyou', createdDate='2011-12-15T12:30:25', lastUpdate='2011-12-15T12:30:25'," +
+                " active=true, person=PersonEntity{id=5de2fd78-37a6-4962-883e-6208f9366bd0, name='Name'," +
+                " middleName='Middle Name', lastName='Doe', gender='Gender', birthdate=1970-01-01}, userRole=[]," +
+                " applicationUser=null}, role=RoleEntity{id=5c5838d8-eaba-4441-ac3a-14d1f53732a0, name='Name'," +
+                " description='The characteristics of someone or something', userRoleEntities=[], roleFeatures=[], active=true}," +
+                " active=true}", actualToStringResult);
     }
 }

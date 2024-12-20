@@ -20,6 +20,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Set;
 import java.util.UUID;
 
@@ -58,12 +59,23 @@ public class UserEntity implements Serializable {
     @Column(name = ConstantPersistenceApp.ACTIVE_CN, nullable = false)
     private Boolean active = false;
 
+    @NotNull
+    @Column(name="created_date", nullable = false)
+    private LocalDateTime createdDate;
+
+    @NotNull
+    @Column(name="last_update", nullable = false)
+    private LocalDateTime lastUpdate;
+
     @OneToOne(fetch = EAGER)
     @JoinColumn(name = "person_id", referencedColumnName = "id")
     private PersonEntity person;
 
     @OneToMany(mappedBy = ConstantPersistenceApp.USER_TABLE_NAME)
     private Set<UserRoleEntity> userRole;
+
+    @OneToMany(mappedBy = "user")
+    private Set<ApplicationUserEntity> applicationUser;
 
     /**
      * Default constructor.
@@ -84,6 +96,14 @@ public class UserEntity implements Serializable {
         return this.password;
     }
 
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public LocalDateTime getLastUpdate() {
+        return lastUpdate;
+    }
+
     public @NotNull Boolean getActive() {
         return this.active;
     }
@@ -94,6 +114,10 @@ public class UserEntity implements Serializable {
 
     public Set<UserRoleEntity> getUserRole() {
         return this.userRole;
+    }
+
+    public Set<ApplicationUserEntity> getApplicationUser() {
+        return applicationUser;
     }
 
     public void setId(UUID id) {
@@ -108,6 +132,14 @@ public class UserEntity implements Serializable {
         this.password = password;
     }
 
+    public void setCreatedDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public void setLastUpdate(LocalDateTime lastUpdateDate) {
+        this.lastUpdate = lastUpdateDate;
+    }
+
     public void setActive(@NotNull Boolean active) {
         this.active = active;
     }
@@ -120,15 +152,22 @@ public class UserEntity implements Serializable {
         this.userRole = userRole;
     }
 
+    public void setApplicationUser(Set<ApplicationUserEntity> applicationUserEntities) {
+        this.applicationUser = applicationUserEntities;
+    }
+
     @Override
     public String toString() {
         return "UserEntity{" +
                 "id=" + id +
                 ", alias='" + alias + '\'' +
                 ", password='" + password + '\'' +
+                ", createdDate='" + createdDate + '\'' +
+                ", lastUpdate='" + lastUpdate + '\'' +
                 ", active=" + active +
                 ", person=" + person +
                 ", userRole=" + userRole +
+                ", applicationUser=" + applicationUser +
                 '}';
     }
 }

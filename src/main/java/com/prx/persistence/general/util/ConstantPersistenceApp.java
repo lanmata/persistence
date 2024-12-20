@@ -14,7 +14,7 @@ public final class ConstantPersistenceApp {
     public static final String PERSON_TABLE_NAME = "person";
     public static final String ROLE_TABLE_NAME = "role";
     public static final String ROLE_FEATURE_TABLE_NAME = "role_feature";
-    public static final String SERVICE_TABLE_NAME ="service";
+    public static final String APPLICATION_TABLE_NAME ="service";
     public static final String USER_TABLE_NAME = "user";
     public static final String USER_ROLE_TABLE_NAME ="user_role";
 
