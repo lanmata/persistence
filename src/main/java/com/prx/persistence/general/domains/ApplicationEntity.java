@@ -29,8 +29,8 @@ import static jakarta.persistence.GenerationType.IDENTITY;
  * @version 1.0.2.20200904-01, 2020-10-25
  */
 @Entity
-@Table(name = ConstantPersistenceApp.SERVICE_TABLE_NAME, schema = ConstantPersistenceApp.SCHEMA_NAME)
-public class ServiceEntity implements Serializable {
+@Table(name = ConstantPersistenceApp.APPLICATION_TABLE_NAME, schema = ConstantPersistenceApp.SCHEMA_NAME)
+public class ApplicationEntity implements Serializable {
     @Id
     @Column(name = ConstantPersistenceApp.ID_CN)
     @ColumnDefault(PG_UUID_FUNCTION)
@@ -43,8 +43,8 @@ public class ServiceEntity implements Serializable {
     @Column(name = ConstantPersistenceApp.DESCRIPTION_CN)
     private String description;
 
-    @Column(name ="service_type_id")
-    private String serviceTypeId;
+    @Column(name = "service_type_id")
+    private UUID serviceTypeId;
 
     @Column(name = ConstantPersistenceApp.ACTIVE_CN)
     private boolean active;
@@ -52,7 +52,7 @@ public class ServiceEntity implements Serializable {
     /**
      * Default constructor.
      */
-    public ServiceEntity() {
+    public ApplicationEntity() {
         // ServiceEntity default constructor.
     }
 
@@ -68,7 +68,7 @@ public class ServiceEntity implements Serializable {
         return this.description;
     }
 
-    public String getServiceTypeId() {
+    public UUID getServiceTypeId() {
         return serviceTypeId;
     }
 
@@ -88,7 +88,7 @@ public class ServiceEntity implements Serializable {
         this.description = description;
     }
 
-    public void setServiceTypeId(String serviceTypeId) {
+    public void setServiceTypeId(UUID serviceTypeId) {
         this.serviceTypeId = serviceTypeId;
     }
 
@@ -102,7 +102,7 @@ public class ServiceEntity implements Serializable {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", serviceTypeId='" + serviceTypeId + '\'' +
+                ", serviceTypeId=" + serviceTypeId +
                 ", active=" + active +
                 '}';
     }
