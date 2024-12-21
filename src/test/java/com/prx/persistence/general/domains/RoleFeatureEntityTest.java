@@ -34,7 +34,7 @@ class RoleFeatureEntityTest {
         final var featureEntity = new FeatureEntity();
         final var roleEntity = new RoleEntity();
         final var features = new HashSet<RoleFeatureEntity>();
-        final var users = new HashSet<UserRoleEntity>();
+        final var applicationRoleUserEntities = new HashSet<ApplicationRoleUserEntity>();
         final var roleFeaturePk = new RoleFeaturePK();
 
         roleEntity.setId(UUID.fromString("416073e8-f117-466e-8183-a867616fa991"));
@@ -42,7 +42,7 @@ class RoleFeatureEntityTest {
         roleEntity.setDescription("Rol description");
         roleEntity.setActive(true);
         roleEntity.setRoleFeatures(features);
-        roleEntity.setUserRoles(users);
+        roleEntity.setApplicationRoleUser(applicationRoleUserEntities);
         featureEntity.setId(UUID.fromString("9d03ff25-842a-4625-9143-52eee8d710e7"));
         featureEntity.setActive(true);
         featureEntity.setName("Feature name");
@@ -104,7 +104,7 @@ class RoleFeatureEntityTest {
         role.setId(roleUuid);
         role.setName("Name");
         role.setRoleFeatures(new HashSet<>());
-        role.setUserRoles(new HashSet<>());
+        role.setApplicationRoleUser(new HashSet<>());
         actualRoleFeatureEntity.setRole(role);
         RoleFeaturePK roleFeaturePK = new RoleFeaturePK();
         roleFeaturePK.setFeatureId(featureUuid);
@@ -117,7 +117,7 @@ class RoleFeatureEntityTest {
         assertSame(roleFeaturePK, actualRoleFeatureEntity.getRoleFeaturePK());
         assertEquals(
                 "RoleFeatureEntity{role=RoleEntity{id=07648dfe-e606-49bb-a13e-d0753faab8ea, name='Name', "
-                        + "description='The characteristics of someone or something', userRoleEntities=[], "
+                        + "description='The characteristics of someone or something', applicationRoleUser=[], "
                         + "roleFeatures=[], active=true}, feature=FeatureEntity{id=611aec48-f8f6-4e05-9b95-7080f50dd624,"
                         + " name='Name', description='The characteristics of someone or something', active=true, "
                         + "rolFeatures=[]}, active=true}",

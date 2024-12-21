@@ -28,7 +28,7 @@ class UserEntityTest {
         userEntity.setActive(true);
         userEntity.setPassword("34567890");
         userEntity.setPerson(new PersonEntity());
-        userEntity.setUserRole(new HashSet<>());
+        userEntity.setApplicationRoleUser(new HashSet<>());
 
         Assertions.assertAll("Test Getters and Setters",
                 () -> Assertions.assertNotNull(userEntity.getId()),
@@ -36,7 +36,7 @@ class UserEntityTest {
                 () -> Assertions.assertNotNull(userEntity.getAlias()),
                 () -> Assertions.assertNotNull(userEntity.getPerson()),
                 () -> Assertions.assertNotNull(userEntity.getActive()),
-                () -> Assertions.assertNotNull(userEntity.getUserRole()),
+                () -> Assertions.assertNotNull(userEntity.getApplicationRoleUser()),
                 () -> Assertions.assertNotNull(userEntity.getPassword()),
                 () -> Assertions.assertNotEquals(1, userEntity.hashCode()),
                 () -> Assertions.assertNotEquals(new UserEntity(), userEntity)
@@ -53,14 +53,14 @@ class UserEntityTest {
      *   <li>{@link UserEntity#setId(UUID)}
      *   <li>{@link UserEntity#setPassword(String)}
      *   <li>{@link UserEntity#setPerson(PersonEntity)}
-     *   <li>{@link UserEntity#setUserRole(Set)}
+     *   <li>{@link UserEntity#setApplicationRoleUser(Set)}
      *   <li>{@link UserEntity#toString()}
      *   <li>{@link UserEntity#getActive()}
      *   <li>{@link UserEntity#getAlias()}
      *   <li>{@link UserEntity#getId()}
      *   <li>{@link UserEntity#getPassword()}
      *   <li>{@link UserEntity#getPerson()}
-     *   <li>{@link UserEntity#getUserRole()}
+     *   <li>{@link UserEntity#getApplicationRoleUser()}
      * </ul>
      */
     @Test
@@ -73,6 +73,7 @@ class UserEntityTest {
         actualUserEntity.setCreatedDate(dateTime);
         actualUserEntity.setLastUpdate(dateTime);
         actualUserEntity.setAlias("Alias");
+        actualUserEntity.setEmail("alias@domain.ext");
         actualUserEntity.setId(userUuid);
         actualUserEntity.setPassword("iloveyou");
         PersonEntity person = new PersonEntity();
@@ -83,27 +84,27 @@ class UserEntityTest {
         person.setMiddleName("Middle Name");
         person.setName("Name");
         actualUserEntity.setPerson(person);
-        HashSet<UserRoleEntity> userRole = new HashSet<>();
-        actualUserEntity.setUserRole(userRole);
+        HashSet<ApplicationRoleUserEntity> applicationRoleUserEntities = new HashSet<>();
+        actualUserEntity.setApplicationRoleUser(applicationRoleUserEntities);
         String actualToStringResult = actualUserEntity.toString();
         assertTrue(actualUserEntity.getActive());
         assertEquals("Alias", actualUserEntity.getAlias());
         assertEquals(userUuid, actualUserEntity.getId());
         assertEquals("iloveyou", actualUserEntity.getPassword());
         assertSame(person, actualUserEntity.getPerson());
-        assertSame(userRole, actualUserEntity.getUserRole());
+        assertSame(applicationRoleUserEntities, actualUserEntity.getApplicationRoleUser());
         assertEquals("UserEntity{id=c018c63d-60ce-4744-9051-fe25eb417108, alias='Alias', password='iloveyou'," +
-                " createdDate='2011-12-15T12:30:25', lastUpdate='2011-12-15T12:30:25', active=true, person=PersonEntity{" +
-                "id=1f8573b4-80c0-408a-8a98-0051c88912cc, name='Name', middleName='Middle Name', lastName='Doe'," +
-                " gender='Gender', birthdate=1970-01-01}, userRole=[], applicationUser=null}", actualToStringResult);
+                " email='alias@domain.ext', createdDate='2011-12-15T12:30:25', lastUpdate='2011-12-15T12:30:25', active=true," +
+                " person=PersonEntity{id=1f8573b4-80c0-408a-8a98-0051c88912cc, name='Name', middleName='Middle Name'," +
+                " lastName='Doe', gender='Gender', birthdate=1970-01-01}, applicationRoleUser=[]}", actualToStringResult);
     }
 
     @Test
     void testGetServiceUser() {
         UserEntity userEntity = new UserEntity();
-        Set<ApplicationUserEntity> serviceUserSet = new HashSet<>();
-        userEntity.setApplicationUser(serviceUserSet);
-        assertSame(serviceUserSet, userEntity.getApplicationUser());
+        Set<ApplicationRoleUserEntity> applicationRoleUserEntities = new HashSet<>();
+        userEntity.setApplicationRoleUser(applicationRoleUserEntities);
+        assertSame(applicationRoleUserEntities, userEntity.getApplicationRoleUser());
     }
 
 }
