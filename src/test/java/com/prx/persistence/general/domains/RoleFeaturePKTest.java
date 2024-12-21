@@ -13,220 +13,117 @@
 
 package com.prx.persistence.general.domains;
 
-import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashSet;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * RolFeaturePKTest.
- *
- * @author <a href='mailto:luis.antonio.mata@gmail.com'>Luis Antonio Mata.</a>
- * @version 1.0.3.20200904-01, 18-01-2021
- */
 class RoleFeaturePKTest {
 
     @Test
-    void gettersAndSetters() {
-        final var roleFeaturePk = new RoleFeaturePK();
-        final var roleEntity = new RoleEntity();
-        final var features = new HashSet<RoleFeatureEntity>();
-        final var roleFeature = new RoleFeatureEntity();
-        final var users = new HashSet<UserRoleEntity>();
-        final var featureEntity = new FeatureEntity();
-
-        final var roleFeaturePk2 = new RoleFeaturePK();
-        final var roleEntity2 = new RoleEntity();
-        final var features2 = new HashSet<RoleFeatureEntity>();
-        final var roleFeature2 = new RoleFeatureEntity();
-        final var users2 = new HashSet<UserRoleEntity>();
-        final var featureEntity2 = new FeatureEntity();
-
-        featureEntity.setId(UUID.fromString("9d03ff25-842a-4625-9143-52eee8d710e7"));
-        featureEntity.setActive(true);
-        featureEntity.setName("Feature name");
-        featureEntity.setDescription("Feature description");
-        featureEntity.setRolFeatures(features);
-
-        roleEntity.setId(UUID.fromString("416073e8-f117-466e-8183-a867616fa991"));
-        roleEntity.setName("Rol 0001");
-        roleEntity.setDescription("Rol description");
-        roleEntity.setActive(true);
-        roleEntity.setRoleFeatures(features);
-        roleEntity.setUserRoles(users);
-
-        roleFeature.setRole(roleEntity);
-        roleFeature.setFeature(featureEntity);
-        features.add(roleFeature);
-
-        roleFeaturePk.setFeatureId(featureEntity.getId());
-        roleFeaturePk.setRoleId(roleEntity.getId());
-        final var roleFeaturePk3 = new RoleFeaturePK();
-        final var roleFeaturePk4 = roleFeaturePk;
-
-        featureEntity2.setId(UUID.fromString("9d03ff25-842a-4625-9143-52eee8d710e7"));
-        featureEntity2.setActive(true);
-        featureEntity2.setName("Feature name 2");
-        featureEntity2.setDescription("Feature description 2");
-        featureEntity2.setRolFeatures(features);
-        roleFeature2.setRole(roleEntity);
-        roleFeature2.setFeature(featureEntity);
-        features.add(roleFeature2);
-
-        roleEntity2.setId(UUID.fromString("416073e8-f117-466e-8183-a867616fa991"));
-        roleEntity2.setName("Rol 0002");
-        roleEntity2.setDescription("Rol description 2");
-        roleEntity2.setActive(true);
-        roleEntity2.setRoleFeatures(features2);
-        roleEntity2.setUserRoles(users2);
-
-        roleFeaturePk2.setFeatureId(featureEntity2.getId());
-        roleFeaturePk2.setRoleId(roleEntity2.getId());
-
-        featureEntity2.setId(UUID.fromString("1f23ab15-2a00-451b-b36e-275213eca3aa"));
-        featureEntity2.setActive(true);
-        featureEntity2.setName("Feature name 2");
-        featureEntity2.setDescription("Feature description 2");
-        featureEntity2.setRolFeatures(features2);
-
-        Assertions.assertAll("Test Getters and Setters",
-                () -> Assertions.assertNotNull(roleFeaturePk.getRoleId()),
-                () -> Assertions.assertNotNull(roleFeaturePk.getFeatureId()),
-                () -> Assertions.assertNotNull(roleFeaturePk.toString()),
-                () -> Assertions.assertNotEquals(1, roleFeaturePk.hashCode()),
-                () -> Assertions.assertEquals(roleFeaturePk, roleFeaturePk2),
-                () -> Assertions.assertNotEquals(new Object(), roleFeaturePk),
-                () -> Assertions.assertNotEquals(null, roleFeaturePk),
-                () -> Assertions.assertEquals(roleFeaturePk, roleFeaturePk4)
-        );
-
-        roleFeaturePk3.setFeatureId(UUID.fromString("1f23ab15-2a00-451b-b36e-275213eca3aa"));
-        roleFeaturePk3.setRoleId(roleFeaturePk.getRoleId());
-        Assertions.assertNotEquals(roleFeaturePk, roleFeaturePk3);
-        roleFeaturePk3.setFeatureId(roleFeaturePk.getFeatureId());
-        roleFeaturePk3.setRoleId(UUID.fromString("1f23ab15-2a00-451b-b36e-275213eca3aa"));
-        Assertions.assertNotEquals(roleFeaturePk, roleFeaturePk3);
+    @DisplayName("Role ID is set correctly")
+    void roleIdIsSetCorrectly() {
+        RoleFeaturePK pk = new RoleFeaturePK();
+        UUID roleId = UUID.randomUUID();
+        pk.setRoleId(roleId);
+        assertEquals(roleId, pk.getRoleId());
     }
 
-    /**
-     * Methods under test:
-     *
-     * <ul>
-     *   <li>default or parameterless constructor of {@link RoleFeaturePK}
-     *   <li>{@link RoleFeaturePK#setFeatureId(UUID)}
-     *   <li>{@link RoleFeaturePK#setRoleId(UUID)}
-     *   <li>{@link RoleFeaturePK#toString()}
-     *   <li>{@link RoleFeaturePK#getFeatureId()}
-     *   <li>{@link RoleFeaturePK#getRoleId()}
-     * </ul>
-     */
     @Test
-    void testConstructor() {
-        var featureUuid = UUID.fromString("5fd250b6-3246-4d56-8af4-fc67a68b562f");
-        var roleUuid = UUID.fromString("f791981a-afb7-41bf-addf-9cbdfda8e7f8");
-        RoleFeaturePK actualRoleFeaturePK = new RoleFeaturePK();
-        actualRoleFeaturePK.setFeatureId(featureUuid);
-        actualRoleFeaturePK.setRoleId(roleUuid);
-        String actualToStringResult = actualRoleFeaturePK.toString();
-        assertEquals(featureUuid, actualRoleFeaturePK.getFeatureId());
-        assertEquals(roleUuid, actualRoleFeaturePK.getRoleId());
-        assertEquals("RoleFeaturePK{role=f791981a-afb7-41bf-addf-9cbdfda8e7f8, " +
-                "feature=5fd250b6-3246-4d56-8af4-fc67a68b562f}", actualToStringResult);
+    @DisplayName("Feature ID is set correctly")
+    void featureIdIsSetCorrectly() {
+        RoleFeaturePK pk = new RoleFeaturePK();
+        UUID featureId = UUID.randomUUID();
+        pk.setFeatureId(featureId);
+        assertEquals(featureId, pk.getFeatureId());
     }
 
-    /**
-     * Method under test: {@link RoleFeaturePK#equals(Object)}
-     */
     @Test
-    void testEquals() {
-        RoleFeaturePK roleFeaturePK = new RoleFeaturePK();
-        roleFeaturePK.setFeatureId(UUID.fromString("24426101-6828-454e-b7e2-42c2f8798d96"));
-        roleFeaturePK.setRoleId(UUID.fromString("af2f2a8c-569d-46f7-a2f4-3f4a8f73cc51"));
-        assertNotEquals(null, roleFeaturePK);
+    @DisplayName("Default Role ID is null")
+    void defaultRoleIdIsNull() {
+        RoleFeaturePK pk = new RoleFeaturePK();
+        assertNull(pk.getRoleId());
     }
 
-    /**
-     * Method under test: {@link RoleFeaturePK#equals(Object)}
-     */
     @Test
-    void testEquals2() {
-        RoleFeaturePK roleFeaturePK = new RoleFeaturePK();
-        roleFeaturePK.setFeatureId(UUID.fromString("24426101-6828-454e-b7e2-42c2f8798d96"));
-        roleFeaturePK.setRoleId(UUID.fromString("af2f2a8c-569d-46f7-a2f4-3f4a8f73cc51"));
-        assertNotEquals("Different type to RoleFeaturePK", roleFeaturePK);
+    @DisplayName("Default Feature ID is null")
+    void defaultFeatureIdIsNull() {
+        RoleFeaturePK pk = new RoleFeaturePK();
+        assertNull(pk.getFeatureId());
     }
 
-    /**
-     * Methods under test:
-     *
-     * <ul>
-     *   <li>{@link RoleFeaturePK#equals(Object)}
-     *   <li>{@link RoleFeaturePK#hashCode()}
-     * </ul>
-     */
     @Test
-    void testEquals3() {
-        RoleFeaturePK roleFeaturePK = new RoleFeaturePK();
-        roleFeaturePK.setFeatureId(UUID.fromString("24426101-6828-454e-b7e2-42c2f8798d96"));
-        roleFeaturePK.setRoleId(UUID.fromString("af2f2a8c-569d-46f7-a2f4-3f4a8f73cc51"));
-        assertEquals(roleFeaturePK, roleFeaturePK);
-        int expectedHashCodeResult = roleFeaturePK.hashCode();
-        assertEquals(expectedHashCodeResult, roleFeaturePK.hashCode());
+    @DisplayName("Equals with same object")
+    void equalsSameObject() {
+        RoleFeaturePK pk = new RoleFeaturePK();
+        assertEquals(pk, pk);
     }
 
-    /**
-     * Methods under test:
-     *
-     * <ul>
-     *   <li>{@link RoleFeaturePK#equals(Object)}
-     *   <li>{@link RoleFeaturePK#hashCode()}
-     * </ul>
-     */
     @Test
-    void testEquals4() {
-        RoleFeaturePK roleFeaturePK = new RoleFeaturePK();
-        roleFeaturePK.setFeatureId(UUID.fromString("af2f2a8c-569d-46f7-a2f4-3f4a8f73cc51"));
-        roleFeaturePK.setRoleId(UUID.fromString("af2f2a8c-569d-46f7-a2f4-3f4a8f73cc51"));
-
-        RoleFeaturePK roleFeaturePK2 = new RoleFeaturePK();
-        roleFeaturePK2.setFeatureId(UUID.fromString("af2f2a8c-569d-46f7-a2f4-3f4a8f73cc51"));
-        roleFeaturePK2.setRoleId(UUID.fromString("af2f2a8c-569d-46f7-a2f4-3f4a8f73cc51"));
-        assertEquals(roleFeaturePK, roleFeaturePK2);
-        int expectedHashCodeResult = roleFeaturePK.hashCode();
-        assertEquals(expectedHashCodeResult, roleFeaturePK2.hashCode());
+    @DisplayName("Not equals with null")
+    void notEqualsNull() {
+        RoleFeaturePK pk = new RoleFeaturePK();
+        assertNotEquals(null, pk);
     }
 
-    /**
-     * Method under test: {@link RoleFeaturePK#equals(Object)}
-     */
     @Test
-    void testEquals5() {
-        RoleFeaturePK roleFeaturePK = new RoleFeaturePK();
-        roleFeaturePK.setFeatureId(UUID.fromString("cb7969ce-759c-4fa5-b819-c6cdeb6faa01"));
-        roleFeaturePK.setRoleId(UUID.fromString("af2f2a8c-569d-46f7-a2f4-3f4a8f73cc51"));
-
-        RoleFeaturePK roleFeaturePK2 = new RoleFeaturePK();
-        roleFeaturePK2.setFeatureId(UUID.fromString("e7a3946c-3ad2-4925-932f-3e60df07d371"));
-        roleFeaturePK2.setRoleId(UUID.fromString("af2f2a8c-569d-46f7-a2f4-3f4a8f73cc51"));
-        assertNotEquals(roleFeaturePK, roleFeaturePK2);
+    @DisplayName("Not equals with different class")
+    void notEqualsDifferentClass() {
+        RoleFeaturePK pk = new RoleFeaturePK();
+        Object obj = new Object();
+        assertNotEquals(pk, obj);
     }
 
-    /**
-     * Method under test: {@link RoleFeaturePK#equals(Object)}
-     */
     @Test
-    void testEquals7() {
-        RoleFeaturePK roleFeaturePK = new RoleFeaturePK();
-        roleFeaturePK.setFeatureId(UUID.fromString("cb7969ce-759c-4fa5-b819-c6cdeb6faa01"));
-        roleFeaturePK.setRoleId(UUID.fromString("af2f2a8c-569d-46f7-a2f4-3f4a8f73cc51"));
-
-        RoleFeaturePK roleFeaturePK2 = new RoleFeaturePK();
-        roleFeaturePK2.setFeatureId(UUID.fromString("cb7969ce-759c-4fa5-b819-c6cdeb6faa01"));
-        roleFeaturePK2.setRoleId(UUID.fromString("87fb0054-d08f-4b4e-a905-cfc65e4eb962"));
-        assertNotEquals(roleFeaturePK, roleFeaturePK2);
+    @DisplayName("Equals and hashCode work correctly")
+    void equalsAndHashCode() {
+        RoleFeaturePK pk1 = new RoleFeaturePK();
+        RoleFeaturePK pk2 = new RoleFeaturePK();
+        UUID roleId = UUID.randomUUID();
+        UUID featureId = UUID.randomUUID();
+        pk1.setRoleId(roleId);
+        pk1.setFeatureId(featureId);
+        pk2.setRoleId(roleId);
+        pk2.setFeatureId(featureId);
+        assertEquals(pk1, pk2);
+        assertEquals(pk1.hashCode(), pk2.hashCode());
     }
 
+    @Test
+    @DisplayName("Not equals with different Role ID")
+    void notEqualsDifferentRoleId() {
+        RoleFeaturePK pk1 = new RoleFeaturePK();
+        RoleFeaturePK pk2 = new RoleFeaturePK();
+        pk1.setRoleId(UUID.randomUUID());
+        pk1.setFeatureId(UUID.randomUUID());
+        pk2.setRoleId(UUID.randomUUID());
+        pk2.setFeatureId(pk1.getFeatureId());
+        assertNotEquals(pk1, pk2);
+    }
+
+    @Test
+    @DisplayName("Not equals with different Feature ID")
+    void notEqualsDifferentFeatureId() {
+        RoleFeaturePK pk1 = new RoleFeaturePK();
+        RoleFeaturePK pk2 = new RoleFeaturePK();
+        pk1.setRoleId(UUID.randomUUID());
+        pk1.setFeatureId(UUID.randomUUID());
+        pk2.setRoleId(pk1.getRoleId());
+        pk2.setFeatureId(UUID.randomUUID());
+        assertNotEquals(pk1, pk2);
+    }
+
+    @Test
+    @DisplayName("ToString returns correct format")
+    void toStringReturnsCorrectFormat() {
+        RoleFeaturePK pk = new RoleFeaturePK();
+        UUID roleId = UUID.randomUUID();
+        UUID featureId = UUID.randomUUID();
+        pk.setRoleId(roleId);
+        pk.setFeatureId(featureId);
+        String expected = "RoleFeaturePK{role=" + roleId + ", feature=" + featureId + "}";
+        assertEquals(expected, pk.toString());
+    }
 }

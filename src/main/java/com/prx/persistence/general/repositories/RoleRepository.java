@@ -54,7 +54,7 @@ public interface RoleRepository extends CrudRepository<RoleEntity, UUID> {
      *
      * @return {@link Optional} object type with {@link List<RoleEntity>} elements.
      */
-    @Query(value = "SELECT ur.role FROM UserRoleEntity ur WHERE ur.user.id = :idUser ORDER BY ur.user.id ASC")
+    @Query(value = "SELECT aru.role FROM ApplicationRoleUserEntity aru WHERE aru.user.id = :idUser ORDER BY aru.user.id ASC")
     Optional<List<RoleEntity>> findByUserId(@Param("idUser") UUID idUser);
 
     /**
