@@ -12,7 +12,7 @@
  */
 package com.prx.persistence.general.repositories;
 
-import com.prx.persistence.general.domains.AddressEntity;
+import com.prx.persistence.general.domains.ApplicationEntity;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.UUID;
@@ -20,5 +20,5 @@ import java.util.UUID;
 /**
  * @author <a href="mailto:luis.antonio.mata@gmail.com">Luis Antonio Mata</a>
  */
-public interface ApplicationRepository extends CrudRepository<AddressEntity, UUID> {
+public interface ApplicationRepository extends CrudRepository<ApplicationEntity, UUID> {
 }
