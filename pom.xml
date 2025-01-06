@@ -53,7 +53,7 @@
         <spring-data-bom>2024.0.5</spring-data-bom>
         <!--        Test Dependencies-->
         <!--        JUnit 5.x-->
-        <junit.jupiter.version>5.11.4</junit.jupiter.version>
+        <junit.jupiter.version>5.11.3</junit.jupiter.version>
         <junit.jupiter.core.version>5.9.3</junit.jupiter.core.version>
         <!--        Mockito-->
         <mockserver.junit.jupiter.version>5.11.2</mockserver.junit.jupiter.version>
