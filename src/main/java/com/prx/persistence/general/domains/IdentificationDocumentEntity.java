@@ -12,7 +12,7 @@
  */
 package com.prx.persistence.general.domains;
 
-import com.prx.commons.enums.types.IdentificationType;
+import com.prx.commons.constants.types.IdentificationType;
 import com.prx.persistence.general.util.ConstantPersistenceApp;
 import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;

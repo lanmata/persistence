@@ -1,6 +1,6 @@
 package com.prx.persistence.general.domains;
 
-import com.prx.commons.enums.types.IdentificationType;
+import com.prx.commons.constants.types.IdentificationType;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

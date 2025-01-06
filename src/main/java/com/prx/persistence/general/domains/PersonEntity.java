@@ -52,7 +52,6 @@ public class PersonEntity implements Serializable {
     private String name;
 
     @Size(max = 20)
-    @NotEmpty
     @NotNull
     @Column(name = "middle_name")
     private String middleName;
@@ -71,8 +70,7 @@ public class PersonEntity implements Serializable {
     private String gender;
 
     @Past
-    @NotNull
-    @Column(name = "birthdate", nullable = false)
+    @Column(name = "birthdate")
     private LocalDate birthdate;
 
     /**

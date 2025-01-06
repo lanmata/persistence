@@ -6,7 +6,7 @@ package com.prx.persistence.general.util;
  */
 public final class ConstantPersistenceApp {
 
-    /** PostgreSQL function to generate UUIDs. */
+    /** PostgresSQL function to generate UUIDs. */
     public static final String PG_UUID_FUNCTION = "general.uuid_generate_v4()";
 
     /** The schema name used in the database. */
