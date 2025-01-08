@@ -26,20 +26,47 @@ import java.util.UUID;
  * @author <a href="mailto:luis.antonio.mata@gmail.com">Luis Antonio Mata</a>
  */
 public interface UserRepository extends JpaRepository<UserEntity, UUID> {
+
+    ///  Find a user by alias.
+    ///
+    /// @param alias the user alias to find the user
+    /// @return the user entity
     @Query("SELECT u FROM UserEntity u WHERE u.alias = :alias")
     UserEntity findByAlias(@Param("alias") String alias);
 
+    ///  Find a user by email.
+    ///
+    /// @param userId the user email to find the user
+    /// @return the user entity
     @Query("SELECT u FROM UserEntity u LEFT JOIN FETCH u.person WHERE u.id = :userId")
     UserEntity findUserInfo(@Param("userId") UUID userId);
 
-    UserEntity findByEmailAndPassword(String email, String password);
+    ///  Find a user by email.
+    ///
+    /// @param alias the user email to find the user
+    /// @return the user entity
+    UserEntity findByAliasAndPassword(String alias, String password);
 
+    ///  Find a user by email.
+    ///
+    /// @param email         the user email to find the user
+    /// @param applicationId the application ID to find the user
+    /// @return the user entity
     @Query("SELECT u FROM UserEntity u JOIN u.applicationRoleUser ar WHERE u.alias = :email AND ar.application.id = :applicationId")
     Optional<UserEntity> findByEmailAndApplication(@Email @NotBlank @NotEmpty @NotNull @Size(min = 5, max = 250) String email, UUID applicationId);
 
+    ///  Find a user by alias.
+    ///
+    /// @param alias         the user alias to find the user
+    /// @param applicationId the application ID to find the user
+    /// @return the user entity
     @Query("SELECT u FROM UserEntity u JOIN u.applicationRoleUser ar WHERE u.alias = :alias AND ar.application.id = :applicationId")
     Optional<UserEntity> findByAliasAndApplication(@NotBlank @NotEmpty @NotNull @Size(min = 5, max = 12) String alias, UUID applicationId);
 
+    ///  Find a user by alias.
+    ///
+    /// @param applicationId the application ID to find the user
+    /// @return the user entity
     @Query("SELECT u FROM UserEntity u JOIN u.applicationRoleUser ar WHERE ar.application.id = :applicationId")
     List<UserEntity> findByApplication(UUID applicationId);
 
