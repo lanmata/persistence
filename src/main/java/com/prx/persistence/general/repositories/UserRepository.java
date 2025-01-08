@@ -13,10 +13,13 @@
 package com.prx.persistence.general.repositories;
 
 import com.prx.persistence.general.domains.UserEntity;
+import jakarta.validation.constraints.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -28,4 +31,16 @@ public interface UserRepository extends JpaRepository<UserEntity, UUID> {
 
     @Query("SELECT u FROM UserEntity u LEFT JOIN FETCH u.person WHERE u.id = :userId")
     UserEntity findUserInfo(@Param("userId") UUID userId);
+
+    UserEntity findByEmailAndPassword(String email, String password);
+
+    @Query("SELECT u FROM UserEntity u JOIN u.applicationRoleUser ar WHERE u.alias = :email AND ar.application.id = :applicationId")
+    Optional<UserEntity> findByEmailAndApplication(@Email @NotBlank @NotEmpty @NotNull @Size(min = 5, max = 250) String email, UUID applicationId);
+
+    @Query("SELECT u FROM UserEntity u JOIN u.applicationRoleUser ar WHERE u.alias = :alias AND ar.application.id = :applicationId")
+    Optional<UserEntity> findByAliasAndApplication(@NotBlank @NotEmpty @NotNull @Size(min = 5, max = 12) String alias, UUID applicationId);
+
+    @Query("SELECT u FROM UserEntity u JOIN u.applicationRoleUser ar WHERE ar.application.id = :applicationId")
+    List<UserEntity> findByApplication(UUID applicationId);
+
 }
