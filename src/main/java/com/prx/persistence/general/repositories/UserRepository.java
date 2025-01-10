@@ -52,7 +52,7 @@ public interface UserRepository extends JpaRepository<UserEntity, UUID> {
     /// @param email         the user email to find the user
     /// @param applicationId the application ID to find the user
     /// @return the user entity
-    @Query("SELECT u FROM UserEntity u JOIN u.applicationRoleUser ar WHERE u.alias = :email AND ar.application.id = :applicationId")
+    @Query("SELECT u FROM UserEntity u JOIN u.applicationRoleUser ar WHERE u.email = :email AND ar.application.id = :applicationId")
     Optional<UserEntity> findByEmailAndApplication(@Email @NotBlank @NotEmpty @NotNull @Size(min = 5, max = 250) String email, UUID applicationId);
 
     ///  Find a user by alias.
