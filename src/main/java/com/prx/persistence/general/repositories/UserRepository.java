@@ -38,7 +38,7 @@ public interface UserRepository extends JpaRepository<UserEntity, UUID> {
     ///
     /// @param userId the user email to find the user
     /// @return the user entity
-    @Query("SELECT u FROM UserEntity u LEFT JOIN FETCH u.person WHERE u.id = :userId")
+    @Query("SELECT u FROM UserEntity u INNER JOIN FETCH u.person p LEFT JOIN FETCH p.contacts WHERE u.id = :userId")
     UserEntity findUserInfo(@Param("userId") UUID userId);
 
     ///  Find a user by email.
