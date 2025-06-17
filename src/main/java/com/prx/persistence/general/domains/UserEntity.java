@@ -66,6 +66,17 @@ public class UserEntity implements Serializable {
     @Column(name = "email_account", nullable = false)
     private String email;
 
+    /**
+     * The display name of the user.
+     * This is a human-readable name shown in the UI and other contexts.
+     */
+    @NotBlank
+    @NotEmpty
+    @NotNull
+    @Size(min = 2, max = 50)
+    @Column(name = "display_name", nullable = false)
+    private String displayName;
+
     /** The active status of the user. */
     @NotNull
     @Column(name = ConstantPersistenceApp.ACTIVE_CN, nullable = false)
@@ -81,12 +92,34 @@ public class UserEntity implements Serializable {
     @Column(name = "last_update", nullable = false)
     private LocalDateTime lastUpdate;
 
-    /** The person entity associated with the user. */
+    /**
+     * Indicates whether email notifications are active for the user.
+     */
+    @Column(name = "notification_email_active", nullable = false)
+    private Boolean notificationEmail;
+
+    /**
+     * Indicates whether SMS notifications are active for the user.
+     */
+    @Column(name = "notification_sms_active", nullable = false)
+    private Boolean notificationSms;
+
+    /**
+     * Indicates whether the user's data privacy opt-out is active.
+     */
+    @Column(name = "privacy_data_out_active", nullable = false)
+    private Boolean privacyDataOutActive;
+
+    /**
+     * The person entity associated with the user.
+     */
     @OneToOne(fetch = EAGER)
     @JoinColumn(name = "person_id", referencedColumnName = "id")
     private PersonEntity person;
 
-    /** The set of application role user entities associated with the user. */
+    /**
+     * The set of application role user entities associated with the user.
+     */
     @OneToMany(mappedBy = ConstantPersistenceApp.USER_TABLE_NAME)
     private Set<ApplicationRoleUserEntity> applicationRoleUser;
 
@@ -149,6 +182,42 @@ public class UserEntity implements Serializable {
      */
     public @NotNull Boolean getActive() {
         return this.active;
+    }
+
+    /**
+     * Gets the display name of the user.
+     *
+     * @return the display name of the user.
+     */
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    /**
+     * Gets whether email notifications are active for the user.
+     *
+     * @return true if email notifications are active, false otherwise.
+     */
+    public Boolean getNotificationEmail() {
+        return notificationEmail;
+    }
+
+    /**
+     * Gets whether SMS notifications are active for the user.
+     *
+     * @return true if SMS notifications are active, false otherwise.
+     */
+    public Boolean getNotificationSms() {
+        return notificationSms;
+    }
+
+    /**
+     * Gets whether the user's data privacy opt-out is active.
+     *
+     * @return true if privacy data opt-out is active, false otherwise.
+     */
+    public Boolean getPrivacyDataOutActive() {
+        return privacyDataOutActive;
     }
 
     /**
@@ -257,6 +326,42 @@ public class UserEntity implements Serializable {
      */
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    /**
+     * Sets the display name of the user.
+     *
+     * @param displayName the display name of the user.
+     */
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
+    /**
+     * Sets whether email notifications are active for the user.
+     *
+     * @param notificationEmail true to activate email notifications, false otherwise.
+     */
+    public void setNotificationEmail(Boolean notificationEmail) {
+        this.notificationEmail = notificationEmail;
+    }
+
+    /**
+     * Sets whether SMS notifications are active for the user.
+     *
+     * @param notificationSms true to activate SMS notifications, false otherwise.
+     */
+    public void setNotificationSms(Boolean notificationSms) {
+        this.notificationSms = notificationSms;
+    }
+
+    /**
+     * Sets whether the user's data privacy opt-out is active.
+     *
+     * @param privacyDataOutActive true to activate privacy data opt-out, false otherwise.
+     */
+    public void setPrivacyDataOutActive(Boolean privacyDataOutActive) {
+        this.privacyDataOutActive = privacyDataOutActive;
     }
 
     /**

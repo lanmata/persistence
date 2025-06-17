@@ -20,9 +20,11 @@ import org.hibernate.annotations.ColumnDefault;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 import static com.prx.persistence.general.util.ConstantPersistenceApp.PG_UUID_FUNCTION;
+import static jakarta.persistence.FetchType.EAGER;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 /**
@@ -73,6 +75,11 @@ public class PersonEntity implements Serializable {
     @Column(name = "birthdate")
     private LocalDate birthdate;
 
+    @OneToMany(mappedBy = "person", fetch = EAGER, cascade = {
+            CascadeType.PERSIST
+    })
+    private List<ContactEntity> contacts;
+
     /**
      * Default constructor.
      */
@@ -104,6 +111,10 @@ public class PersonEntity implements Serializable {
         return this.birthdate;
     }
 
+    public List<ContactEntity> getContacts() {
+        return contacts;
+    }
+
     public void setId(UUID id) {
         this.id = id;
     }
@@ -128,6 +139,10 @@ public class PersonEntity implements Serializable {
         this.birthdate = birthdate;
     }
 
+    public void setContacts(List<ContactEntity> contacts) {
+        this.contacts = contacts;
+    }
+
     @Override
     public String toString() {
         return "PersonEntity{" +
@@ -137,6 +152,7 @@ public class PersonEntity implements Serializable {
                 ", lastName='" + lastName + '\'' +
                 ", gender='" + gender + '\'' +
                 ", birthdate=" + birthdate +
+                (contacts != null ? ", contacts=" + contacts : "") +
                 '}';
     }
 }
