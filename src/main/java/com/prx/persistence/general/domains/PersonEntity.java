@@ -15,7 +15,6 @@ package com.prx.persistence.general.domains;
 import com.prx.persistence.general.util.ConstantPersistenceApp;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
-import org.hibernate.annotations.ColumnDefault;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -23,9 +22,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
-import static com.prx.persistence.general.util.ConstantPersistenceApp.PG_UUID_FUNCTION;
 import static jakarta.persistence.FetchType.EAGER;
-import static jakarta.persistence.GenerationType.IDENTITY;
 
 /**
  * Service.
@@ -42,8 +39,7 @@ public class PersonEntity implements Serializable {
 
     @Id
     @Column(name = ConstantPersistenceApp.ID_CN)
-    @ColumnDefault(PG_UUID_FUNCTION)
-    @GeneratedValue(strategy = IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @NotBlank
