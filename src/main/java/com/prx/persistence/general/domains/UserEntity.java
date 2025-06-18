@@ -37,8 +37,8 @@ public class UserEntity implements Serializable {
 
     /** The unique identifier for the user. */
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = ConstantPersistenceApp.ID_CN)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     /** The alias of the user. */
