@@ -21,9 +21,9 @@ import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.ColumnDefault;
 
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.UUID;
 
-import static jakarta.persistence.CascadeType.REFRESH;
 import static jakarta.persistence.GenerationType.IDENTITY;
 
 /**
@@ -57,7 +57,7 @@ public class ContactEntity implements Serializable {
     @Column(name = ConstantPersistenceApp.ACTIVE_CN, nullable = false)
     private Boolean active = false;
 
-    @ManyToOne(cascade = REFRESH, fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "person_id")
     private PersonEntity person;
 
@@ -113,9 +113,9 @@ public class ContactEntity implements Serializable {
         return "ContactEntity{" +
                 "id=" + id +
                 ", content='" + content + '\'' +
-                ", contactType=" + contactType +
+                ", contactType=" + (Objects.nonNull(contactType) ? contactType : null) +
                 ", active=" + active +
-                ", person=" + person +
+                ", personId=" + (Objects.nonNull(person) ? person .getId(): null) +
                 '}';
     }
 }
