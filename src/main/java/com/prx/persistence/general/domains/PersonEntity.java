@@ -71,9 +71,10 @@ public class PersonEntity implements Serializable {
     @Column(name = "birthdate")
     private LocalDate birthdate;
 
-    @OneToMany(mappedBy = "person", fetch = EAGER, cascade = {
-            CascadeType.PERSIST
-    })
+    @OneToMany(mappedBy = "person", fetch = EAGER,
+            cascade = {
+                    CascadeType.ALL
+            })
     private List<ContactEntity> contacts;
 
     /**

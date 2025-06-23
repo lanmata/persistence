@@ -113,7 +113,7 @@ public class UserEntity implements Serializable {
     /**
      * The person entity associated with the user.
      */
-    @OneToOne(fetch = EAGER)
+    @OneToOne(fetch = EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "person_id", referencedColumnName = "id")
     private PersonEntity person;
 

@@ -91,8 +91,7 @@ class ContactEntityTest {
         assertEquals("ContactEntity{id=994bb172-c54b-4b30-b9b7-23536ae62aa6, content='Not all who wander are lost',"
                 + " contactType=ContactTypeEntity{id=994bb172-c54b-4b30-b9b7-23536ae62aa6,"
                 + " name='Name', description='The characteristics of someone or something', active=true}, active=true,"
-                + " person=PersonEntity{id=994bb172-c54b-4b30-b9b7-23536ae62aa6, name='Name', middleName='Middle Name', lastName='Doe', gender='Gender',"
-                + " birthdate=1970-01-01}}", actualToStringResult);
+                + " personId=994bb172-c54b-4b30-b9b7-23536ae62aa6}", actualToStringResult);
     }
 
 }
