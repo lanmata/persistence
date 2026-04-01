@@ -23,6 +23,10 @@ import java.util.Optional;
 import java.util.UUID;
 
 /**
+ * Repository interface for accessing and managing {@link UserEntity} instances.
+ * Extends {@link JpaRepository} to provide standard CRUD operations and custom
+ * query methods for user-related data.
+ *
  * @author <a href="mailto:luis.antonio.mata@gmail.com">Luis Antonio Mata</a>
  */
 public interface UserRepository extends JpaRepository<UserEntity, UUID> {

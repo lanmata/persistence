@@ -22,6 +22,16 @@ import java.util.Optional;
 import java.util.UUID;
 
 /**
+ * Interface ContactRepository.
+ *
+ * Provides methods for accessing and manipulating contact information stored
+ * in the application's database, specifically related to the ContactEntity
+ * model. This interface extends the CrudRepository to inherit basic CRUD
+ * operations and declares additional query methods.
+ *
+ * This repository focuses on handling contact data associated with a specific
+ * person instance.
+ *
  * @author <a href="mailto:luis.antonio.mata@gmail.com">Luis Antonio Mata</a>
  */
 public interface ContactRepository extends CrudRepository<ContactEntity, UUID> {

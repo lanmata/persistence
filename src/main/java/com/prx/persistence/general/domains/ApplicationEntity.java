@@ -48,6 +48,9 @@ public class ApplicationEntity implements Serializable {
     @Column(name = ConstantPersistenceApp.NAME_CN)
     private String name;
 
+    @Column(name = "code_name")
+    private String codeName;
+
     /** The description of the application. */
     @Column(name = ConstantPersistenceApp.DESCRIPTION_CN)
     private String description;
@@ -89,6 +92,15 @@ public class ApplicationEntity implements Serializable {
      */
     public String getName() {
         return this.name;
+    }
+
+    /**
+     * Retrieves the code name of the application.
+     *
+     * @return the code name of the application.
+     */
+    public String getCodeName() {
+        return codeName;
     }
 
     /**
@@ -134,6 +146,15 @@ public class ApplicationEntity implements Serializable {
      */
     public void setName(String name) {
         this.name = name;
+    }
+
+    /**
+     * Sets the code name of the application.
+     *
+     * @param codeName the code name to set for the application.
+     */
+    public void setCodeName(String codeName) {
+        this.codeName = codeName;
     }
 
     /**
@@ -191,6 +212,7 @@ public class ApplicationEntity implements Serializable {
         return "ServiceEntity{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", codeName='" + codeName + '\'' +
                 ", description='" + description + '\'' +
                 ", serviceTypeId=" + serviceTypeId +
                 ", active=" + active +

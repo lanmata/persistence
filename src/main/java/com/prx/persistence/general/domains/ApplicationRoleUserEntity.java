@@ -61,6 +61,9 @@ public class ApplicationRoleUserEntity {
     @Column(name = "active", nullable = false)
     private Boolean active = false;
 
+    @Column(name = "profile_image_ref")
+    private String profileImageRef;
+
     /**
      * Default constructor.
      */
@@ -156,5 +159,23 @@ public class ApplicationRoleUserEntity {
      */
     public void setActive(Boolean active) {
         this.active = active;
+    }
+
+    /**
+     * Retrieves the reference to the profile image associated with the entity.
+     *
+     * @return the profile image reference as a String.
+     */
+    public String getProfileImageRef() {
+        return profileImageRef;
+    }
+
+    /**
+     * Sets the reference to the profile image associated with the entity.
+     *
+     * @param profileImageRef the profile image reference as a String
+     */
+    public void setProfileImageRef(String profileImageRef) {
+        this.profileImageRef = profileImageRef;
     }
 }

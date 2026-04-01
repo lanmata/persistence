@@ -18,6 +18,12 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.UUID;
 
 /**
+ * Interface for the Application Repository.
+ *
+ * This repository interface handles the persistence and retrieval of {@link ApplicationEntity}
+ * objects using the methods provided by {@link CrudRepository}.
+ * It supports basic CRUD operations and works with {@link UUID} as the primary key type.
+ *
  * @author <a href="mailto:luis.antonio.mata@gmail.com">Luis Antonio Mata</a>
  */
 public interface ApplicationRepository extends CrudRepository<ApplicationEntity, UUID> {

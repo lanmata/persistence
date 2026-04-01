@@ -20,6 +20,13 @@ import org.springframework.data.repository.query.Param;
 import java.util.UUID;
 
 /**
+ * PersonRepository represents a repository interface for managing PersonEntity objects.
+ * It extends the CrudRepository interface, providing basic CRUD functionality,
+ * and includes custom query methods for specific operations.
+ *
+ * @param <PersonEntity> Represents the entity type handled by the repository.
+ * @param <UUID> Represents the type of the ID for the entity.
+ *
  * @author <a href="mailto:luis.antonio.mata@gmail.com">Luis Antonio Mata</a>
  */
 public interface PersonRepository extends CrudRepository<PersonEntity, UUID> {

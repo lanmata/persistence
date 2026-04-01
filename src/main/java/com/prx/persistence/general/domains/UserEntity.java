@@ -35,13 +35,17 @@ import static jakarta.persistence.FetchType.EAGER;
 @Table(name = ConstantPersistenceApp.USER_TABLE_NAME, schema = ConstantPersistenceApp.SCHEMA_NAME)
 public class UserEntity implements Serializable {
 
-    /** The unique identifier for the user. */
+    /**
+     * The unique identifier for the user.
+     */
     @Id
     @Column(name = ConstantPersistenceApp.ID_CN)
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    /** The alias of the user. */
+    /**
+     * The alias of the user.
+     */
     @NotBlank
     @NotEmpty
     @NotNull
@@ -49,7 +53,9 @@ public class UserEntity implements Serializable {
     @Column(name = "alias", nullable = false, unique = true)
     private String alias;
 
-    /** The password of the user. */
+    /**
+     * The password of the user.
+     */
     @NotBlank
     @NotEmpty
     @NotNull
@@ -57,7 +63,9 @@ public class UserEntity implements Serializable {
     @Column(name = "password", nullable = false)
     private String password;
 
-    /** The email account of the user. */
+    /**
+     * The email account of the user.
+     */
     @Email
     @NotBlank
     @NotEmpty
@@ -77,17 +85,23 @@ public class UserEntity implements Serializable {
     @Column(name = "display_name", nullable = false)
     private String displayName;
 
-    /** The active status of the user. */
+    /**
+     * The active status of the user.
+     */
     @NotNull
     @Column(name = ConstantPersistenceApp.ACTIVE_CN, nullable = false)
     private Boolean active = false;
 
-    /** The date when the user was created. */
+    /**
+     * The date when the user was created.
+     */
     @NotNull
     @Column(name = "created_date", nullable = false)
     private LocalDateTime createdDate;
 
-    /** The date when the user was last updated. */
+    /**
+     * The date when the user was last updated.
+     */
     @NotNull
     @Column(name = "last_update", nullable = false)
     private LocalDateTime lastUpdate;
@@ -120,7 +134,8 @@ public class UserEntity implements Serializable {
     /**
      * The set of application role user entities associated with the user.
      */
-    @OneToMany(mappedBy = ConstantPersistenceApp.USER_TABLE_NAME)
+    @OneToMany(mappedBy = ConstantPersistenceApp.USER_TABLE_NAME,
+            fetch = EAGER, cascade = CascadeType.ALL)
     private Set<ApplicationRoleUserEntity> applicationRoleUser;
 
     /**

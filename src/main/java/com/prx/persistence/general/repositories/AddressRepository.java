@@ -16,6 +16,13 @@ import com.prx.persistence.general.domains.AddressEntity;
 import org.springframework.data.repository.CrudRepository;
 
 /**
+ * AddressRepository.
+ *
+ * This interface provides CRUD operations for handling {@link AddressEntity}
+ * objects in the persistence layer. Extends functionality from
+ * {@link CrudRepository} with {@code AddressEntity} as the entity type and
+ * {@code String} as the ID type.
+ *
  * @author <a href="mailto:luis.antonio.mata@gmail.com">Luis Antonio Mata</a>
  */
 public interface AddressRepository extends CrudRepository<AddressEntity, String> {

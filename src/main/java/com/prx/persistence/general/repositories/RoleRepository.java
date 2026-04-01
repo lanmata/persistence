@@ -22,7 +22,8 @@ import java.util.Optional;
 import java.util.UUID;
 
 /**
- * RolRepository.
+ * RoleRepository interface for performing CRUD operations and custom queries on {@link RoleEntity}.
+ * Extends {@link CrudRepository} to provide basic CRUD functionality.
  *
  * @author <a href='mailto:luis.antonio.mata@gmail.com'>Luis Antonio Mata.</a>
  * @version 1.0.3.20200904-01, 18-01-2021

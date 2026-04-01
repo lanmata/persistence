@@ -111,12 +111,14 @@ class ApplicationEntityTest {
         actualApplicationEntity.setDescription("The characteristics of someone or something");
         actualApplicationEntity.setId(UUID.fromString("849a7d96-5fda-413c-9926-41f660078e76"));
         actualApplicationEntity.setName("Name");
+        actualApplicationEntity.setCodeName("NNM");
         String actualToStringResult = actualApplicationEntity.toString();
         assertEquals("The characteristics of someone or something", actualApplicationEntity.getDescription());
         assertEquals(UUID.fromString("849a7d96-5fda-413c-9926-41f660078e76"), actualApplicationEntity.getId());
         assertEquals("Name", actualApplicationEntity.getName());
+        assertEquals("NNM", actualApplicationEntity.getCodeName());
         assertTrue(actualApplicationEntity.isActive());
-        assertEquals("ServiceEntity{id=849a7d96-5fda-413c-9926-41f660078e76, name='Name'," +
+        assertEquals("ServiceEntity{id=849a7d96-5fda-413c-9926-41f660078e76, name='Name'," + " codeName='NNM'," +
                 " description='The characteristics of someone or something', serviceTypeId=c29f4874-2260-425d-bebb-2d1448f82e2b," +
                 " active=true, applicationRoleUser=null}", actualToStringResult);
     }

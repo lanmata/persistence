@@ -18,7 +18,12 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.UUID;
 
 /**
- * ContactTypeRepository.
+ * Repository interface for accessing and managing {@link ContactTypeEntity} data.
+ * This interface provides CRUD operations for {@link ContactTypeEntity} objects
+ * with a primary key of type {@link UUID}.
+ *
+ * It extends {@link CrudRepository}, inheriting methods to save, find, delete,
+ * and manage {@link ContactTypeEntity} objects in the persistence layer.
  *
  * @author <a href='mailto:luis.antonio.mata@gmail.com'>Luis Antonio Mata.</a>
  * @version 1.0.3.20200904-01, 19-01-2021
