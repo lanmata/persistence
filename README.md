@@ -7,7 +7,7 @@ The library provides a set of repository interfaces for each entity, as well as 
 The library can be used by app clients to connect to any database that supports the JDBC driver. To use the library, an app client would need to create a JDBC connection to the database and then create an instance of each repository interface that they need to use. The app client can then use the repository interfaces to perform operations on the entities.
 
 ## Quality Gate Status
-[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=prx-dev_directory-backend&token=30babbee984be4a21f7e4627f90e80c5b47330fa)](https://sonarcloud.io/summary/new_code?id=prx-dev_directory-backend)
+[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=com.prx.persistence)](https://sonarcloud.io/summary/new_code?id=com.prx.persistence)
 <br>
 [![SonarQube Cloud](https://sonarcloud.io/images/project_badges/sonarcloud-light.svg)](https://sonarcloud.io/summary/new_code?id=com.prx.persistence)
 <br>

@@ -1,0 +1,111 @@
+package com.umdc.persistence.general.domains;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * UserEntityTest.
+ *
+ * @author Luis Antonio Mata
+ * @version 1.0.0, 22-10-2020
+ */
+class UserEntityTest {
+
+    @Test
+    void gettersAndSetters() {
+        final var userEntity = new UserEntity();
+
+        userEntity.setId(UUID.fromString("1f23ab15-2a00-451b-b36e-275213eca3aa"));
+        userEntity.setAlias("Alias");
+        userEntity.setActive(true);
+        userEntity.setPassword("34567890");
+        userEntity.setPerson(new PersonEntity());
+        userEntity.setApplicationRoleUser(new HashSet<>());
+
+        Assertions.assertAll("Test Getters and Setters",
+                () -> Assertions.assertNotNull(userEntity.getId()),
+                () -> Assertions.assertNotNull(userEntity.toString()),
+                () -> Assertions.assertNotNull(userEntity.getAlias()),
+                () -> Assertions.assertNotNull(userEntity.getPerson()),
+                () -> Assertions.assertNotNull(userEntity.getActive()),
+                () -> Assertions.assertNotNull(userEntity.getApplicationRoleUser()),
+                () -> Assertions.assertNotNull(userEntity.getPassword()),
+                () -> Assertions.assertNotEquals(1, userEntity.hashCode()),
+                () -> Assertions.assertNotEquals(new UserEntity(), userEntity)
+        );
+    }
+
+    /**
+     * Methods under test:
+     *
+     * <ul>
+     *   <li>default or parameterless constructor of {@link UserEntity}
+     *   <li>{@link UserEntity#setActive(Boolean)}
+     *   <li>{@link UserEntity#setAlias(String)}
+     *   <li>{@link UserEntity#setId(UUID)}
+     *   <li>{@link UserEntity#setPassword(String)}
+     *   <li>{@link UserEntity#setPerson(PersonEntity)}
+     *   <li>{@link UserEntity#setApplicationRoleUser(Set)}
+     *   <li>{@link UserEntity#toString()}
+     *   <li>{@link UserEntity#getActive()}
+     *   <li>{@link UserEntity#getAlias()}
+     *   <li>{@link UserEntity#getId()}
+     *   <li>{@link UserEntity#getPassword()}
+     *   <li>{@link UserEntity#getPerson()}
+     *   <li>{@link UserEntity#getApplicationRoleUser()}
+     * </ul>
+     */
+    @Test
+    void testConstructor() {
+        var userUuid = UUID.fromString("c018c63d-60ce-4744-9051-fe25eb417108");
+        var personUuid = UUID.fromString("1f8573b4-80c0-408a-8a98-0051c88912cc");
+        var dateTime = LocalDateTime.of(2011, Month.DECEMBER, 15, 12, 30, 25);
+        UserEntity actualUserEntity = new UserEntity();
+        actualUserEntity.setActive(true);
+        actualUserEntity.setCreatedDate(dateTime);
+        actualUserEntity.setLastUpdate(dateTime);
+        actualUserEntity.setAlias("Alias");
+        actualUserEntity.setEmail("alias@domain.ext");
+        actualUserEntity.setId(userUuid);
+        actualUserEntity.setPassword("iloveyou");
+        PersonEntity person = new PersonEntity();
+        person.setBirthdate(LocalDate.of(1970, Month.JANUARY, 1));
+        person.setGender("Gender");
+        person.setId(personUuid);
+        person.setLastName("Doe");
+        person.setMiddleName("Middle Name");
+        person.setName("Name");
+        actualUserEntity.setPerson(person);
+        HashSet<ApplicationRoleUserEntity> applicationRoleUserEntities = new HashSet<>();
+        actualUserEntity.setApplicationRoleUser(applicationRoleUserEntities);
+        String actualToStringResult = actualUserEntity.toString();
+        assertTrue(actualUserEntity.getActive());
+        assertEquals("Alias", actualUserEntity.getAlias());
+        assertEquals(userUuid, actualUserEntity.getId());
+        assertEquals("iloveyou", actualUserEntity.getPassword());
+        assertSame(person, actualUserEntity.getPerson());
+        assertSame(applicationRoleUserEntities, actualUserEntity.getApplicationRoleUser());
+        assertEquals("UserEntity{id=c018c63d-60ce-4744-9051-fe25eb417108, alias='Alias', password='iloveyou'," +
+                " email='alias@domain.ext', createdDate='2011-12-15T12:30:25', lastUpdate='2011-12-15T12:30:25', active=true," +
+                " person=PersonEntity{id=1f8573b4-80c0-408a-8a98-0051c88912cc, name='Name', middleName='Middle Name'," +
+                " lastName='Doe', gender='Gender', birthdate=1970-01-01}, applicationRoleUser=[], applicationId=null}", actualToStringResult);
+    }
+
+    @Test
+    void testGetServiceUser() {
+        UserEntity userEntity = new UserEntity();
+        Set<ApplicationRoleUserEntity> applicationRoleUserEntities = new HashSet<>();
+        userEntity.setApplicationRoleUser(applicationRoleUserEntities);
+        assertSame(applicationRoleUserEntities, userEntity.getApplicationRoleUser());
+    }
+
+}
