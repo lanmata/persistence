@@ -27,7 +27,7 @@ class UserEntityTest {
         userEntity.setId(UUID.fromString("1f23ab15-2a00-451b-b36e-275213eca3aa"));
         userEntity.setAlias("Alias");
         userEntity.setActive(true);
-        userEntity.setPassword("34567890");
+        userEntity.setPassword(System.getProperty("test.user.password", UUID.randomUUID().toString()));
         userEntity.setPerson(new PersonEntity());
         userEntity.setApplicationRoleUser(new HashSet<>());
 
@@ -76,7 +76,8 @@ class UserEntityTest {
         actualUserEntity.setAlias("Alias");
         actualUserEntity.setEmail("alias@domain.ext");
         actualUserEntity.setId(userUuid);
-        actualUserEntity.setPassword("iloveyou");
+        String testPassword = System.getProperty("test.user.password", UUID.randomUUID().toString());
+        actualUserEntity.setPassword(testPassword);
         PersonEntity person = new PersonEntity();
         person.setBirthdate(LocalDate.of(1970, Month.JANUARY, 1));
         person.setGender("Gender");
@@ -91,10 +92,10 @@ class UserEntityTest {
         assertTrue(actualUserEntity.getActive());
         assertEquals("Alias", actualUserEntity.getAlias());
         assertEquals(userUuid, actualUserEntity.getId());
-        assertEquals("iloveyou", actualUserEntity.getPassword());
+        assertEquals(testPassword, actualUserEntity.getPassword());
         assertSame(person, actualUserEntity.getPerson());
         assertSame(applicationRoleUserEntities, actualUserEntity.getApplicationRoleUser());
-        assertEquals("UserEntity{id=c018c63d-60ce-4744-9051-fe25eb417108, alias='Alias', password='iloveyou'," +
+        assertEquals("UserEntity{id=c018c63d-60ce-4744-9051-fe25eb417108, alias='Alias', password='" + testPassword + "'," +
                 " email='alias@domain.ext', createdDate='2011-12-15T12:30:25', lastUpdate='2011-12-15T12:30:25', active=true," +
                 " person=PersonEntity{id=1f8573b4-80c0-408a-8a98-0051c88912cc, name='Name', middleName='Middle Name'," +
                 " lastName='Doe', gender='Gender', birthdate=1970-01-01}, applicationRoleUser=[], applicationId=null}", actualToStringResult);

@@ -69,4 +69,14 @@ public interface RoleRepository extends CrudRepository<RoleEntity, UUID> {
     @Query(value="SELECT r FROM RoleEntity r WHERE r.id IN :ids AND r.active = :active")
     Optional<List<RoleEntity>> findByStatusAndRoleId(@Param("active") boolean active, @Param("ids") List<UUID> ids);
 
+    /**
+     * Search roles by application id.
+     *
+     * @param applicationId {@link UUID}.
+     *
+     * @return {@link Optional} object type with {@link List<RoleEntity>} elements.
+     */
+    @Query(value = "SELECT r FROM RoleEntity r WHERE r.application.id = :applicationId ORDER BY r.id ASC")
+    Optional<List<RoleEntity>> findByApplicationId(@Param("applicationId") UUID applicationId);
+
 }

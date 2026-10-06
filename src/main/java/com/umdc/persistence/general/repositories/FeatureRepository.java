@@ -49,4 +49,13 @@ public interface FeatureRepository extends CrudRepository<FeatureEntity, UUID> {
     @Query(value = "SELECT f FROM FeatureEntity f WHERE f.id IN :ids and f.active = :active ORDER BY f.name DESC")
     Optional<Iterable<FeatureEntity>> findByIdAndStatus(@Param("ids") List<UUID> ids, @Param("active") boolean active);
 
+    /**
+     * Busca los features vinculados a un rol.
+     *
+     * @param roleId {@link UUID}
+     * @return Objeto de tipo {@link Optional}<{@link List}<{@link FeatureEntity}>>
+     */
+    @Query(value = "SELECT rf.feature FROM RoleFeatureEntity rf WHERE rf.role.id = :roleId ORDER BY rf.feature.id ASC")
+    Optional<List<FeatureEntity>> findByRoleId(@Param("roleId") UUID roleId);
+
 }

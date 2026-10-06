@@ -19,7 +19,7 @@ import jakarta.validation.constraints.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import static jakarta.persistence.FetchType.EAGER;
@@ -75,7 +75,7 @@ public class PersonEntity implements Serializable {
             cascade = {
                     CascadeType.ALL
             })
-    private List<ContactEntity> contacts;
+    private Set<ContactEntity> contacts;
 
     /**
      * Default constructor.
@@ -108,7 +108,7 @@ public class PersonEntity implements Serializable {
         return this.birthdate;
     }
 
-    public List<ContactEntity> getContacts() {
+    public Set<ContactEntity> getContacts() {
         return contacts;
     }
 
@@ -136,7 +136,7 @@ public class PersonEntity implements Serializable {
         this.birthdate = birthdate;
     }
 
-    public void setContacts(List<ContactEntity> contacts) {
+    public void setContacts(Set<ContactEntity> contacts) {
         this.contacts = contacts;
     }
 

@@ -15,6 +15,7 @@ package com.umdc.persistence.general.repositories;
 import com.umdc.persistence.general.domains.IdentificationDocumentEntity;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -33,4 +34,12 @@ import java.util.UUID;
  * @author <a href="mailto:luis.antonio.mata@gmail.com">Luis Antonio Mata</a>
  */
 public interface IdentificationDocumentRepository extends CrudRepository<IdentificationDocumentEntity, UUID> {
+
+    /**
+     * Finds all identification documents belonging to a given person.
+     *
+     * @param personId the UUID of the associated person
+     * @return the list of identification documents for that person
+     */
+    List<IdentificationDocumentEntity> findByPersonId(UUID personId);
 }

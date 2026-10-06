@@ -15,6 +15,7 @@ package com.umdc.persistence.general.repositories;
 import com.umdc.persistence.general.domains.ServiceTypeEntity;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -30,4 +31,19 @@ import java.util.UUID;
  */
 public interface ServiceTypeRepository extends CrudRepository<ServiceTypeEntity, UUID> {
 
+    /**
+     * Returns all service types matching the given active flag.
+     *
+     * @param active {@code true} for active service types, {@code false} for inactive
+     * @return list of matching entities
+     */
+    List<ServiceTypeEntity> findByActive(boolean active);
+
+    /**
+     * Checks whether a service type with the given name already exists.
+     *
+     * @param name the candidate service type name
+     * @return {@code true} if a record with matching name already exists
+     */
+    boolean existsByName(String name);
 }
