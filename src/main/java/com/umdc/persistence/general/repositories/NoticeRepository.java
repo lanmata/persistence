@@ -18,6 +18,7 @@ package com.umdc.persistence.general.repositories;
 import com.umdc.persistence.general.domains.NoticeEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -32,4 +33,12 @@ import java.util.UUID;
  * provides functionality for basic CRUD operations, pagination, and sorting.
  */
 public interface NoticeRepository extends JpaRepository<NoticeEntity, UUID> {
+
+    /**
+     * Finds all notices belonging to a given application.
+     *
+     * @param applicationId the UUID of the associated application
+     * @return the list of notices for that application
+     */
+    List<NoticeEntity> findByIdApplicationId(UUID applicationId);
 }

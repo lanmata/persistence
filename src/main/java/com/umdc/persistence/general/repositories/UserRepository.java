@@ -38,18 +38,29 @@ public interface UserRepository extends JpaRepository<UserEntity, UUID> {
     @Query("SELECT u FROM UserEntity u WHERE u.alias = :alias")
     UserEntity findByAlias(@Param("alias") String alias);
 
-    ///  Find a user by email.
+    ///  Find a user by email, eagerly fetching person/contacts and the
+    ///  application-role-user links (including role and application) in a
+    ///  single query — avoids the N+1 that `applicationRoleUser` being
+    ///  `@OneToMany(fetch = EAGER)` plus `role`/`application` being
+    ///  `@ManyToOne(fetch = LAZY)` would otherwise cause when the caller
+    ///  iterates roles/applications (e.g. session alias/claims building).
     ///
     /// @param userId the user email to find the user
     /// @return the user entity
-    @Query("SELECT u FROM UserEntity u INNER JOIN FETCH u.person p LEFT JOIN FETCH p.contacts WHERE u.id = :userId")
+    @Query("SELECT DISTINCT u FROM UserEntity u " +
+            "INNER JOIN FETCH u.person p " +
+            "LEFT JOIN FETCH p.contacts " +
+            "LEFT JOIN FETCH u.applicationRoleUser aru " +
+            "LEFT JOIN FETCH aru.role " +
+            "LEFT JOIN FETCH aru.application " +
+            "WHERE u.id = :userId")
     UserEntity findUserInfo(@Param("userId") UUID userId);
 
     ///  Find a user by email.
     ///
     /// @param alias the user email to find the user
     /// @return the user entity
-    UserEntity findByAliasAndPassword(String alias, String password);
+    UserEntity findByAliasAndPassword(@Param("alias") String alias, @Param("password") String password);
 
     ///  Find a user by email.
     ///
@@ -57,7 +68,7 @@ public interface UserRepository extends JpaRepository<UserEntity, UUID> {
     /// @param applicationId the application ID to find the user
     /// @return the user entity
     @Query("SELECT u FROM UserEntity u JOIN u.applicationRoleUser ar WHERE u.email = :email AND ar.application.id = :applicationId")
-    Optional<UserEntity> findByEmailAndApplication(@Email @NotBlank @NotEmpty @NotNull @Size(min = 5, max = 250) String email, UUID applicationId);
+    Optional<UserEntity> findByEmailAndApplication(@Email @NotBlank @NotEmpty @NotNull @Size(min = 5, max = 250) String email, @Param("applicationId") UUID applicationId);
 
     ///  Find a user by alias.
     ///
@@ -65,13 +76,13 @@ public interface UserRepository extends JpaRepository<UserEntity, UUID> {
     /// @param applicationId the application ID to find the user
     /// @return the user entity
     @Query("SELECT u FROM UserEntity u JOIN u.applicationRoleUser ar WHERE u.alias = :alias AND ar.application.id = :applicationId")
-    Optional<UserEntity> findByAliasAndApplication(@NotBlank @NotEmpty @NotNull @Size(min = 5, max = 12) String alias, UUID applicationId);
+    Optional<UserEntity> findByAliasAndApplication(@NotBlank @NotEmpty @NotNull @Size(min = 5, max = 12) String alias, @Param("applicationId") UUID applicationId);
 
     ///  Find a user by alias.
     ///
     /// @param applicationId the application ID to find the user
     /// @return the user entity
     @Query("SELECT u FROM UserEntity u JOIN u.applicationRoleUser ar WHERE ar.application.id = :applicationId")
-    List<UserEntity> findByApplication(UUID applicationId);
+    List<UserEntity> findByApplication(@Param("applicationId") UUID applicationId);
 
 }
