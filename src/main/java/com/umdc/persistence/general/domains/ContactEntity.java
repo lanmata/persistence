@@ -1,0 +1,134 @@
+/*
+ *  @(#)ContactEntity.java
+ *
+ *  Copyright (c) Luis Antonio Mata Mata. All rights reserved.
+ *
+ *  All rights to this product are owned by Luis Antonio Mata Mata and may only
+ *  be used under the terms of its associated license document. You may NOT
+ *  copy, modify, sublicense, or distribute this source file or portions of
+ *  it unless previously authorized in writing by Luis Antonio Mata Mata.
+ *  In any event, this notice and the above copyright must always be included
+ *  verbatim with this file.
+ */
+package com.umdc.persistence.general.domains;
+
+import com.umdc.persistence.general.util.ConstantPersistenceApp;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import org.hibernate.annotations.ColumnDefault;
+
+import java.io.Serializable;
+import java.util.Objects;
+import java.util.UUID;
+
+import static jakarta.persistence.GenerationType.IDENTITY;
+
+/**
+ * ContactEntity.
+ *
+ * @author <a href="mailto:luis.antonio.mata@gmail.com">Luis Antonio Mata</a>
+ * @version 1.0.2.20200904-01, 2020-10-25
+ */
+@Entity
+@Table(name = ConstantPersistenceApp.CONTACT_TABLE_NAME, schema = ConstantPersistenceApp.SCHEMA_NAME)
+public class ContactEntity implements Serializable {
+
+    @Id
+    @ColumnDefault(ConstantPersistenceApp.PG_UUID_FUNCTION)
+    @GeneratedValue(strategy = IDENTITY)
+    @Column(name = ConstantPersistenceApp.ID_CN)
+    private UUID id;
+
+    @Size(min = 5, max = 50)
+    @NotBlank
+    @NotEmpty
+    @NotNull
+    @Column(name = "content", nullable = false)
+    private String content;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "contact_type_id", referencedColumnName = "id")
+    private ContactTypeEntity contactType;
+
+    @NotNull
+    @Column(name = ConstantPersistenceApp.ACTIVE_CN, nullable = false)
+    private Boolean active = false;
+
+    @ManyToOne
+    @JoinColumn(name = "person_id")
+    private PersonEntity person;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "application_id")
+    private ApplicationEntity application;
+
+    /**
+     * Default constructor.
+     */
+    public ContactEntity() {
+        // Default constructor.
+    }
+
+    public UUID getId() {
+        return this.id;
+    }
+
+    public String getContent() {
+        return this.content;
+    }
+
+    public ContactTypeEntity getContactType() {
+        return this.contactType;
+    }
+
+    public Boolean getActive() {
+        return this.active;
+    }
+
+    public PersonEntity getPerson() {
+        return this.person;
+    }
+
+    public ApplicationEntity getApplication() {
+        return this.application;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setContactType(ContactTypeEntity contactType) {
+        this.contactType = contactType;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public void setPerson(PersonEntity person) {
+        this.person = person;
+    }
+
+    public void setApplication(ApplicationEntity application) {
+        this.application = application;
+    }
+
+    @Override
+    public String toString() {
+        return "ContactEntity{" +
+                "id=" + id +
+                ", content='" + content + '\'' +
+                ", contactType=" + (Objects.nonNull(contactType) ? contactType : null) +
+                ", active=" + active +
+                ", personId=" + (Objects.nonNull(person) ? person .getId(): null) +
+                ", applicationId=" + (Objects.nonNull(application) ? application.getId() : null) +
+                '}';
+    }
+}
