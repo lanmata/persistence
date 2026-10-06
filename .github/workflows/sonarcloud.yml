@@ -43,11 +43,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
       - name: Analyze with SonarCloud
-
-        # You can pin the exact commit or the version.
-        # uses: SonarSource/sonarcloud-github-action@de2e56b42aa84d0b1c5b622644ac17e505c9a049
-        uses: SonarSource/sonarcloud-github-action@de2e56b42aa84d0b1c5b622644ac17e505c9a049
+        uses: SonarSource/sonarqube-scan-action@v6.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}   # Generate a token on Sonarcloud.io, add it to the secrets of this repo with the name SONAR_TOKEN (Settings > Secrets > Actions > add new repository secret)
@@ -66,14 +66,3 @@ jobs:
             #-Dsonar.tests= # optional. For more info about Code Coverage, please refer to https://docs.sonarcloud.io/enriching/test-coverage/overview/
             # Adds more detail to both client and server-side analysis logs, activating DEBUG mode for the scanner, and adding client-side environment variables and system properties to the server-side log of analysis report processing.
             #-Dsonar.verbose= # optional, default is false
-      - name: Setup Java JDK
-        uses: actions/setup-java@v3.13.0
-        with:
-          # The Java version to set up. Takes a whole or semver Java version. See examples of supported syntax in README file
-          java-version: 17
-          # The path to the `.java-version` file. See examples of supported syntax in README file
-          java-version-file: 17
-          # Java distribution. See the list of supported distributions in README file
-          distribution: maven:3.9.0-amazoncorretto-17
-          # The package type (jdk, jre, jdk+fx, jre+fx)
-          java-package: jdk # optional, default is jdk
