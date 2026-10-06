@@ -23,7 +23,7 @@ jobs:
       - name: Analyze with SonarCloud
         # The legacy sonarcloud-github-action bundles a Java 11 scanner that cannot load
         # the scanner engine served by SonarCloud (class file version 61 / Java 17).
-        uses: SonarSource/sonarqube-scan-action@v5
+        uses: SonarSource/sonarqube-scan-action@v6.0.0
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
