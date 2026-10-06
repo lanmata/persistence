@@ -7,22 +7,22 @@
 **JPA persistence library for UM Dev Creative** — entity classes and Spring Data repositories for users, roles,
 features, people, contacts, notices, managed clients, and audit events, backed by PostgreSQL.
 
-[![SonarQube Cloud](https://sonarcloud.io/images/project_badges/sonarcloud-light.svg)](https://sonarcloud.io/summary/new_code?id=lanmata-security-oauth)
+[![SonarQube Cloud](https://sonarcloud.io/images/project_badges/sonarcloud-light.svg)](https://sonarcloud.io/summary/new_code?id=com.umdc%3Apersistence)
 
-[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=lanmata-security-oauth)](https://sonarcloud.io/summary/new_code?id=lanmata-security-oauth)
+[![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=com.umdc%3Apersistence)](https://sonarcloud.io/summary/new_code?id=com.umdc%3Apersistence)
 
-[![Quality gate status](https://sonarcloud.io/api/project_badges/measure?project=lanmata-security-oauth&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=lanmata-security-oauth)
-[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=lanmata-security-oauth&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=lanmata-security-oauth)
-[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=lanmata-security-oauth&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=lanmata-security-oauth)
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=lanmata-security-oauth&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=lanmata-security-oauth)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=lanmata-security-oauth&metric=coverage)](https://sonarcloud.io/summary/new_code?id=lanmata-security-oauth)
+[![Quality gate status](https://sonarcloud.io/api/project_badges/measure?project=com.umdc%3Apersistence&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=com.umdc%3Apersistence)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=com.umdc%3Apersistence&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=com.umdc%3Apersistence)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=com.umdc%3Apersistence&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=com.umdc%3Apersistence)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=com.umdc%3Apersistence&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=com.umdc%3Apersistence)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=com.umdc%3Apersistence&metric=coverage)](https://sonarcloud.io/summary/new_code?id=com.umdc%3Apersistence)
 
-[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=lanmata-security-oauth&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=lanmata-security-oauth)
-[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=lanmata-security-oauth&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=lanmata-security-oauth)
-[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=lanmata-security-oauth&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=lanmata-security-oauth)
-[![Maintainability issues](https://sonarcloud.io/api/project_badges/measure?project=lanmata-security-oauth&metric=software_quality_maintainability_issues)](https://sonarcloud.io/summary/new_code?id=lanmata-security-oauth)
-[![Reliability issues](https://sonarcloud.io/api/project_badges/measure?project=lanmata-security-oauth&metric=software_quality_reliability_issues)](https://sonarcloud.io/summary/new_code?id=lanmata-security-oauth)
-[![Security issues](https://sonarcloud.io/api/project_badges/measure?project=lanmata-security-oauth&metric=software_quality_security_issues)](https://sonarcloud.io/summary/new_code?id=lanmata-security-oauth)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=com.umdc%3Apersistence&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=com.umdc%3Apersistence)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=com.umdc%3Apersistence&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=com.umdc%3Apersistence)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=com.umdc%3Apersistence&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=com.umdc%3Apersistence)
+[![Maintainability issues](https://sonarcloud.io/api/project_badges/measure?project=com.umdc%3Apersistence&metric=software_quality_maintainability_issues)](https://sonarcloud.io/summary/new_code?id=com.umdc%3Apersistence)
+[![Reliability issues](https://sonarcloud.io/api/project_badges/measure?project=com.umdc%3Apersistence&metric=software_quality_reliability_issues)](https://sonarcloud.io/summary/new_code?id=com.umdc%3Apersistence)
+[![Security issues](https://sonarcloud.io/api/project_badges/measure?project=com.umdc%3Apersistence&metric=software_quality_security_issues)](https://sonarcloud.io/summary/new_code?id=com.umdc%3Apersistence)
 
 <br/>
 
@@ -223,4 +223,4 @@ For questions, reach out to:
 
 <luis.antonio.mata@gmail.com>
 
-[![SonarQube Cloud](https://sonarcloud.io/images/project_badges/sonarcloud-light.svg)](https://sonarcloud.io/summary/new_code?id=lanmata-security-oauth)
+[![SonarQube Cloud](https://sonarcloud.io/images/project_badges/sonarcloud-light.svg)](https://sonarcloud.io/summary/new_code?id=com.umdc%3Apersistence)
