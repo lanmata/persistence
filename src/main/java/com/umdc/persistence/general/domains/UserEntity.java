@@ -141,7 +141,8 @@ public class UserEntity implements Serializable {
      */
     @OneToMany(mappedBy = ConstantPersistenceApp.USER_TABLE_NAME,
             fetch = EAGER, cascade = CascadeType.ALL)
-    private transient Set<ApplicationRoleUserEntity> applicationRoleUser;
+    @SuppressWarnings("java:S1948") // Hibernate injects a Serializable PersistentSet at runtime
+    private Set<ApplicationRoleUserEntity> applicationRoleUser;
 
     /**
      * The application this user belongs to.

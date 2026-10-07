@@ -79,7 +79,8 @@ public class ApplicationEntity implements Serializable {
     @OneToMany(mappedBy = "application", fetch = EAGER, cascade = {
             CascadeType.PERSIST
     })
-    private transient Set<ApplicationRoleUserEntity> applicationRoleUser;
+    @SuppressWarnings("java:S1948") // Hibernate injects a Serializable PersistentSet at runtime
+    private Set<ApplicationRoleUserEntity> applicationRoleUser;
 
     /** The active status of the application. */
     @ColumnDefault("false")
