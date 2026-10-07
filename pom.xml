@@ -63,7 +63,7 @@
         <!--        Mockito-->
         <mockito.version>5.23.0</mockito.version>
         <!--        Coverage and Sonar-->
-        <sonar.organization>prx-open</sonar.organization>
+        <sonar.organization>lamm</sonar.organization>
         <sonar.projectKey>${project.groupId}:${project.artifactId}</sonar.projectKey>
         <sonar.coverage.exclusions>**/*.xml,**/*Application.*,**/config/*,**/mapper/*</sonar.coverage.exclusions>
         <sonar.exclusions>**/*.xml,**/*Application.*,**/config/*,**/mapper/*</sonar.exclusions>
