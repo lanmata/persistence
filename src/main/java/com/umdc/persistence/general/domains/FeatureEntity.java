@@ -65,7 +65,8 @@ public class FeatureEntity implements Serializable {
             CascadeType.PERSIST,
             CascadeType.MERGE
         })
-    private transient Set<RoleFeatureEntity> rolFeatures;
+    @SuppressWarnings("java:S1948") // Hibernate injects a Serializable PersistentSet at runtime
+    private Set<RoleFeatureEntity> rolFeatures;
 
     /**
      * Default constructor.
