@@ -68,7 +68,8 @@ public class RoleEntity implements Serializable {
     @OneToMany(mappedBy = "role", fetch = EAGER, cascade = {
             CascadeType.PERSIST
     })
-    private transient Set<ApplicationRoleUserEntity> applicationRoleUser;
+    @SuppressWarnings("java:S1948") // Hibernate injects a Serializable PersistentSet at runtime
+    private Set<ApplicationRoleUserEntity> applicationRoleUser;
 
     /** The set of role feature entities associated with the role. */
     @OneToMany(mappedBy = ConstantPersistenceApp.ROLE_TABLE_NAME,
@@ -76,7 +77,8 @@ public class RoleEntity implements Serializable {
             cascade = {
                     CascadeType.PERSIST
             })
-    private transient Set<RoleFeatureEntity> roleFeatures;
+    @SuppressWarnings("java:S1948") // Hibernate injects a Serializable PersistentSet at runtime
+    private Set<RoleFeatureEntity> roleFeatures;
 
     /** The active status of the role. */
     @Column(name = ConstantPersistenceApp.ACTIVE_CN)
